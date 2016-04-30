@@ -89,7 +89,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         addChild(bg1)
         
         bg2.anchorPoint = CGPointZero
-        bg2.position = CGPointMake(bg2.size.width-1, 0)
+        bg2.position = CGPointMake(frame.size.width-1, 0)
         bg2.size = self.frame.size
         bg2.zPosition = -1
         addChild(bg2)
@@ -292,14 +292,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             bg1.position = CGPoint(x: bg1.position.x - 4, y: bg1.position.y)
             bg2.position = CGPoint(x: bg2.position.x - 4, y: bg2.position.y)
 
-            if bg1.position.x < -bg1.size.width
+            if bg1.position.x < -frame.size.width
             {
-                bg1.position = CGPointMake(bg2.position.x + bg2.size.width, bg1.position.y)
+                bg1.position = CGPointMake(bg2.position.x + frame.size.width, bg1.position.y)
             }
             
-            if bg2.position.x < -bg2.size.width
+            if bg2.position.x < -frame.size.width
             {
-                bg2.position = CGPointMake(bg1.position.x + bg1.size.width, bg2.position.y)
+                bg2.position = CGPointMake(bg1.position.x + frame.size.width, bg2.position.y)
             }
             
             bg1_lastX = bg1.position.x
