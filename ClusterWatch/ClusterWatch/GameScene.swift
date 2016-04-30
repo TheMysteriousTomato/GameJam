@@ -13,8 +13,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     let dodgebutton = SKSpriteNode(imageNamed: "dodgebutton")
     var gameReady = false
     var score = 0
-    
-    
+    var numJumps = 0
     var now : NSDate?
     var nextTime : NSDate?
 
@@ -85,11 +84,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     runner.physicsBody?.dynamic = true
                 }
             } else if touch.tapCount <= 2 {
-                runner.physicsBody?.velocity = CGVectorMake(0, runner.position.y + 400)
+                
+                if numJumps < 2
+                {
+                    runner.physicsBody?.velocity = CGVectorMake(0, runner.position.y + 400)
+                    numJumps = numJumps + 1
+                }
+                
             }
-            
-            
-            
         }
     }
     
@@ -108,10 +110,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     runner.physicsBody?.affectedByGravity = true
                     runner.physicsBody?.dynamic = true
                 }
-            } else if touch.tapCount <= 2 {
-                runner.physicsBody?.velocity = CGVectorMake(0, runner.position.y + 200)
             }
-            
+//            else if touch.tapCount <= 2 {
+//                
+//                if numJumps < 3
+//                {
+//                    runner.physicsBody?.velocity = CGVectorMake(0, runner.position.y + 200)
+//                    numJumps = numJumps + 1
+//                }
+//            }
         }
     }
    
@@ -134,6 +141,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 self.view?.presentScene(gameOverScene, transition: transition)
             })
         }
+        if (firstBody.categoryBitMask == PhysicsCategory.Player && secondBody.categoryBitMask == PhysicsCategory.Ground) || (firstBody.categoryBitMask == PhysicsCategory.Ground && secondBody.categoryBitMask == PhysicsCategory.Player)
+        {
+            print("floored")
+            numJumps = 0
+        }
     }
     
     func checkIfObjReachesEnd(){
@@ -154,7 +166,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             if runner.position.y >= self.frame.height - 140 { runner.position.y = self.frame.height - 140 }
         
             let obj = SKSpriteNode(imageNamed: "obj")
-        
+            
             now = NSDate()
             if (now?.timeIntervalSince1970 > nextTime?.timeIntervalSince1970){
                 let rnd = arc4random_uniform(4)
