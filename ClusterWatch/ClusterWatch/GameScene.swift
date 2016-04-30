@@ -88,15 +88,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 }
             } else if touch.tapCount <= 2 {
                 print(numJumps)
+                if numJumps == 1 {
+                    let rotation = SKAction.rotateByAngle( CGFloat(2 * -M_PI), duration: 0.75)
+                    runner.runAction(rotation)
+                }
                 if numJumps < 2
                 {
                     runner.physicsBody?.velocity = CGVectorMake(0, runner.position.y + 400)
                     numJumps = numJumps + 1
                 }
-                else if numJumps == 1 {
-                    let rotation = SKAction.rotateByAngle( CGFloat(2 * -M_PI), duration: 1.0)
-                    runner.runAction(rotation)
-                }
+                
                 
             }
         }
