@@ -1,5 +1,4 @@
 # GameJam
-=========
 
 ### Description
 ---------------
@@ -21,4 +20,4 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris a odio blandit, 
 #### Testing a table
 Name | Image | Number of points
 -----|-------|-----------------
-small spike | tmp | 1
+small spike | ![alt tag](https://raw.githubusercontent.com/TheMysteriousTomato/GameJam/master/ClusterWatch/ClusterWatch/Assets.xcassets/spike.imageset/spike.png) | 1
