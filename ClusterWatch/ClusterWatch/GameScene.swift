@@ -48,7 +48,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         floor.physicsBody?.dynamic = false
         
         runner.size = CGSize(width: 100, height: 100)
-        runner.position = CGPoint(x: self.frame.size.width / 10 , y: floor.frame.height + 140);
+        runner.position = CGPoint(x: self.frame.size.width / 10 , y: floor.frame.height);
         runner.physicsBody = SKPhysicsBody(texture: SKTexture(imageNamed: "runner"), size: CGSize(width: 100, height: 100))
         runner.physicsBody?.categoryBitMask = PhysicsCategory.Player
         runner.physicsBody?.collisionBitMask = PhysicsCategory.Ground | PhysicsCategory.Spike
@@ -99,8 +99,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             if let name = self.nodeAtPoint(location).name {
                 if( name == "dodgebutton"){
                     runner.texture = SKTexture(imageNamed: "dodge")
-                    runner.size = CGSize(width: 50, height: 50)
-                    runner.physicsBody = SKPhysicsBody(texture: SKTexture(imageNamed: "dodge"), size: CGSize(width: 50, height: 50))
+                    runner.size = CGSize(width: 100, height: 100)
+                    runner.position.x = self.frame.width / 10
+                    runner.physicsBody = SKPhysicsBody(texture: SKTexture(imageNamed: "dodge"), size: CGSize(width: 90, height: 75))
                     runner.physicsBody?.categoryBitMask = PhysicsCategory.Player
                     runner.physicsBody?.collisionBitMask = PhysicsCategory.Ground | PhysicsCategory.Spike
                     runner.physicsBody?.contactTestBitMask = PhysicsCategory.Ground | PhysicsCategory.Spike
@@ -188,7 +189,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         if (firstBody.categoryBitMask == PhysicsCategory.Player && secondBody.categoryBitMask == PhysicsCategory.Ground) || (firstBody.categoryBitMask == PhysicsCategory.Ground && secondBody.categoryBitMask == PhysicsCategory.Player)
         {
-//            print("floored")
+            print("floored")
             numJumps = 0
         }
     }
@@ -210,7 +211,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let spike = SKSpriteNode(imageNamed: "spike")
 
         spike.size = CGSize(width: 70, height: 70)
-        spike.position = CGPoint(x: self.frame.size.width, y: floor.frame.height + 30)
+        let rnd = arc4random_uniform(2)
+        
+        if rnd == 1{
+            spike.position = CGPoint(x: self.frame.size.width, y: floor.frame.height + 30)
+        }
+        else {
+            spike.position = CGPoint(x: self.frame.size.width, y: floor.frame.height + 386)
+        }
         spike.physicsBody = SKPhysicsBody(texture: SKTexture(imageNamed: "spike"), size: CGSize(width: 70, height: 70))
         spike.physicsBody?.categoryBitMask = PhysicsCategory.Spike
         spike.physicsBody?.collisionBitMask = PhysicsCategory.Ground
