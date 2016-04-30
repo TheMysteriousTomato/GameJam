@@ -8,7 +8,7 @@ struct PhysicsCategory {
 }
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
-    let runner = SKSpriteNode(imageNamed: "runner")
+    var runner = SKSpriteNode(imageNamed: "runner")
     let floor = SKSpriteNode(imageNamed: "floor")
     let dodgebutton = SKSpriteNode(imageNamed: "dodgebutton")
     var gameReady = false
@@ -77,6 +77,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
             if let name = self.nodeAtPoint(location).name {
                 if( name == "dodgebutton"){
+                    runner.texture = SKTexture(imageNamed: "dodge")
                     runner.size = CGSize(width: 50, height: 50)
                     runner.physicsBody = SKPhysicsBody(rectangleOfSize: CGSize(width: 50, height: 50))
                     runner.physicsBody?.categoryBitMask = PhysicsCategory.Player
@@ -104,6 +105,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
             if let name = self.nodeAtPoint(location).name {
                 if( name == "dodgebutton"){
+                    runner.texture = SKTexture(imageNamed: "runner")
                     runner.size = CGSize(width: 90, height: 90)
                     runner.physicsBody = SKPhysicsBody(rectangleOfSize: runner.size)
                     runner.physicsBody?.categoryBitMask = PhysicsCategory.Player
