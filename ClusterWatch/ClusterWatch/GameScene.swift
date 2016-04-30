@@ -9,13 +9,13 @@
 import SpriteKit
 
 class GameScene: SKScene {
+    let runner = SKSpriteNode(imageNamed: "runner")
 
     func gameSetup(){
         let floor = SKSpriteNode(imageNamed: "floor")
         floor.xScale = 2
         floor.position = CGPoint(x: 0, y: floor.frame.height / 2);
         
-        let runner = SKSpriteNode(imageNamed: "runner")
         runner.size = CGSize(width: 175, height: 175)
         runner.position = CGPoint(x: self.frame.size.width / 10, y: floor.frame.height + 88);
         
