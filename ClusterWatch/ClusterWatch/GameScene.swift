@@ -37,6 +37,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var netActive = Bool()
     var currentHighScore = 0
     let highscorelabel = SKLabelNode(fontNamed: "PerfectDarkBRK")
+
     var duckActive = Bool()
 
     func gameSetup(){
@@ -547,9 +548,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         // Execute Fetch Request
         do {
             let result = try managedContext.executeFetchRequest(fetchRequest)
-            let index = result.count
-            currentHighScore = Int(result[index - 1].valueForKey("score") as! NSNumber)
-            print("Highscore: " + String(currentHighScore))
+            if result.count != 0 {
+                let index = result.count
+                currentHighScore = Int(result[index - 1].valueForKey("score") as! NSNumber)
+                print("Highscore: " + String(currentHighScore))
+            }
         } catch {
             let fetchError = error as NSError
             print(fetchError)
