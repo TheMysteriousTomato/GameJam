@@ -51,9 +51,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.addChild(runner)
         self.addChild(floor)
         
-        self.runAction(SKAction.fadeInWithDuration(1.0), completion: {
-            self.gameReady = true
-        })
         
     }
     
@@ -70,6 +67,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
        /* Called when a touch begins */
         
         for touch in touches {
+            
+            if gameReady == false {
+                gameReady = true
+            }
+            
             let location = (touch).locationInNode(self)
 //            print(touch.tapCount)
             
