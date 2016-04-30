@@ -7,7 +7,7 @@ struct PhysicsCategory {
     static let Spike:  UInt32 = 0x1 << 3
 }
 
-class GameScene: SKScene {
+class GameScene: SKScene, SKPhysicsContactDelegate {
     let runner = SKSpriteNode(imageNamed: "runner")
 
     func gameSetup(){
@@ -36,15 +36,17 @@ class GameScene: SKScene {
         spike.size = CGSize(width: 150, height: 150)
         spike.position = CGPoint(x: self.frame.size.width, y: floor.frame.height + 50);
 
-        let action = SKAction.moveTo(CGPoint(x: 0, y: floor.frame.height+50), duration: 2)
-        spike.physicsBody = SKPhysicsBody(rectangleOfSize: runner.size)
+//        let action = SKAction.moveTo(CGPoint(x: 0, y: floor.frame.height+50), duration: 2)
+        
+        spike.physicsBody = SKPhysicsBody(circleOfRadius: spike.size.height)
         spike.physicsBody?.categoryBitMask = PhysicsCategory.Spike
         spike.physicsBody?.collisionBitMask = PhysicsCategory.Ground | PhysicsCategory.Player
         spike.physicsBody?.contactTestBitMask = PhysicsCategory.Ground | PhysicsCategory.Player
         spike.physicsBody?.affectedByGravity = true
-        spike.physicsBody?.affectedByGravity = true
+        spike.physicsBody?.dynamic = true
         
-        spike.runAction(action)
+        spike.physicsBody?.velocity = CGVectorMake(-1000, spike.position.y)
+//        spike.runAction(action)
         
         self.addChild(spike)
         self.addChild(runner)
@@ -54,6 +56,7 @@ class GameScene: SKScene {
     
     override func didMoveToView(view: SKView) {
         /* Setup your scene here */
+        self.physicsWorld.contactDelegate = self
         gameSetup()
 
     }
@@ -67,6 +70,17 @@ class GameScene: SKScene {
         }
     }
    
+    func didBeginContact(contact: SKPhysicsContact) {
+        let firstBody = contact.bodyA
+        let secondBody = contact.bodyB
+        
+        if firstBody.categoryBitMask == PhysicsCategory.Player && secondBody.categoryBitMask == PhysicsCategory.Spike {
+            print("hit the spike")
+        } else {
+            print("other")
+        }
+    }
+    
     override func update(currentTime: CFTimeInterval) {
         /* Called before each frame is rendered */
         if runner.position.x >= self.frame.width
