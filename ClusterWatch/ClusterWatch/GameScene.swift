@@ -144,14 +144,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             if (rnd < 8)
             {
                 spike.size = CGSize(width: 70, height: 70)
+                spike.physicsBody = SKPhysicsBody(rectangleOfSize: CGSize(width: 70, height: 70))
             }
             else
             {
-                spike.size = CGSize(width: 225, height: 225)
+                spike.size = CGSize(width: 150, height: 175)
+                spike.physicsBody = SKPhysicsBody(rectangleOfSize: CGSize(width: 125, height: 175))
             }
             
             spike.position = CGPoint(x: self.frame.size.width, y: floor.frame.height + 50);
-            spike.physicsBody = SKPhysicsBody(rectangleOfSize: spike.size)
             spike.physicsBody?.categoryBitMask = PhysicsCategory.Spike
             spike.physicsBody?.collisionBitMask = PhysicsCategory.Ground
             spike.physicsBody?.contactTestBitMask = PhysicsCategory.Ground
