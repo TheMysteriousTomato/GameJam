@@ -17,7 +17,7 @@ class GameScene: SKScene {
         
         let runner = SKSpriteNode(imageNamed: "runner")
         runner.size = CGSize(width: 175, height: 175)
-        runner.position = CGPoint(x: self.frame.size.width / 10, y: floor.frame.height + 100);
+        runner.position = CGPoint(x: self.frame.size.width / 10, y: floor.frame.height + 88);
         
         self.addChild(runner)
         self.addChild(floor)
