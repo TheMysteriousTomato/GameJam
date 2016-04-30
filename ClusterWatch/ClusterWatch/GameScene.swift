@@ -10,11 +10,18 @@ struct PhysicsCategory {
 class GameScene: SKScene, SKPhysicsContactDelegate {
     let runner = SKSpriteNode(imageNamed: "runner")
     let floor = SKSpriteNode(imageNamed: "floor")
+    let dodgebutton = SKSpriteNode(imageNamed: "dodgebutton")
+    
     var now : NSDate?
     var nextTime : NSDate?
 
     func gameSetup(){
         self.backgroundColor = SKColor.whiteColor()
+        
+        dodgebutton.size     = CGSize(width: 100, height: 100)
+        dodgebutton.position = CGPoint(x: self.frame.width - 200, y: floor.frame.height / 2);
+        dodgebutton.zPosition = 5
+        dodgebutton.name = "dodgebutton"
         
         floor.xScale = 2
         floor.position = CGPoint(x: 0, y: floor.frame.height / 2);
@@ -37,6 +44,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         runner.physicsBody?.dynamic = true
         
 
+        
+        self.addChild(dodgebutton)
         self.addChild(runner)
         self.addChild(floor)
         
@@ -54,11 +63,49 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
        /* Called when a touch begins */
         
         for touch in touches {
-            print(touch.tapCount)
-            let _ = touch.locationInNode(self)
-            if touch.tapCount <= 2 {
+            let location = (touch).locationInNode(self)
+//            print(touch.tapCount)
+            
+            if let name = self.nodeAtPoint(location).name {
+                if( name == "dodgebutton"){
+                    print("dodge")
+                    runner.size = CGSize(width: 90, height: 90)
+                    runner.physicsBody = SKPhysicsBody(rectangleOfSize: CGSize(width: 90, height: 90))
+                    runner.physicsBody?.categoryBitMask = PhysicsCategory.Player
+                    runner.physicsBody?.collisionBitMask = PhysicsCategory.Ground | PhysicsCategory.Spike
+                    runner.physicsBody?.contactTestBitMask = PhysicsCategory.Ground | PhysicsCategory.Spike
+                    runner.physicsBody?.affectedByGravity = true
+                    runner.physicsBody?.dynamic = true
+                }
+            } else if touch.tapCount <= 2 {
                 runner.physicsBody?.velocity = CGVectorMake(0, runner.position.y + 600)
             }
+            
+            
+            
+        }
+    }
+    
+    override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        for touch in touches {
+            let location = (touch).locationInNode(self)
+            //            print(touch.tapCount)
+            
+            if let name = self.nodeAtPoint(location).name {
+                if( name == "dodgebutton"){
+                    print("dodge")
+                    runner.size = CGSize(width: 175, height: 175)
+                    runner.physicsBody = SKPhysicsBody(rectangleOfSize: runner.size)
+                    runner.physicsBody?.categoryBitMask = PhysicsCategory.Player
+                    runner.physicsBody?.collisionBitMask = PhysicsCategory.Ground | PhysicsCategory.Spike
+                    runner.physicsBody?.contactTestBitMask = PhysicsCategory.Ground | PhysicsCategory.Spike
+                    runner.physicsBody?.affectedByGravity = true
+                    runner.physicsBody?.dynamic = true
+                }
+            } else if touch.tapCount <= 2 {
+                runner.physicsBody?.velocity = CGVectorMake(0, runner.position.y + 600)
+            }
+            
         }
     }
    
