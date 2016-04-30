@@ -37,6 +37,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var netActive = Bool()
     var currentHighScore = 0
     let highscorelabel = SKLabelNode(fontNamed: "PerfectDarkBRK")
+    let tapToPlaylabel = SKLabelNode(fontNamed: "PerfectDarkBRK")
 
     var duckActive = Bool()
 
@@ -76,6 +77,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         runner.physicsBody?.contactTestBitMask = PhysicsCategory.Ground | PhysicsCategory.Spike | PhysicsCategory.Wall
         runner.physicsBody?.affectedByGravity = true
         runner.physicsBody?.dynamic = true
+        
+        let m = "Tap To Play"
+        tapToPlaylabel.text = m
+        tapToPlaylabel.fontSize = 100
+        tapToPlaylabel.fontColor = SKColor.whiteColor()
+        tapToPlaylabel.position = CGPoint(x: self.frame.width / 2, y: self.frame.height * 0.6)
+        tapToPlaylabel.name = "tapToPlay"
+        self.addChild(tapToPlaylabel)
         
         let message = "Score: \(score)"
         scorelabel.text = message
@@ -134,6 +143,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
             if gameReady == false {
                 gameReady = true
+                for child in self.children
+                {
+                    if let spriteNode = child as? SKLabelNode {
+                        if(spriteNode.name == "tapToPlay"){
+                            self.removeChildrenInArray([child])
+                        }
+                    }
+                }
             }
             else {
             
