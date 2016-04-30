@@ -17,6 +17,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var now : NSDate?
     var nextTime : NSDate?
     let backgroundVelocity : CGFloat = 5
+    let scorelabel = SKLabelNode(fontNamed: "PerfectDarkBRK")
+
 
 
     func gameSetup(){
@@ -45,6 +47,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         runner.physicsBody?.contactTestBitMask = PhysicsCategory.Ground | PhysicsCategory.Spike
         runner.physicsBody?.affectedByGravity = true
         runner.physicsBody?.dynamic = true
+        
+        let message = "Score: \(score)"
+        scorelabel.text = message
+        scorelabel.fontSize = 40
+        scorelabel.fontColor = SKColor.blackColor()
+        scorelabel.position = CGPoint(x: self.frame.width/10, y: self.frame.height * 0.9)
+        self.addChild(scorelabel)
         
 
         self.addChild(dodgebutton)
@@ -89,7 +98,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     runner.physicsBody?.dynamic = true
                 }
             } else if touch.tapCount <= 2 {
-                print(numJumps)
+//                print(numJumps)
                 if numJumps == 1 {
                     let rotation = SKAction.rotateByAngle( CGFloat(2 * -M_PI), duration: 0.75)
                     runner.runAction(rotation)
@@ -138,7 +147,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let firstBody = contact.bodyA
         let secondBody = contact.bodyB
         if firstBody.categoryBitMask == PhysicsCategory.Player && secondBody.categoryBitMask == PhysicsCategory.Spike {
-            print("Hit player")
+//            print("Hit player")
 
             let duration = 0.25
             let finalHeightScale:CGFloat = 0.0
@@ -164,10 +173,60 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         for child in self.children {
             if(child.position.x <= -1){
                 self.removeChildrenInArray([child])
-                print("+1")
+//                print("+1")
                 score = score + 1
+                scorelabel.text = "Score: " + String(score)
             }
         }
+    }
+    
+    func generateSmallSpike(){
+        let spike = SKSpriteNode(imageNamed: "spike")
+
+        spike.size = CGSize(width: 70, height: 70)
+        spike.position = CGPoint(x: self.frame.size.width, y: floor.frame.height + 30)
+        spike.physicsBody = SKPhysicsBody(texture: SKTexture(imageNamed: "spike"), size: CGSize(width: 70, height: 70))
+        spike.physicsBody?.categoryBitMask = PhysicsCategory.Spike
+        spike.physicsBody?.collisionBitMask = PhysicsCategory.Ground
+        spike.physicsBody?.contactTestBitMask = PhysicsCategory.Ground
+        spike.physicsBody?.affectedByGravity = true
+        spike.physicsBody?.dynamic = true
+        spike.physicsBody?.velocity = CGVectorMake(-1000, spike.position.y)
+        self.addChild(spike)
+    }
+    
+    func generateLargeSpike(){
+        let spike = SKSpriteNode(imageNamed: "spike")
+
+        spike.size = CGSize(width: 150, height: 175)
+        spike.position = CGPoint(x: self.frame.size.width, y: floor.frame.height + 80);
+        spike.physicsBody = SKPhysicsBody(texture: SKTexture(imageNamed: "spike"), size: CGSize(width: 150, height: 175))
+        spike.physicsBody?.categoryBitMask = PhysicsCategory.Spike
+        spike.physicsBody?.collisionBitMask = PhysicsCategory.Ground
+        spike.physicsBody?.contactTestBitMask = PhysicsCategory.Ground
+        spike.physicsBody?.affectedByGravity = true
+        spike.physicsBody?.dynamic = true
+        spike.physicsBody?.velocity = CGVectorMake(-1000, spike.position.y)
+        self.addChild(spike)
+    }
+    
+    func generateBullet(){
+        let obj = SKSpriteNode(imageNamed: "obj")
+
+        obj.size = CGSize(width: 150, height: 200)
+        obj.position = CGPoint(x: self.frame.size.width, y: 250);
+        obj.physicsBody = SKPhysicsBody(texture: SKTexture(imageNamed: "obj"), size: CGSize(width: 150, height: 200))
+        obj.physicsBody?.categoryBitMask = PhysicsCategory.Spike
+        obj.physicsBody?.collisionBitMask = PhysicsCategory.Ground
+        obj.physicsBody?.contactTestBitMask = PhysicsCategory.Ground
+        obj.physicsBody?.affectedByGravity = false
+        obj.physicsBody?.dynamic = false
+        obj.physicsBody?.velocity = CGVectorMake(-1000, obj.position.y)
+        
+        let action = SKAction.moveTo(CGPoint(x:-300, y: 250), duration: 2)
+        obj.runAction(action)
+        
+        self.addChild(obj)
     }
     
     
@@ -178,59 +237,51 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             if runner.position.x >= self.frame.width { runner.position.x = 0 }
             if runner.position.y >= self.frame.height - 140 { runner.position.y = self.frame.height - 140 }
         
-            let obj = SKSpriteNode(imageNamed: "obj")
             
             now = NSDate()
             if (now?.timeIntervalSince1970 > nextTime?.timeIntervalSince1970){
-                let rnd = arc4random_uniform(4)
-            
+                let rnd = arc4random_uniform(5) // 0-4
                 nextTime = now?.dateByAddingTimeInterval(NSTimeInterval(2.0))
-                let spike = SKSpriteNode(imageNamed: "spike")
-            
-                if (rnd == 1)
-                {
-                    spike.size = CGSize(width: 70, height: 70)
-                    spike.position = CGPoint(x: self.frame.size.width, y: floor.frame.height + 30)
-                    spike.physicsBody = SKPhysicsBody(texture: SKTexture(imageNamed: "spike"), size: CGSize(width: 70, height: 70))
-                    spike.physicsBody?.categoryBitMask = PhysicsCategory.Spike
-                    spike.physicsBody?.collisionBitMask = PhysicsCategory.Ground
-                    spike.physicsBody?.contactTestBitMask = PhysicsCategory.Ground
-                    spike.physicsBody?.affectedByGravity = true
-                    spike.physicsBody?.dynamic = true
-                    spike.physicsBody?.velocity = CGVectorMake(-1000, spike.position.y)
-                    self.addChild(spike)
-                }
-                else if (rnd == 0)
-                {
-                    spike.size = CGSize(width: 150, height: 175)
-                    spike.position = CGPoint(x: self.frame.size.width, y: floor.frame.height + 80);
-                    spike.physicsBody = SKPhysicsBody(texture: SKTexture(imageNamed: "spike"), size: CGSize(width: 150, height: 175))
-                    spike.physicsBody?.categoryBitMask = PhysicsCategory.Spike
-                    spike.physicsBody?.collisionBitMask = PhysicsCategory.Ground
-                    spike.physicsBody?.contactTestBitMask = PhysicsCategory.Ground
-                    spike.physicsBody?.affectedByGravity = true
-                    spike.physicsBody?.dynamic = true
-                    spike.physicsBody?.velocity = CGVectorMake(-1000, spike.position.y)
-                    self.addChild(spike)
-                } else {
-                    obj.size = CGSize(width: 150, height: 200)
-                    obj.position = CGPoint(x: self.frame.size.width, y: 250);
-                    obj.physicsBody = SKPhysicsBody(texture: SKTexture(imageNamed: "obj"), size: CGSize(width: 150, height: 200))
-                    obj.physicsBody?.categoryBitMask = PhysicsCategory.Spike
-                    obj.physicsBody?.collisionBitMask = PhysicsCategory.Ground
-                    obj.physicsBody?.contactTestBitMask = PhysicsCategory.Ground
-                    obj.physicsBody?.affectedByGravity = false
-                    obj.physicsBody?.dynamic = false
-                    obj.physicsBody?.velocity = CGVectorMake(-1000, obj.position.y)
                 
-                    let action = SKAction.moveTo(CGPoint(x:-300, y: 250), duration: 2)
-                    obj.runAction(action)
-
-                    self.addChild(obj)
+                
+                
+                if score <= 9 {
+                    print("Level 1 - "  + String(rnd))
+                        generateSmallSpike()
+                } else if score <= 19 {
+                    print("Level 2 - " + String(rnd))
+                    if rnd <= 2 {
+                        generateSmallSpike()
+                    } else {
+                        generateLargeSpike()
+                    }
+                } else if score <= 29 {
+                    print("Level 3 - " + String(rnd))
+                    if rnd <= 1 {
+                        generateSmallSpike()
+                    } else if rnd == 2 || rnd == 3{
+                        generateLargeSpike()
+                    } else {
+                        generateBullet()
+                    }
+                } else {
+                    print("Level 4+ - " + String(rnd))
+                    if rnd == 0 {
+                        generateSmallSpike()
+                    } else if rnd == 1 || rnd == 2{
+                        generateLargeSpike()
+                    } else {
+                        generateBullet()
+                    }
                 }
+                
+                
+                
                 checkIfObjReachesEnd()
             }
         }
+        
+       
         
         
         
