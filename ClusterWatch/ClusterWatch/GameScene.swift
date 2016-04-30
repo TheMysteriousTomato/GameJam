@@ -259,7 +259,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     let path: CGMutablePathRef = CGPathCreateMutable()
                     
                     
-                    CGPathMoveToPoint(path, nil, 52 - offsetX, 120 - offsetY + 20);
+                    CGPathMoveToPoint(path, nil, 52 - offsetX, 145 - offsetY + 20);
                     CGPathAddLineToPoint(path, nil, 44 - offsetX, 118 - offsetY + 20);
                     CGPathAddLineToPoint(path, nil, 33 - offsetX, 115 - offsetY + 20);
                     CGPathAddLineToPoint(path, nil, 26 - offsetX, 111 - offsetY + 20);
@@ -280,15 +280,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     CGPathAddLineToPoint(path, nil, 27 - offsetX, 37 - offsetY + 20);
                     CGPathAddLineToPoint(path, nil, 33 - offsetX, 35 - offsetY + 20);
                     CGPathAddLineToPoint(path, nil, 39 - offsetX, 33 - offsetY + 20);
-                    CGPathAddLineToPoint(path, nil, 48 - offsetX, 29 - offsetY + 20);
-                    CGPathAddLineToPoint(path, nil, 56 - offsetX, 29 - offsetY + 20);
-                    CGPathAddLineToPoint(path, nil, 112 - offsetX, 28 - offsetY + 20);
-                    CGPathAddLineToPoint(path, nil, 114 - offsetX, 33 - offsetY + 20);
-                    CGPathAddLineToPoint(path, nil, 116 - offsetX, 34 - offsetY + 20);
-                    CGPathAddLineToPoint(path, nil, 120 - offsetX, 29 - offsetY + 20);
-                    CGPathAddLineToPoint(path, nil, 122 - offsetX, 28 - offsetY + 20);
-                    CGPathAddLineToPoint(path, nil, 132 - offsetX, 28 - offsetY + 20);
-                    CGPathAddLineToPoint(path, nil, 142 - offsetX, 28 - offsetY + 20);
+                    CGPathAddLineToPoint(path, nil, 48 - offsetX, 20 - offsetY + 20);
+                    CGPathAddLineToPoint(path, nil, 56 - offsetX, 20 - offsetY + 20);
+                    CGPathAddLineToPoint(path, nil, 112 - offsetX, 20 - offsetY + 20);
+                    CGPathAddLineToPoint(path, nil, 114 - offsetX, 20 - offsetY + 20);
+                    CGPathAddLineToPoint(path, nil, 116 - offsetX, 20 - offsetY + 20);
+                    CGPathAddLineToPoint(path, nil, 120 - offsetX, 20 - offsetY + 20);
+                    CGPathAddLineToPoint(path, nil, 122 - offsetX, 20 - offsetY + 20);
+                    CGPathAddLineToPoint(path, nil, 132 - offsetX, 20 - offsetY + 20);
+                    CGPathAddLineToPoint(path, nil, 142 - offsetX, 20 - offsetY + 20);
                     CGPathAddLineToPoint(path, nil, 146 - offsetX, 33 - offsetY + 20);
                     CGPathAddLineToPoint(path, nil, 149 - offsetX, 43 - offsetY + 20);
                     CGPathAddLineToPoint(path, nil, 149 - offsetX, 57 - offsetY + 20);
@@ -305,11 +305,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     CGPathAddLineToPoint(path, nil, 121 - offsetX, 122 - offsetY + 20);
                     CGPathAddLineToPoint(path, nil, 117 - offsetX, 116 - offsetY + 20);
                     CGPathAddLineToPoint(path, nil, 114 - offsetX, 116 - offsetY + 20);
-                    CGPathAddLineToPoint(path, nil, 113 - offsetX, 121 - offsetY + 20);
-                    CGPathAddLineToPoint(path, nil, 103 - offsetX, 122 - offsetY + 20);
-                    CGPathAddLineToPoint(path, nil, 92 - offsetX, 121 - offsetY + 20);
-                    CGPathAddLineToPoint(path, nil, 76 - offsetX, 120 - offsetY + 20);
-                    CGPathAddLineToPoint(path, nil, 60 - offsetX, 121 - offsetY + 20);
+                    CGPathAddLineToPoint(path, nil, 113 - offsetX, 145 - offsetY + 20);
+                    CGPathAddLineToPoint(path, nil, 103 - offsetX, 145 - offsetY + 20);
+                    CGPathAddLineToPoint(path, nil, 92 - offsetX, 145 - offsetY + 20);
+                    CGPathAddLineToPoint(path, nil, 76 - offsetX, 145 - offsetY + 20);
+                    CGPathAddLineToPoint(path, nil, 60 - offsetX, 145 - offsetY + 20);
                     
                     CGPathCloseSubpath(path);
                     
