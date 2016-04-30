@@ -25,23 +25,38 @@ class PlayerSelectScene: SKScene {
         c1.text = "runner"
         c1.fontSize = 40
         c1.name = "char"
-        c1.position = CGPoint(x:CGRectGetMinX(self.frame) + 125, y:(CGRectGetMinY(self.frame) + 100))
+        c1.position = CGPoint(x:CGRectGetMinX(self.frame) + 125, y:(CGRectGetMaxY(self.frame) / 2 - 150))
         addChild(c1)
+        
+        let c1image = SKSpriteNode(imageNamed: "runner")
+        c1image.size = CGSize(width: 150, height: 150)
+        c1image.position = CGPoint(x:CGRectGetMinX(self.frame) + 125, y:(CGRectGetMaxY(self.frame) / 2))
+        addChild(c1image)
+        
         
         let c2 = SKLabelNode(fontNamed: "PerfectDarkBRK")
         c2.text = "runner2"
         c2.fontSize = 40
         c2.name = "char"
-        c2.position = CGPoint(x:CGRectGetMaxX(self.frame) / 2, y:(CGRectGetMinY(self.frame) + 100))
+        c2.position = CGPoint(x:CGRectGetMaxX(self.frame) / 2, y:(CGRectGetMaxY(self.frame) / 2 - 150))
         addChild(c2)
+        
+        let c2image = SKSpriteNode(imageNamed: "runner2")
+        c2image.size = CGSize(width: 150, height: 150)
+        c2image.position = CGPoint(x:CGRectGetMaxX(self.frame) / 2, y:(CGRectGetMaxY(self.frame) / 2))
+        addChild(c2image)
         
         let c3 = SKLabelNode(fontNamed: "PerfectDarkBRK")
         c3.text = "runner3"
         c3.fontSize = 40
         c3.name = "char"
-        c3.position = CGPoint(x:CGRectGetMaxX(self.frame) - 125, y:(CGRectGetMinY(self.frame) + 100))
+        c3.position = CGPoint(x:CGRectGetMaxX(self.frame) - 125, y:(CGRectGetMaxY(self.frame) / 2 - 150))
         addChild(c3)
         
+        let c3image = SKSpriteNode(imageNamed: "runner3")
+        c3image.size = CGSize(width: 150, height: 150)
+        c3image.position = CGPoint(x:CGRectGetMaxX(self.frame) - 125, y:(CGRectGetMaxY(self.frame) / 2))
+        addChild(c3image)
    
         
     }
