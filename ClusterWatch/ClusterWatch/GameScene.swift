@@ -14,15 +14,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     let dodgebutton = SKSpriteNode(imageNamed: "dodgebutton")
     let missilebutton = SKSpriteNode(imageNamed: "missilebutton")
     let missile = SKSpriteNode(imageNamed: "missile")
+    var bg1 = SKSpriteNode(imageNamed: "bg")
+    var bg2 = SKSpriteNode(imageNamed: "bg")
     var gameReady = false
     var score = 0
     var numJumps = 0
     var now : NSDate?
     var nextTime : NSDate?
+    var bg1_lastX = CGFloat()
+    var bg2_lastX = CGFloat()
     let backgroundVelocity : CGFloat = 5
     let scorelabel = SKLabelNode(fontNamed: "PerfectDarkBRK")
-
-
 
     func gameSetup(){
         self.backgroundColor = SKColor.whiteColor()
@@ -79,6 +81,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.removeAllChildren()
         self.physicsWorld.contactDelegate = self
 //        self.physicsWorld.gravity = CGVectorMake(0, -15)
+        
+        bg1.anchorPoint = CGPointZero
+        bg1.position = CGPointZero
+        bg1.size = self.frame.size
+        bg1.zPosition = -1
+        addChild(bg1)
+        
+        bg2.anchorPoint = CGPointZero
+        bg2.position = CGPointMake(bg2.size.width-1, 0)
+        bg2.size = self.frame.size
+        bg2.zPosition = -1
+        addChild(bg2)
+        
         gameSetup()
 
     }
@@ -182,6 +197,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             runner.runAction(scaleHeightAction, completion: { () -> Void in })
             self.runAction(SKAction.fadeInWithDuration(1.0), completion: {
                 self.removeAllChildren()
+                self.addBG()
                 let transition:SKTransition = SKTransition.fadeWithDuration(1)
                 let gameOverScene = GameOverScene(size: self.size, score: self.score)
                 self.view?.presentScene(gameOverScene, transition: transition)
@@ -205,6 +221,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
             
         }
+        bg1.removeFromParent()
+        bg2.removeFromParent()
+        addBG()
+        
     }
     
     func generateSmallSpike(){
@@ -268,6 +288,23 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         /* Called before each frame is rendered */
         if gameReady {
+            
+            bg1.position = CGPoint(x: bg1.position.x - 4, y: bg1.position.y)
+            bg2.position = CGPoint(x: bg2.position.x - 4, y: bg2.position.y)
+
+            if bg1.position.x < -bg1.size.width
+            {
+                bg1.position = CGPointMake(bg2.position.x + bg2.size.width, bg1.position.y)
+            }
+            
+            if bg2.position.x < -bg2.size.width
+            {
+                bg2.position = CGPointMake(bg1.position.x + bg1.size.width, bg2.position.y)
+            }
+            
+            bg1_lastX = bg1.position.x
+            bg2_lastX = bg2.position.x
+            
             if runner.position.x >= self.frame.width { runner.position.x = 0 }
             if runner.position.y >= self.frame.height - 140 { runner.position.y = self.frame.height - 140 }
         
@@ -319,5 +356,26 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         
         
+    }
+    
+    func addBG()
+    {
+        bg1 = SKSpriteNode(imageNamed: "bg")
+//        bg1.name = "background"
+        bg2 = SKSpriteNode(imageNamed: "bg")
+//        bg2.name = "background"
+
+
+        bg1.anchorPoint = CGPointZero
+        bg1.position = CGPointMake(bg1_lastX, bg1.position.y)
+        bg1.size = self.frame.size
+        bg1.zPosition = -1
+        addChild(bg1)
+        
+        bg2.anchorPoint = CGPointZero
+        bg2.position = CGPointMake(bg2_lastX, bg2.position.y)
+        bg2.size = self.frame.size
+        bg2.zPosition = -1
+        addChild(bg2)
     }
 }
