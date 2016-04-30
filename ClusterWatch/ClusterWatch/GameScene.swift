@@ -243,7 +243,72 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     spike.physicsBody?.velocity = CGVectorMake(-1000, spike.position.y)
                     self.addChild(spike)
                 } else {
-                    obj.physicsBody = SKPhysicsBody(rectangleOfSize: CGSize(width: 125, height: 125))
+                    obj.size = CGSize(width: 150, height: 200)
+                    
+                    obj.position = CGPoint(x: self.frame.size.width, y: 250);
+                    
+                    let offsetX: CGFloat = obj.frame.size.width * obj.anchorPoint.x
+                    let offsetY: CGFloat = obj.frame.size.height * obj.anchorPoint.y
+                    
+                    let path: CGMutablePathRef = CGPathCreateMutable()
+                    
+                    
+                    CGPathMoveToPoint(path, nil, 52 - offsetX, 120 - offsetY + 20);
+                    CGPathAddLineToPoint(path, nil, 44 - offsetX, 118 - offsetY + 20);
+                    CGPathAddLineToPoint(path, nil, 33 - offsetX, 115 - offsetY + 20);
+                    CGPathAddLineToPoint(path, nil, 26 - offsetX, 111 - offsetY + 20);
+                    CGPathAddLineToPoint(path, nil, 19 - offsetX, 106 - offsetY + 20);
+                    CGPathAddLineToPoint(path, nil, 13 - offsetX, 101 - offsetY + 20);
+                    CGPathAddLineToPoint(path, nil, 10 - offsetX, 97 - offsetY + 20);
+                    CGPathAddLineToPoint(path, nil, 7 - offsetX, 92 - offsetY + 20);
+                    CGPathAddLineToPoint(path, nil, 2 - offsetX, 83 - offsetY + 20);
+                    CGPathAddLineToPoint(path, nil, 0 - offsetX, 78 - offsetY + 20);
+                    CGPathAddLineToPoint(path, nil, 0 - offsetX, 73 - offsetY + 20);
+                    CGPathAddLineToPoint(path, nil, 0 - offsetX, 70 - offsetY + 20);
+                    CGPathAddLineToPoint(path, nil, 2 - offsetX, 65 - offsetY + 20);
+                    CGPathAddLineToPoint(path, nil, 6 - offsetX, 58 - offsetY + 20);
+                    CGPathAddLineToPoint(path, nil, 9 - offsetX, 52 - offsetY + 20);
+                    CGPathAddLineToPoint(path, nil, 12 - offsetX, 50 - offsetY + 20);
+                    CGPathAddLineToPoint(path, nil, 18 - offsetX, 43 - offsetY + 20);
+                    CGPathAddLineToPoint(path, nil, 22 - offsetX, 40 - offsetY + 20);
+                    CGPathAddLineToPoint(path, nil, 27 - offsetX, 37 - offsetY + 20);
+                    CGPathAddLineToPoint(path, nil, 33 - offsetX, 35 - offsetY + 20);
+                    CGPathAddLineToPoint(path, nil, 39 - offsetX, 33 - offsetY + 20);
+                    CGPathAddLineToPoint(path, nil, 48 - offsetX, 29 - offsetY + 20);
+                    CGPathAddLineToPoint(path, nil, 56 - offsetX, 29 - offsetY + 20);
+                    CGPathAddLineToPoint(path, nil, 112 - offsetX, 28 - offsetY + 20);
+                    CGPathAddLineToPoint(path, nil, 114 - offsetX, 33 - offsetY + 20);
+                    CGPathAddLineToPoint(path, nil, 116 - offsetX, 34 - offsetY + 20);
+                    CGPathAddLineToPoint(path, nil, 120 - offsetX, 29 - offsetY + 20);
+                    CGPathAddLineToPoint(path, nil, 122 - offsetX, 28 - offsetY + 20);
+                    CGPathAddLineToPoint(path, nil, 132 - offsetX, 28 - offsetY + 20);
+                    CGPathAddLineToPoint(path, nil, 142 - offsetX, 28 - offsetY + 20);
+                    CGPathAddLineToPoint(path, nil, 146 - offsetX, 33 - offsetY + 20);
+                    CGPathAddLineToPoint(path, nil, 149 - offsetX, 43 - offsetY + 20);
+                    CGPathAddLineToPoint(path, nil, 149 - offsetX, 57 - offsetY + 20);
+                    CGPathAddLineToPoint(path, nil, 149 - offsetX, 64 - offsetY + 20);
+                    CGPathAddLineToPoint(path, nil, 149 - offsetX, 84 - offsetY + 20);
+                    CGPathAddLineToPoint(path, nil, 149 - offsetX, 97 - offsetY + 20);
+                    CGPathAddLineToPoint(path, nil, 147 - offsetX, 109 - offsetY + 20);
+                    CGPathAddLineToPoint(path, nil, 145 - offsetX, 116 - offsetY + 20);
+                    CGPathAddLineToPoint(path, nil, 143 - offsetX, 121 - offsetY + 20);
+                    CGPathAddLineToPoint(path, nil, 141 - offsetX, 122 - offsetY + 20);
+                    CGPathAddLineToPoint(path, nil, 135 - offsetX, 122 - offsetY + 20);
+                    CGPathAddLineToPoint(path, nil, 129 - offsetX, 122 - offsetY + 20);
+                    CGPathAddLineToPoint(path, nil, 124 - offsetX, 122 - offsetY + 20);
+                    CGPathAddLineToPoint(path, nil, 121 - offsetX, 122 - offsetY + 20);
+                    CGPathAddLineToPoint(path, nil, 117 - offsetX, 116 - offsetY + 20);
+                    CGPathAddLineToPoint(path, nil, 114 - offsetX, 116 - offsetY + 20);
+                    CGPathAddLineToPoint(path, nil, 113 - offsetX, 121 - offsetY + 20);
+                    CGPathAddLineToPoint(path, nil, 103 - offsetX, 122 - offsetY + 20);
+                    CGPathAddLineToPoint(path, nil, 92 - offsetX, 121 - offsetY + 20);
+                    CGPathAddLineToPoint(path, nil, 76 - offsetX, 120 - offsetY + 20);
+                    CGPathAddLineToPoint(path, nil, 60 - offsetX, 121 - offsetY + 20);
+                    
+                    CGPathCloseSubpath(path);
+                    
+                    obj.physicsBody = SKPhysicsBody(polygonFromPath: path)
+                    
                     obj.physicsBody?.categoryBitMask = PhysicsCategory.Spike
                     obj.physicsBody?.collisionBitMask = PhysicsCategory.Ground
                     obj.physicsBody?.contactTestBitMask = PhysicsCategory.Ground
@@ -251,7 +316,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     obj.physicsBody?.dynamic = false
                     obj.physicsBody?.velocity = CGVectorMake(-1000, obj.position.y)
                 
-                    obj.position = CGPoint(x: self.frame.size.width, y: 250);
                     let action = SKAction.moveTo(CGPoint(x:-300, y: 250), duration: 2)
                     obj.runAction(action)
 
