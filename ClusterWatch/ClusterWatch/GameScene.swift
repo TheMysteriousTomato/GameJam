@@ -87,11 +87,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     runner.physicsBody?.dynamic = true
                 }
             } else if touch.tapCount <= 2 {
-                
+                print(numJumps)
                 if numJumps < 2
                 {
                     runner.physicsBody?.velocity = CGVectorMake(0, runner.position.y + 400)
                     numJumps = numJumps + 1
+                }
+                else if numJumps == 1 {
+                    let rotation = SKAction.rotateByAngle( CGFloat(2 * -M_PI), duration: 1.0)
+                    runner.runAction(rotation)
                 }
                 
             }
@@ -147,7 +151,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         if (firstBody.categoryBitMask == PhysicsCategory.Player && secondBody.categoryBitMask == PhysicsCategory.Ground) || (firstBody.categoryBitMask == PhysicsCategory.Ground && secondBody.categoryBitMask == PhysicsCategory.Player)
         {
-            print("floored")
+//            print("floored")
             numJumps = 0
         }
     }
