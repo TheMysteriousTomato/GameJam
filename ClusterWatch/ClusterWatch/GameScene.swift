@@ -8,6 +8,10 @@ struct PhysicsCategory {
     static let Spike:  UInt32 = 0x1 << 3
     static let Missile: UInt32 = 0x1 << 4
     static let Wall: UInt32 = 0x1 << 5
+    static let Net: UInt32 = 0x1 << 6
+    static let Fireblast: UInt32 = 0x1 << 6
+
+
 
 }
 
@@ -16,7 +20,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     let floor = SKSpriteNode(imageNamed: "floor")
     let dodgebutton = SKSpriteNode(imageNamed: "dodgebutton")
     let missilebutton = SKSpriteNode(imageNamed: "missilebutton")
+    let fireballbutton = SKSpriteNode(imageNamed: "fireballbutton")
     let missile = SKSpriteNode(imageNamed: "missile")
+    let fireblast = SKSpriteNode(imageNamed: "fireblast")
     var bg1 = SKSpriteNode(imageNamed: "bg")
     var bg2 = SKSpriteNode(imageNamed: "bg")
     var gameReady = false
@@ -28,6 +34,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var bg2_lastX = CGFloat()
     let backgroundVelocity : CGFloat = 5
     let scorelabel = SKLabelNode(fontNamed: "PerfectDarkBRK")
+    var netActive = Bool()
 
     func gameSetup(){
         self.backgroundColor = SKColor.whiteColor()
@@ -41,6 +48,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         missilebutton.position = CGPoint(x: self.frame.width - 520, y: floor.frame.height / 2);
         missilebutton.zPosition = 5
         missilebutton.name = "missilebutton"
+        
+        fireballbutton.size     = CGSize(width: 100, height: 100)
+        fireballbutton.position = CGPoint(x: self.frame.width - 640, y: floor.frame.height / 2);
+        fireballbutton.zPosition = 5
+        fireballbutton.name = "fireballbutton"
         
         floor.xScale = 2
         floor.position = CGPoint(x: 0, y: floor.frame.height / 2);
@@ -64,13 +76,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let message = "Score: \(score)"
         scorelabel.text = message
         scorelabel.fontSize = 40
-        scorelabel.fontColor = SKColor.blackColor()
+        scorelabel.fontColor = SKColor.whiteColor()
         scorelabel.position = CGPoint(x: self.frame.width/10, y: self.frame.height * 0.9)
         self.addChild(scorelabel)
         
 
         self.addChild(dodgebutton)
         self.addChild(missilebutton)
+        self.addChild(fireballbutton)
+
 
         self.addChild(runner)
         self.addChild(floor)
@@ -132,12 +146,24 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     missile.position = CGPoint(x: runner.position.x + runner.frame.width/2, y: runner.position.y - runner.frame.height/16)
                     missile.physicsBody = SKPhysicsBody(texture: SKTexture(imageNamed: "missile"), size: CGSize(width: 100, height: 32))
                     missile.physicsBody?.categoryBitMask = PhysicsCategory.Missile
-                    missile.physicsBody?.collisionBitMask = PhysicsCategory.Ground
-                    missile.physicsBody?.contactTestBitMask = PhysicsCategory.Ground
+                    missile.physicsBody?.collisionBitMask = PhysicsCategory.Wall
+                    missile.physicsBody?.contactTestBitMask = PhysicsCategory.Wall
                     missile.physicsBody?.affectedByGravity = false
                     missile.physicsBody?.dynamic = true
                     missile.physicsBody?.velocity = CGVectorMake(800, missile.position.y)
                     self.addChild(missile)
+                } else if(name == "fireballbutton"){
+                    fireblast.removeFromParent()
+                    fireblast.size = CGSize(width: 200, height: 80)
+                    fireblast.position = CGPoint(x: runner.position.x , y: runner.position.y + runner.frame.height/1.4)
+                    fireblast.physicsBody = SKPhysicsBody(texture: SKTexture(imageNamed: "fireblast"), size: CGSize(width: 200, height: 80))
+                    fireblast.physicsBody?.categoryBitMask = PhysicsCategory.Fireblast
+                    fireblast.physicsBody?.collisionBitMask = PhysicsCategory.Net
+                    fireblast.physicsBody?.contactTestBitMask = PhysicsCategory.Net
+                    fireblast.physicsBody?.affectedByGravity = false
+                    fireblast.physicsBody?.dynamic = true
+                    fireblast.physicsBody?.velocity = CGVectorMake(0, 300)
+                    self.addChild(fireblast)
                 }
             } else if touch.tapCount <= 2 {
 //                print(numJumps)
@@ -238,18 +264,31 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if (firstBody.categoryBitMask == PhysicsCategory.Player && secondBody.categoryBitMask == PhysicsCategory.Ground) || (firstBody.categoryBitMask == PhysicsCategory.Ground && secondBody.categoryBitMask == PhysicsCategory.Player)
         {
 //            print("floored")
-            numJumps = 0
+            if netActive == false{
+                numJumps = 0
+            }else{
+                numJumps = 4
+            }
         }
         
 
         if (firstBody.categoryBitMask == PhysicsCategory.Wall && secondBody.categoryBitMask == PhysicsCategory.Missile) || (firstBody.categoryBitMask == PhysicsCategory.Missile && secondBody.categoryBitMask == PhysicsCategory.Wall)
         {
-            print(firstBody.categoryBitMask)
-            print("===========")
-            print(secondBody.categoryBitMask)
+            
             firstBody.node?.removeFromParent()
             secondBody.node?.removeFromParent()
         }
+        
+        if (firstBody.categoryBitMask == PhysicsCategory.Net && secondBody.categoryBitMask == PhysicsCategory.Fireblast) || (firstBody.categoryBitMask == PhysicsCategory.Fireblast && secondBody.categoryBitMask == PhysicsCategory.Net)
+        {
+            
+            firstBody.node?.removeFromParent()
+            secondBody.node?.removeFromParent()
+            netActive = false
+            numJumps = 0
+
+        }
+        
     }
     
     func checkIfObjReachesEnd(){
@@ -344,6 +383,26 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.addChild(wall)
     }
     
+    func generateNet(){
+        if netActive{
+        
+        }else{
+            let net = SKSpriteNode(imageNamed: "net")
+            net.size = CGSize(width: 200, height: 80)
+            net.position = CGPoint(x: runner.position.x, y: 400);
+            net.physicsBody = SKPhysicsBody(texture: SKTexture(imageNamed: "net"), size: CGSize(width: 200, height: 80))
+            net.physicsBody?.categoryBitMask = PhysicsCategory.Net
+            net.physicsBody?.collisionBitMask = PhysicsCategory.Fireblast
+            net.physicsBody?.contactTestBitMask = PhysicsCategory.Fireblast
+            net.physicsBody?.affectedByGravity = false
+            net.physicsBody?.dynamic = false
+            net.physicsBody?.velocity = CGVectorMake(0, 0)
+            netActive = true
+            
+            self.addChild(net)
+        }
+    }
+    
     override func update(currentTime: CFTimeInterval) {
         
         /* Called before each frame is rendered */
@@ -399,18 +458,40 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     print("Level 4+ - " + String(rnd))
                     if rnd == 0 {
                         generateSmallSpike()
-                    } else if rnd == 1 || rnd == 2{
-                        generateLargeSpike()
-                    } else {
-                        generateBullet()
-                    }
-                } else {
-                    print("Level 5+ - " + String(rnd))
-                    if rnd == 0 {
-                        generateSmallSpike()
                     } else if rnd <= 2{
                         generateLargeSpike()
                     } else if rnd <= 4{
+                        generateBullet()
+                    } else{
+                        generateWall()
+                    }
+                } else if score <= 49{
+                    print("Level 5+ - " + String(rnd))
+                    if rnd == 0 {
+                        generateSmallSpike()
+                    } else if rnd == 1{
+                        generateLargeSpike()
+                    } else if rnd == 2{
+                        generateLargeSpike()
+                        generateNet()
+                    } else if rnd <= 4{
+                        generateBullet()
+                    } else {
+                        generateWall()
+                    }
+                }else {
+                    print("Level 6+ - " + String(rnd))
+                    if rnd == 0 {
+                        generateSmallSpike()
+                    } else if rnd == 1{
+                        generateLargeSpike()
+                    } else if rnd == 2{
+                        generateLargeSpike()
+                        generateNet()
+                    } else if rnd == 3{
+                        generateBullet()
+                    } else if rnd == 4{
+                        generateWall()
                         generateBullet()
                     } else {
                         generateWall()
