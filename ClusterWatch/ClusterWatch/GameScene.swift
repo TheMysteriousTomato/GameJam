@@ -181,29 +181,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 if (rnd == 1)
                 {
                     spike.size = CGSize(width: 70, height: 70)
-                    
-                    spike.position = CGPoint(x: self.frame.size.width, y: floor.frame.height + 30);
-                    
-                    let offsetX: CGFloat = spike.frame.size.width * spike.anchorPoint.x
-                    let offsetY: CGFloat = spike.frame.size.height * spike.anchorPoint.y
-                    
-                    let path: CGMutablePathRef = CGPathCreateMutable()
-                    
-                    
-                    CGPathMoveToPoint(path, nil, 28 - offsetX, 70 - offsetY);
-                    CGPathAddLineToPoint(path, nil, 6 - offsetX, 13 - offsetY);
-                    CGPathAddLineToPoint(path, nil, 0 - offsetX, 10 - offsetY);
-                    CGPathAddLineToPoint(path, nil, 0 - offsetX, 0 - offsetY);
-                    CGPathAddLineToPoint(path, nil, 63 - offsetX, 0 - offsetY);
-                    CGPathAddLineToPoint(path, nil, 63 - offsetX, 1 - offsetY);
-                    CGPathAddLineToPoint(path, nil, 58 - offsetX, 15 - offsetY);
-                    CGPathAddLineToPoint(path, nil, 52 - offsetX, 16 - offsetY);
-                    CGPathAddLineToPoint(path, nil, 29 - offsetX, 70 - offsetY);
-                    
-                    CGPathCloseSubpath(path);
-                    
-                    spike.physicsBody = SKPhysicsBody(polygonFromPath: path)
-                    
+                    spike.position = CGPoint(x: self.frame.size.width, y: floor.frame.height + 30)
+                    spike.physicsBody = SKPhysicsBody(texture: SKTexture(imageNamed: "spike"), size: CGSize(width: 70, height: 70))
                     spike.physicsBody?.categoryBitMask = PhysicsCategory.Spike
                     spike.physicsBody?.collisionBitMask = PhysicsCategory.Ground
                     spike.physicsBody?.contactTestBitMask = PhysicsCategory.Ground
@@ -215,28 +194,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 else if (rnd == 0)
                 {
                     spike.size = CGSize(width: 150, height: 175)
-                    
                     spike.position = CGPoint(x: self.frame.size.width, y: floor.frame.height + 80);
-                    
-                    let offsetX: CGFloat = spike.frame.size.width * spike.anchorPoint.x
-                    let offsetY: CGFloat = spike.frame.size.height * spike.anchorPoint.y
-                    
-                    let path: CGMutablePathRef = CGPathCreateMutable()
-                    
-                    
-                    CGPathMoveToPoint(path, nil, 68 - offsetX, 175 - offsetY);
-                    CGPathAddLineToPoint(path, nil, 20 - offsetX, 26 - offsetY);
-                    CGPathAddLineToPoint(path, nil, 0 - offsetX, 25 - offsetY);
-                    CGPathAddLineToPoint(path, nil, 0 - offsetX, 0 - offsetY);
-                    CGPathAddLineToPoint(path, nil, 150 - offsetX, 0 - offsetY);
-                    CGPathAddLineToPoint(path, nil, 150 - offsetX, 0 - offsetY);
-                    CGPathAddLineToPoint(path, nil, 140 - offsetX, 25 - offsetY);
-                    CGPathAddLineToPoint(path, nil, 108 - offsetX, 25 - offsetY);
-                    CGPathAddLineToPoint(path, nil, 68 - offsetX, 175 - offsetY);
-                    
-                    CGPathCloseSubpath(path);
-                    
-                    spike.physicsBody = SKPhysicsBody(polygonFromPath: path)
+                    spike.physicsBody = SKPhysicsBody(texture: SKTexture(imageNamed: "spike"), size: CGSize(width: 150, height: 175))
                     spike.physicsBody?.categoryBitMask = PhysicsCategory.Spike
                     spike.physicsBody?.collisionBitMask = PhysicsCategory.Ground
                     spike.physicsBody?.contactTestBitMask = PhysicsCategory.Ground
@@ -246,71 +205,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     self.addChild(spike)
                 } else {
                     obj.size = CGSize(width: 150, height: 200)
-                    
                     obj.position = CGPoint(x: self.frame.size.width, y: 250);
-                    
-                    let offsetX: CGFloat = obj.frame.size.width * obj.anchorPoint.x
-                    let offsetY: CGFloat = obj.frame.size.height * obj.anchorPoint.y
-                    
-                    let path: CGMutablePathRef = CGPathCreateMutable()
-                    
-                    
-                    CGPathMoveToPoint(path, nil, 52 - offsetX, 120 - offsetY + 20);
-                    CGPathAddLineToPoint(path, nil, 44 - offsetX, 118 - offsetY + 20);
-                    CGPathAddLineToPoint(path, nil, 33 - offsetX, 115 - offsetY + 20);
-                    CGPathAddLineToPoint(path, nil, 26 - offsetX, 111 - offsetY + 20);
-                    CGPathAddLineToPoint(path, nil, 19 - offsetX, 106 - offsetY + 20);
-                    CGPathAddLineToPoint(path, nil, 13 - offsetX, 101 - offsetY + 20);
-                    CGPathAddLineToPoint(path, nil, 10 - offsetX, 97 - offsetY + 20);
-                    CGPathAddLineToPoint(path, nil, 7 - offsetX, 92 - offsetY + 20);
-                    CGPathAddLineToPoint(path, nil, 2 - offsetX, 83 - offsetY + 20);
-                    CGPathAddLineToPoint(path, nil, 0 - offsetX, 78 - offsetY + 20);
-                    CGPathAddLineToPoint(path, nil, 0 - offsetX, 73 - offsetY + 20);
-                    CGPathAddLineToPoint(path, nil, 0 - offsetX, 70 - offsetY + 20);
-                    CGPathAddLineToPoint(path, nil, 2 - offsetX, 65 - offsetY + 20);
-                    CGPathAddLineToPoint(path, nil, 6 - offsetX, 58 - offsetY + 20);
-                    CGPathAddLineToPoint(path, nil, 9 - offsetX, 52 - offsetY + 20);
-                    CGPathAddLineToPoint(path, nil, 12 - offsetX, 50 - offsetY + 20);
-                    CGPathAddLineToPoint(path, nil, 18 - offsetX, 43 - offsetY + 20);
-                    CGPathAddLineToPoint(path, nil, 22 - offsetX, 40 - offsetY + 20);
-                    CGPathAddLineToPoint(path, nil, 27 - offsetX, 37 - offsetY + 20);
-                    CGPathAddLineToPoint(path, nil, 33 - offsetX, 35 - offsetY + 20);
-                    CGPathAddLineToPoint(path, nil, 39 - offsetX, 33 - offsetY + 20);
-                    CGPathAddLineToPoint(path, nil, 48 - offsetX, 29 - offsetY + 20);
-                    CGPathAddLineToPoint(path, nil, 56 - offsetX, 29 - offsetY + 20);
-                    CGPathAddLineToPoint(path, nil, 112 - offsetX, 28 - offsetY + 20);
-                    CGPathAddLineToPoint(path, nil, 114 - offsetX, 33 - offsetY + 20);
-                    CGPathAddLineToPoint(path, nil, 116 - offsetX, 34 - offsetY + 20);
-                    CGPathAddLineToPoint(path, nil, 120 - offsetX, 29 - offsetY + 20);
-                    CGPathAddLineToPoint(path, nil, 122 - offsetX, 28 - offsetY + 20);
-                    CGPathAddLineToPoint(path, nil, 132 - offsetX, 28 - offsetY + 20);
-                    CGPathAddLineToPoint(path, nil, 142 - offsetX, 28 - offsetY + 20);
-                    CGPathAddLineToPoint(path, nil, 146 - offsetX, 33 - offsetY + 20);
-                    CGPathAddLineToPoint(path, nil, 149 - offsetX, 43 - offsetY + 20);
-                    CGPathAddLineToPoint(path, nil, 149 - offsetX, 57 - offsetY + 20);
-                    CGPathAddLineToPoint(path, nil, 149 - offsetX, 64 - offsetY + 20);
-                    CGPathAddLineToPoint(path, nil, 149 - offsetX, 84 - offsetY + 20);
-                    CGPathAddLineToPoint(path, nil, 149 - offsetX, 97 - offsetY + 20);
-                    CGPathAddLineToPoint(path, nil, 147 - offsetX, 109 - offsetY + 20);
-                    CGPathAddLineToPoint(path, nil, 145 - offsetX, 116 - offsetY + 20);
-                    CGPathAddLineToPoint(path, nil, 143 - offsetX, 121 - offsetY + 20);
-                    CGPathAddLineToPoint(path, nil, 141 - offsetX, 122 - offsetY + 20);
-                    CGPathAddLineToPoint(path, nil, 135 - offsetX, 122 - offsetY + 20);
-                    CGPathAddLineToPoint(path, nil, 129 - offsetX, 122 - offsetY + 20);
-                    CGPathAddLineToPoint(path, nil, 124 - offsetX, 122 - offsetY + 20);
-                    CGPathAddLineToPoint(path, nil, 121 - offsetX, 122 - offsetY + 20);
-                    CGPathAddLineToPoint(path, nil, 117 - offsetX, 116 - offsetY + 20);
-                    CGPathAddLineToPoint(path, nil, 114 - offsetX, 116 - offsetY + 20);
-                    CGPathAddLineToPoint(path, nil, 113 - offsetX, 121 - offsetY + 20);
-                    CGPathAddLineToPoint(path, nil, 103 - offsetX, 122 - offsetY + 20);
-                    CGPathAddLineToPoint(path, nil, 92 - offsetX, 121 - offsetY + 20);
-                    CGPathAddLineToPoint(path, nil, 76 - offsetX, 120 - offsetY + 20);
-                    CGPathAddLineToPoint(path, nil, 60 - offsetX, 121 - offsetY + 20);
-                    
-                    CGPathCloseSubpath(path);
-                    
-                    obj.physicsBody = SKPhysicsBody(polygonFromPath: path)
-                    
+                    obj.physicsBody = SKPhysicsBody(texture: SKTexture(imageNamed: "obj"), size: CGSize(width: 150, height: 200))
                     obj.physicsBody?.categoryBitMask = PhysicsCategory.Spike
                     obj.physicsBody?.collisionBitMask = PhysicsCategory.Ground
                     obj.physicsBody?.contactTestBitMask = PhysicsCategory.Ground
