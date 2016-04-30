@@ -9,14 +9,25 @@
 import SpriteKit
 
 class GameScene: SKScene {
+
+    func gameSetup(){
+        let floor = SKSpriteNode(imageNamed: "floor")
+        floor.xScale = 2
+        floor.position = CGPoint(x: 0, y: floor.frame.height / 2);
+        
+        let runner = SKSpriteNode(imageNamed: "runner")
+        runner.size = CGSize(width: 175, height: 175)
+        runner.position = CGPoint(x: self.frame.size.width / 10, y: floor.frame.height + 100);
+        
+        self.addChild(runner)
+        self.addChild(floor)
+        
+    }
+    
     override func didMoveToView(view: SKView) {
         /* Setup your scene here */
-        let myLabel = SKLabelNode(fontNamed:"Chalkduster")
-        myLabel.text = "Hello, World!"
-        myLabel.fontSize = 45
-        myLabel.position = CGPoint(x:CGRectGetMidX(self.frame), y:CGRectGetMidY(self.frame))
-        
-        self.addChild(myLabel)
+        gameSetup()
+
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
@@ -25,17 +36,7 @@ class GameScene: SKScene {
         for touch in touches {
             let location = touch.locationInNode(self)
             
-            let sprite = SKSpriteNode(imageNamed:"Spaceship")
-            
-            sprite.xScale = 0.5
-            sprite.yScale = 0.5
-            sprite.position = location
-            
-            let action = SKAction.rotateByAngle(CGFloat(M_PI), duration:1)
-            
-            sprite.runAction(SKAction.repeatActionForever(action))
-            
-            self.addChild(sprite)
+
         }
     }
    

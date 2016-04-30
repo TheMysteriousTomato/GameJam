@@ -16,6 +16,7 @@
 		E63A20831CD45122003B5A2F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E63A20811CD45122003B5A2F /* LaunchScreen.storyboard */; };
 		E63A208E1CD45122003B5A2F /* ClusterWatchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E63A208D1CD45122003B5A2F /* ClusterWatchTests.swift */; };
 		E63A20991CD45122003B5A2F /* ClusterWatchUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E63A20981CD45122003B5A2F /* ClusterWatchUITests.swift */; };
+		E6D627C11CD455490096FB6B /* images in Resources */ = {isa = PBXBuildFile; fileRef = E6D627C01CD455490096FB6B /* images */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,7 @@
 		E63A20941CD45122003B5A2F /* ClusterWatchUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ClusterWatchUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E63A20981CD45122003B5A2F /* ClusterWatchUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClusterWatchUITests.swift; sourceTree = "<group>"; };
 		E63A209A1CD45122003B5A2F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E6D627C01CD455490096FB6B /* images */ = {isa = PBXFileReference; lastKnownFileType = folder; path = images; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +103,7 @@
 		E63A20731CD45122003B5A2F /* ClusterWatch */ = {
 			isa = PBXGroup;
 			children = (
+				E6D627C01CD455490096FB6B /* images */,
 				E63A20741CD45122003B5A2F /* AppDelegate.swift */,
 				E63A20761CD45122003B5A2F /* GameScene.sks */,
 				E63A20781CD45122003B5A2F /* GameScene.swift */,
@@ -235,6 +238,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E6D627C11CD455490096FB6B /* images in Resources */,
 				E63A20771CD45122003B5A2F /* GameScene.sks in Resources */,
 				E63A20831CD45122003B5A2F /* LaunchScreen.storyboard in Resources */,
 				E63A20801CD45122003B5A2F /* Assets.xcassets in Resources */,
@@ -492,6 +496,7 @@
 				E63A209F1CD45122003B5A2F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		E63A20A01CD45122003B5A2F /* Build configuration list for PBXNativeTarget "ClusterWatchTests" */ = {
 			isa = XCConfigurationList;
@@ -500,6 +505,7 @@
 				E63A20A21CD45122003B5A2F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		E63A20A31CD45122003B5A2F /* Build configuration list for PBXNativeTarget "ClusterWatchUITests" */ = {
 			isa = XCConfigurationList;
@@ -508,6 +514,7 @@
 				E63A20A51CD45122003B5A2F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
