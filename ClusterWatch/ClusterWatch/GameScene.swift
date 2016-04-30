@@ -441,7 +441,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             bg1_lastX = bg1.position.x
             bg2_lastX = bg2.position.x
             
-            if runner.position.x >= self.frame.width { runner.position.x = 0 }
+            if runner.position.x >= self.frame.width { runner.position.x = self.frame.width/10 }
+            if runner.position.x <= 0 { runner.position.x = self.frame.width/10 }
             if runner.position.y >= self.frame.height - 140 { runner.position.y = self.frame.height - 140 }
         
             
