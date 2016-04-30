@@ -34,7 +34,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         floor.physicsBody?.dynamic = false
         
         runner.size = CGSize(width: 100, height: 100)
-        runner.position = CGPoint(x: self.frame.size.width / 10, y: floor.frame.height + 150);
+        runner.position = CGPoint(x: self.frame.size.width / 10 , y: floor.frame.height + 140);
         
         runner.physicsBody = SKPhysicsBody(rectangleOfSize: runner.size)
         runner.physicsBody?.categoryBitMask = PhysicsCategory.Player
@@ -114,7 +114,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let secondBody = contact.bodyB
         if firstBody.categoryBitMask == PhysicsCategory.Player && secondBody.categoryBitMask == PhysicsCategory.Spike {
             print("Hit player")
-            self.runAction(SKAction.fadeInWithDuration(0.5), completion: {
+
+            let duration = 0.25
+            let finalHeightScale:CGFloat = 0.0
+            let scaleHeightAction = SKAction.scaleYTo(finalHeightScale, duration: duration)
+            
+            runner.runAction(scaleHeightAction, completion: { () -> Void in })
+            self.runAction(SKAction.fadeInWithDuration(1.0), completion: {
                 self.removeAllChildren()
                 let transition:SKTransition = SKTransition.fadeWithDuration(1)
                 let gameOverScene = GameOverScene(size: self.size, score: 1)
@@ -130,9 +136,20 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         now = NSDate()
         if (now?.timeIntervalSince1970 > nextTime?.timeIntervalSince1970){
+            let rnd = arc4random_uniform(10)
+            
             nextTime = now?.dateByAddingTimeInterval(NSTimeInterval(2.0))
             let spike = SKSpriteNode(imageNamed: "spike")
-            spike.size = CGSize(width: 70, height: 70)
+            
+            if (rnd < 8)
+            {
+                spike.size = CGSize(width: 70, height: 70)
+            }
+            else
+            {
+                spike.size = CGSize(width: 225, height: 225)
+            }
+            
             spike.position = CGPoint(x: self.frame.size.width, y: floor.frame.height + 50);
             spike.physicsBody = SKPhysicsBody(rectangleOfSize: spike.size)
             spike.physicsBody?.categoryBitMask = PhysicsCategory.Spike
