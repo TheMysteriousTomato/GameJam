@@ -9,9 +9,11 @@ struct PhysicsCategory {
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
     let runner = SKSpriteNode(imageNamed: "runner")
+    let floor = SKSpriteNode(imageNamed: "floor")
+    var now : NSDate?
+    var nextTime : NSDate?
 
     func gameSetup(){
-        let floor = SKSpriteNode(imageNamed: "floor")
         floor.xScale = 2
         floor.position = CGPoint(x: 0, y: floor.frame.height / 2);
         
@@ -27,28 +29,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         runner.physicsBody = SKPhysicsBody(rectangleOfSize: runner.size)
         runner.physicsBody?.categoryBitMask = PhysicsCategory.Player
-        runner.physicsBody?.collisionBitMask = PhysicsCategory.Ground
-        runner.physicsBody?.contactTestBitMask = PhysicsCategory.Ground
+        runner.physicsBody?.collisionBitMask = PhysicsCategory.Ground | PhysicsCategory.Spike
+        runner.physicsBody?.contactTestBitMask = PhysicsCategory.Ground | PhysicsCategory.Spike
         runner.physicsBody?.affectedByGravity = true
         runner.physicsBody?.dynamic = true
         
-        let spike = SKSpriteNode(imageNamed: "spike")
-        spike.size = CGSize(width: 150, height: 150)
-        spike.position = CGPoint(x: self.frame.size.width, y: floor.frame.height + 50);
 
-//        let action = SKAction.moveTo(CGPoint(x: 0, y: floor.frame.height+50), duration: 2)
-        
-        spike.physicsBody = SKPhysicsBody(circleOfRadius: spike.size.height)
-        spike.physicsBody?.categoryBitMask = PhysicsCategory.Spike
-        spike.physicsBody?.collisionBitMask = PhysicsCategory.Ground | PhysicsCategory.Player
-        spike.physicsBody?.contactTestBitMask = PhysicsCategory.Ground | PhysicsCategory.Player
-        spike.physicsBody?.affectedByGravity = true
-        spike.physicsBody?.dynamic = true
-        
-        spike.physicsBody?.velocity = CGVectorMake(-1000, spike.position.y)
-//        spike.runAction(action)
-        
-        self.addChild(spike)
         self.addChild(runner)
         self.addChild(floor)
         
@@ -66,18 +52,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         for touch in touches {
             let _ = touch.locationInNode(self)
-            runner.physicsBody?.velocity = CGVectorMake(0, runner.position.y + 600)
+            runner.physicsBody?.velocity = CGVectorMake(0, runner.position.y + 700)
         }
     }
    
     func didBeginContact(contact: SKPhysicsContact) {
         let firstBody = contact.bodyA
         let secondBody = contact.bodyB
-        
-        if firstBody.categoryBitMask == PhysicsCategory.Player && secondBody.categoryBitMask == PhysicsCategory.Spike {
-            print("hit the spike")
+//        print("Category: " + String(PhysicsCategory.Player))
+//        print("Category: " + String(PhysicsCategory.Spike))
+        if firstBody.categoryBitMask == PhysicsCategory.Spike && secondBody.categoryBitMask == PhysicsCategory.Player {
+            print("Hit player")
         } else {
-            print("other")
+            print("???")
         }
     }
     
@@ -91,5 +78,25 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         {
             runner.position.y = self.frame.height - 140
         }
+        
+        now = NSDate()
+        if (now?.timeIntervalSince1970 > nextTime?.timeIntervalSince1970){
+            nextTime = now?.dateByAddingTimeInterval(NSTimeInterval(2.0))
+            let spike = SKSpriteNode(imageNamed: "spike")
+            spike.size = CGSize(width: 150, height: 150)
+            spike.position = CGPoint(x: self.frame.size.width, y: floor.frame.height + 50);
+            spike.physicsBody = SKPhysicsBody(rectangleOfSize: spike.size)
+            spike.physicsBody?.categoryBitMask = PhysicsCategory.Spike
+            spike.physicsBody?.collisionBitMask = PhysicsCategory.Ground
+            spike.physicsBody?.contactTestBitMask = PhysicsCategory.Ground
+            spike.physicsBody?.affectedByGravity = true
+            spike.physicsBody?.dynamic = true
+            spike.physicsBody?.velocity = CGVectorMake(-1000, spike.position.y)
+            
+            self.addChild(spike)
+        }
+        
+        
+        
     }
 }
