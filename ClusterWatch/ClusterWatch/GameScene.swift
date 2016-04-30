@@ -1,12 +1,10 @@
-//
-//  GameScene.swift
-//  ClusterWatch
-//
-//  Created by Jon Deluz on 2016-04-29.
-//  Copyright (c) 2016 themysterioustomato. All rights reserved.
-//
-
 import SpriteKit
+
+
+struct PhysicsCategory {
+    static let Player: UInt32 = 0x1 << 1
+    static let Ground: UInt32 = 0x1 << 2
+}
 
 class GameScene: SKScene {
     let runner = SKSpriteNode(imageNamed: "runner")
@@ -16,8 +14,22 @@ class GameScene: SKScene {
         floor.xScale = 2
         floor.position = CGPoint(x: 0, y: floor.frame.height / 2);
         
+        floor.physicsBody = SKPhysicsBody(rectangleOfSize: floor.size)
+        floor.physicsBody?.categoryBitMask = PhysicsCategory.Ground
+        floor.physicsBody?.collisionBitMask = PhysicsCategory.Player
+        floor.physicsBody?.contactTestBitMask = PhysicsCategory.Player
+        floor.physicsBody?.affectedByGravity = false
+        floor.physicsBody?.dynamic = false
+        
         runner.size = CGSize(width: 175, height: 175)
-        runner.position = CGPoint(x: self.frame.size.width / 10, y: floor.frame.height + 88);
+        runner.position = CGPoint(x: self.frame.size.width / 10, y: floor.frame.height + 150);
+        
+        runner.physicsBody = SKPhysicsBody(rectangleOfSize: runner.size)
+        runner.physicsBody?.categoryBitMask = PhysicsCategory.Player
+        runner.physicsBody?.collisionBitMask = PhysicsCategory.Ground
+        runner.physicsBody?.contactTestBitMask = PhysicsCategory.Ground
+        runner.physicsBody?.affectedByGravity = true
+        runner.physicsBody?.dynamic = true
         
         self.addChild(runner)
         self.addChild(floor)
@@ -35,12 +47,20 @@ class GameScene: SKScene {
         
         for touch in touches {
             let location = touch.locationInNode(self)
-            
+            runner.physicsBody?.velocity = CGVectorMake(runner.position.x, runner.position.y + 35)
 
         }
     }
    
     override func update(currentTime: CFTimeInterval) {
         /* Called before each frame is rendered */
+        if runner.position.x >= self.frame.width
+        {
+            runner.position.x = 0
+        }
+        if runner.position.y >= self.frame.height - 175
+        {
+            runner.position.y = self.frame.height - 175
+        }
     }
 }
