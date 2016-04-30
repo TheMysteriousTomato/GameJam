@@ -98,36 +98,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         addChild(bg2)
         
         gameSetup()
-        
-        
-        //1
-        let appDelegate =
-            UIApplication.sharedApplication().delegate as! AppDelegate
-        
-        let managedContext = appDelegate.managedObjectContext
-        
-        
-        // Create Fetch Request
-        let fetchRequest = NSFetchRequest(entityName: "Scores")
-        
-        // Add Sort Descriptor
-        let sortDescriptor = NSSortDescriptor(key: "score", ascending: true)
-        fetchRequest.sortDescriptors = [sortDescriptor]
-        
-        // Execute Fetch Request
-        do {
-            let result = try managedContext.executeFetchRequest(fetchRequest)
-            
-            for managedObject in result {
-                if let hi = managedObject.valueForKey("score"){
-                    print("\(hi)")
-                }
-            }
-            
-        } catch {
-            let fetchError = error as NSError
-            print(fetchError)
-        }
 
     }
     

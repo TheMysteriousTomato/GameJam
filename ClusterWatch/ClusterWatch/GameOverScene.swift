@@ -1,7 +1,9 @@
 import Foundation
 import SpriteKit
+import CoreData
 
 class GameOverScene: SKScene {
+    var highscore = 0
     
     init(size: CGSize, score: Int) {
         
@@ -24,8 +26,17 @@ class GameOverScene: SKScene {
             score.fontColor = SKColor.whiteColor()
             score.position = CGPoint(x: size.width/2, y: size.height/2 + 100)
             self.addChild(score)
-            
-            
+        
+            getCurrentHighScore()
+        
+            let hiscore = SKLabelNode(fontNamed: "PerfectDarkBRK")
+            hiscore.text = "High Score: " + String(highscore)
+            hiscore.fontSize = 40
+            hiscore.fontColor = SKColor.whiteColor()
+            hiscore.position = CGPoint(x: size.width/2, y: size.height/2 - 50)
+            self.addChild(hiscore)
+        
+        
             let playagain = SKLabelNode(fontNamed: "PerfectDarkBRK")
             playagain.text = "play again"
             playagain.name = "play"
@@ -47,8 +58,36 @@ class GameOverScene: SKScene {
         
     }
     
-    func intializeGameover(){
+    func getCurrentHighScore(){
+        //1
+        let appDelegate =
+            UIApplication.sharedApplication().delegate as! AppDelegate
         
+        let managedContext = appDelegate.managedObjectContext
+        
+        
+        // Create Fetch Request
+        let fetchRequest = NSFetchRequest(entityName: "Scores")
+        
+        // Add Sort Descriptor
+        let sortDescriptor = NSSortDescriptor(key: "score", ascending: true)
+        fetchRequest.sortDescriptors = [sortDescriptor]
+        
+        // Execute Fetch Request
+        do {
+            let result = try managedContext.executeFetchRequest(fetchRequest)
+            
+            for managedObject in result {
+                if let hi = managedObject.valueForKey("score"){
+                    print("\(hi)")
+                    highscore = Int(hi as! NSNumber)
+                }
+            }
+            
+        } catch {
+            let fetchError = error as NSError
+            print(fetchError)
+        }
     }
     
     //Load Music
