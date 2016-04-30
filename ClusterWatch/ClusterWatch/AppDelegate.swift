@@ -1,11 +1,3 @@
-//
-//  AppDelegate.swift
-//  ClusterWatch
-//
-//  Created by Jon Deluz on 2016-04-29.
-//  Copyright © 2016 themysterioustomato. All rights reserved.
-//
-
 import UIKit
 
 @UIApplicationMain
