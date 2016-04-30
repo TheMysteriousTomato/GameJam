@@ -10,6 +10,7 @@
 		E6350FD51CD5175700838BD6 /* PlayerScore.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E6350FD31CD5175700838BD6 /* PlayerScore.xcdatamodeld */; };
 		E6350FD81CD518AC00838BD6 /* Scores+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6350FD61CD518AC00838BD6 /* Scores+CoreDataProperties.swift */; };
 		E6350FD91CD518AC00838BD6 /* Scores.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6350FD71CD518AC00838BD6 /* Scores.swift */; };
+		E6350FDB1CD54BC200838BD6 /* PlayerSelectScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6350FDA1CD54BC200838BD6 /* PlayerSelectScene.swift */; };
 		E63A20751CD45122003B5A2F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E63A20741CD45122003B5A2F /* AppDelegate.swift */; };
 		E63A20771CD45122003B5A2F /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = E63A20761CD45122003B5A2F /* GameScene.sks */; };
 		E63A20791CD45122003B5A2F /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = E63A20781CD45122003B5A2F /* GameScene.swift */; };
@@ -46,6 +47,7 @@
 		E6350FD41CD5175700838BD6 /* PlayerScore.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PlayerScore.xcdatamodel; sourceTree = "<group>"; };
 		E6350FD61CD518AC00838BD6 /* Scores+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Scores+CoreDataProperties.swift"; path = "ClusterWatch/Scores+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		E6350FD71CD518AC00838BD6 /* Scores.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Scores.swift; path = ClusterWatch/Scores.swift; sourceTree = "<group>"; };
+		E6350FDA1CD54BC200838BD6 /* PlayerSelectScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerSelectScene.swift; sourceTree = "<group>"; };
 		E63A20711CD45122003B5A2F /* ClusterWatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ClusterWatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E63A20741CD45122003B5A2F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E63A20761CD45122003B5A2F /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -130,6 +132,7 @@
 				E6D627C21CD477890096FB6B /* GameOverScene.swift */,
 				E6D627C61CD4B4710096FB6B /* MainMenuScene.swift */,
 				E6D627C81CD4B5470096FB6B /* MainMenuScene.sks */,
+				E6350FDA1CD54BC200838BD6 /* PlayerSelectScene.swift */,
 			);
 			path = ClusterWatch;
 			sourceTree = "<group>";
@@ -287,6 +290,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E6350FDB1CD54BC200838BD6 /* PlayerSelectScene.swift in Sources */,
 				E6D627C71CD4B4710096FB6B /* MainMenuScene.swift in Sources */,
 				E63A20791CD45122003B5A2F /* GameScene.swift in Sources */,
 				E63A207B1CD45122003B5A2F /* GameViewController.swift in Sources */,

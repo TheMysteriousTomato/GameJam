@@ -65,7 +65,7 @@ class MainMenuScene: SKScene {
                         if (name == "play"){
                         runAction(SKAction.playSoundFileNamed("Sounds/hit.wav", waitForCompletion: false))
                         let transition:SKTransition = SKTransition.fadeWithDuration(2)
-                        let gameScene = GameScene(size: size)
+                        let gameScene = PlayerSelectScene(size: size)
                         self.view?.presentScene(gameScene, transition: transition)
                     }
                 }

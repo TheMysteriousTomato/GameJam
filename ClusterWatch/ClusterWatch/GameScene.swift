@@ -16,7 +16,7 @@ struct PhysicsCategory {
 }
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
-    var runner = SKSpriteNode(imageNamed: "runner")
+    var runner = SKSpriteNode()
     let floor = SKSpriteNode(imageNamed: "floor")
     let dodgebutton = SKSpriteNode(imageNamed: "dodgebutton")
     let missilebutton = SKSpriteNode(imageNamed: "missilebutton")
@@ -38,9 +38,20 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var currentHighScore = 0
     let highscorelabel = SKLabelNode(fontNamed: "PerfectDarkBRK")
     let tapToPlaylabel = SKLabelNode(fontNamed: "PerfectDarkBRK")
-
     var duckActive = Bool()
+    var charChoice = ""
 
+    
+    init(size: CGSize, char: String) {
+        super.init(size: size)
+        charChoice = char
+        print("IN GAMESCENE: " + charChoice)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     func gameSetup(){
         self.backgroundColor = SKColor.whiteColor()
         
@@ -69,9 +80,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         floor.physicsBody?.affectedByGravity = false
         floor.physicsBody?.dynamic = false
         
+        runner = SKSpriteNode(imageNamed: charChoice)
         runner.size = CGSize(width: 100, height: 100)
         runner.position = CGPoint(x: self.frame.size.width / 10 , y: floor.frame.height);
-        runner.physicsBody = SKPhysicsBody(texture: SKTexture(imageNamed: "runner"), size: CGSize(width: 100, height: 100))
+        runner.physicsBody = SKPhysicsBody(texture: SKTexture(imageNamed: charChoice), size: CGSize(width: 100, height: 100))
         runner.physicsBody?.categoryBitMask = PhysicsCategory.Player
         runner.physicsBody?.collisionBitMask = PhysicsCategory.Ground | PhysicsCategory.Spike | PhysicsCategory.Wall
         runner.physicsBody?.contactTestBitMask = PhysicsCategory.Ground | PhysicsCategory.Spike | PhysicsCategory.Wall
@@ -223,9 +235,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
             if let name = self.nodeAtPoint(location).name {
                 if( name == "dodgebutton"){
-                    runner.texture = SKTexture(imageNamed: "runner")
+                    runner.texture = SKTexture(imageNamed: charChoice)
                     runner.size = CGSize(width: 100, height: 100)
-                    runner.physicsBody = SKPhysicsBody(texture: SKTexture(imageNamed: "runner"), size: CGSize(width: 100, height: 100))
+                    runner.physicsBody = SKPhysicsBody(texture: SKTexture(imageNamed: charChoice), size: CGSize(width: 100, height: 100))
                     runner.physicsBody?.categoryBitMask = PhysicsCategory.Player
                     runner.physicsBody?.collisionBitMask = PhysicsCategory.Ground | PhysicsCategory.Spike | PhysicsCategory.Wall
                     runner.physicsBody?.contactTestBitMask = PhysicsCategory.Ground | PhysicsCategory.Spike | PhysicsCategory.Wall
@@ -292,7 +304,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 
                 
                 let transition:SKTransition = SKTransition.fadeWithDuration(1)
-                let gameOverScene = GameOverScene(size: self.size, score: self.score)
+                let gameOverScene = GameOverScene(size: self.size, score: self.score, lastChar: self.charChoice)
                 self.view?.presentScene(gameOverScene, transition: transition)
             })
         }
