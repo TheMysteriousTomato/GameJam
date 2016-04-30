@@ -302,7 +302,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             firstBody.node?.removeFromParent()
             secondBody.node?.removeFromParent()
             netActive = false
-            numJumps = 0
+            //numJumps = 0
 
         }
         
