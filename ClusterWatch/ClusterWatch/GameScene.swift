@@ -6,6 +6,8 @@ struct PhysicsCategory {
     static let Ground: UInt32 = 0x1 << 2
     static let Spike:  UInt32 = 0x1 << 3
     static let Missile: UInt32 = 0x1 << 4
+    static let Wall: UInt32 = 0x1 << 5
+
 }
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
@@ -30,12 +32,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.backgroundColor = SKColor.whiteColor()
         
         dodgebutton.size     = CGSize(width: 100, height: 100)
-        dodgebutton.position = CGPoint(x: self.frame.width - 200, y: floor.frame.height / 2);
+        dodgebutton.position = CGPoint(x: self.frame.width - 400, y: floor.frame.height / 2);
         dodgebutton.zPosition = 5
         dodgebutton.name = "dodgebutton"
         
         missilebutton.size     = CGSize(width: 100, height: 100)
-        missilebutton.position = CGPoint(x: self.frame.width - 320, y: floor.frame.height / 2);
+        missilebutton.position = CGPoint(x: self.frame.width - 520, y: floor.frame.height / 2);
         missilebutton.zPosition = 5
         missilebutton.name = "missilebutton"
         
@@ -53,8 +55,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         runner.position = CGPoint(x: self.frame.size.width / 10 , y: floor.frame.height);
         runner.physicsBody = SKPhysicsBody(texture: SKTexture(imageNamed: "runner"), size: CGSize(width: 100, height: 100))
         runner.physicsBody?.categoryBitMask = PhysicsCategory.Player
-        runner.physicsBody?.collisionBitMask = PhysicsCategory.Ground | PhysicsCategory.Spike
-        runner.physicsBody?.contactTestBitMask = PhysicsCategory.Ground | PhysicsCategory.Spike
+        runner.physicsBody?.collisionBitMask = PhysicsCategory.Ground | PhysicsCategory.Spike | PhysicsCategory.Wall
+        runner.physicsBody?.contactTestBitMask = PhysicsCategory.Ground | PhysicsCategory.Spike | PhysicsCategory.Wall
         runner.physicsBody?.affectedByGravity = true
         runner.physicsBody?.dynamic = true
         
@@ -118,8 +120,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     runner.position.x = self.frame.width / 10
                     runner.physicsBody = SKPhysicsBody(texture: SKTexture(imageNamed: "dodge"), size: CGSize(width: 90, height: 75))
                     runner.physicsBody?.categoryBitMask = PhysicsCategory.Player
-                    runner.physicsBody?.collisionBitMask = PhysicsCategory.Ground | PhysicsCategory.Spike
-                    runner.physicsBody?.contactTestBitMask = PhysicsCategory.Ground | PhysicsCategory.Spike
+                    runner.physicsBody?.collisionBitMask = PhysicsCategory.Ground | PhysicsCategory.Spike | PhysicsCategory.Wall
+                    runner.physicsBody?.contactTestBitMask = PhysicsCategory.Ground | PhysicsCategory.Spike | PhysicsCategory.Wall
                     runner.physicsBody?.affectedByGravity = true
                     runner.physicsBody?.dynamic = true
                 }
@@ -165,8 +167,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     runner.size = CGSize(width: 100, height: 100)
                     runner.physicsBody = SKPhysicsBody(texture: SKTexture(imageNamed: "runner"), size: CGSize(width: 100, height: 100))
                     runner.physicsBody?.categoryBitMask = PhysicsCategory.Player
-                    runner.physicsBody?.collisionBitMask = PhysicsCategory.Ground | PhysicsCategory.Spike
-                    runner.physicsBody?.contactTestBitMask = PhysicsCategory.Ground | PhysicsCategory.Spike
+                    runner.physicsBody?.collisionBitMask = PhysicsCategory.Ground | PhysicsCategory.Spike | PhysicsCategory.Wall
+                    runner.physicsBody?.contactTestBitMask = PhysicsCategory.Ground | PhysicsCategory.Spike | PhysicsCategory.Wall
                     runner.physicsBody?.affectedByGravity = true
                     runner.physicsBody?.dynamic = true
                 }
@@ -186,7 +188,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func didBeginContact(contact: SKPhysicsContact) {
         let firstBody = contact.bodyA
         let secondBody = contact.bodyB
-        if firstBody.categoryBitMask == PhysicsCategory.Player && secondBody.categoryBitMask == PhysicsCategory.Spike {
+        if firstBody.categoryBitMask == PhysicsCategory.Player && secondBody.categoryBitMask == PhysicsCategory.Spike || firstBody.categoryBitMask == PhysicsCategory.Player && secondBody.categoryBitMask == PhysicsCategory.Wall {
 //            print("Hit player")
 
             let duration = 0.25
@@ -207,6 +209,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         {
             print("floored")
             numJumps = 0
+        }
+        
+
+        if (firstBody.categoryBitMask == PhysicsCategory.Wall && secondBody.categoryBitMask == PhysicsCategory.Missile) || (firstBody.categoryBitMask == PhysicsCategory.Missile && secondBody.categoryBitMask == PhysicsCategory.Wall)
+        {
+            print(firstBody.categoryBitMask)
+            print("===========")
+            print(secondBody.categoryBitMask)
+            firstBody.node?.removeFromParent()
+            secondBody.node?.removeFromParent()
         }
     }
     
@@ -283,6 +295,24 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.addChild(obj)
     }
     
+    func generateWall(){
+        let wall = SKSpriteNode(imageNamed: "wall")
+        
+        wall.size = CGSize(width: 120, height: self.frame.height - floor.size.height)
+        wall.position = CGPoint(x: self.frame.size.width, y: 320 + floor.size.height);
+        wall.physicsBody = SKPhysicsBody(texture: SKTexture(imageNamed: "wall"), size: CGSize(width: 40, height: self.frame.height - floor.size.height))
+        wall.physicsBody?.categoryBitMask = PhysicsCategory.Wall
+        wall.physicsBody?.collisionBitMask = PhysicsCategory.Missile
+        wall.physicsBody?.contactTestBitMask = PhysicsCategory.Missile
+        wall.physicsBody?.affectedByGravity = false
+        wall.physicsBody?.dynamic = true
+//        wall.physicsBody?.velocity = CGVectorMake(-1000, wall.position.y)
+        
+        let action = SKAction.moveTo(CGPoint(x:-300, y: floor.size.height + 320), duration: 2)
+        wall.runAction(action)
+        
+        self.addChild(wall)
+    }
     
     override func update(currentTime: CFTimeInterval) {
         
@@ -311,31 +341,31 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
             now = NSDate()
             if (now?.timeIntervalSince1970 > nextTime?.timeIntervalSince1970){
-                let rnd = arc4random_uniform(5) // 0-4
+                let rnd = arc4random_uniform(6) // 0-4
                 nextTime = now?.dateByAddingTimeInterval(NSTimeInterval(2.0))
                 
                 
                 
                 if score <= 9 {
                     print("Level 1 - "  + String(rnd))
-                        generateSmallSpike()
+                    generateSmallSpike()
                 } else if score <= 19 {
                     print("Level 2 - " + String(rnd))
-                    if rnd <= 2 {
+                    if rnd <= 3 {
                         generateSmallSpike()
                     } else {
                         generateLargeSpike()
                     }
                 } else if score <= 29 {
                     print("Level 3 - " + String(rnd))
-                    if rnd <= 1 {
+                    if rnd <= 2 {
                         generateSmallSpike()
-                    } else if rnd == 2 || rnd == 3{
+                    } else if rnd <= 4 {
                         generateLargeSpike()
                     } else {
                         generateBullet()
                     }
-                } else {
+                } else if score <= 39 {
                     print("Level 4+ - " + String(rnd))
                     if rnd == 0 {
                         generateSmallSpike()
@@ -343,6 +373,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                         generateLargeSpike()
                     } else {
                         generateBullet()
+                    }
+                } else {
+                    print("Level 5+ - " + String(rnd))
+                    if rnd == 0 {
+                        generateSmallSpike()
+                    } else if rnd <= 2{
+                        generateLargeSpike()
+                    } else if rnd <= 4{
+                        generateBullet()
+                    } else {
+                        generateWall()
                     }
                 }
                 
