@@ -4,11 +4,11 @@ import CoreData
 
 class GameOverScene: SKScene {
     var highscore = 0
+    var charChoice = ""
     
-    init(size: CGSize, score: Int) {
-        
+    init(size: CGSize, score: Int, lastChar: String) {
         super.init(size: size)
-        
+        charChoice = lastChar
         
 //        self.runAction(SKAction.fadeInWithDuration(2.5), completion: {
             let label = SKLabelNode(fontNamed: "PerfectDarkBRK")
@@ -108,7 +108,7 @@ class GameOverScene: SKScene {
                 if let name = self.nodeAtPoint(location).name {
                     if(name == "play") {
                         let transition:SKTransition = SKTransition.fadeWithDuration(2)
-                        let gameScene = GameScene(size: size)
+                        let gameScene = GameScene(size: size, char: charChoice)
                         self.view?.presentScene(gameScene, transition: transition)
                     }
                     if(name == "home") {
