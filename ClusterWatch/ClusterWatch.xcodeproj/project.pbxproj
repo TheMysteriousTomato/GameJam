@@ -18,7 +18,8 @@
 		E63A20991CD45122003B5A2F /* ClusterWatchUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E63A20981CD45122003B5A2F /* ClusterWatchUITests.swift */; };
 		E6D627C11CD455490096FB6B /* images in Resources */ = {isa = PBXBuildFile; fileRef = E6D627C01CD455490096FB6B /* images */; };
 		E6D627C31CD477890096FB6B /* GameOverScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6D627C21CD477890096FB6B /* GameOverScene.swift */; };
-		E6D627C51CD4AEB80096FB6B /* MainMenuScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6D627C41CD4AEB80096FB6B /* MainMenuScene.swift */; };
+		E6D627C71CD4B4710096FB6B /* MainMenuScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6D627C61CD4B4710096FB6B /* MainMenuScene.swift */; };
+		E6D627C91CD4B5470096FB6B /* MainMenuScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = E6D627C81CD4B5470096FB6B /* MainMenuScene.sks */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,7 +57,8 @@
 		E63A209A1CD45122003B5A2F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E6D627C01CD455490096FB6B /* images */ = {isa = PBXFileReference; lastKnownFileType = folder; path = images; sourceTree = "<group>"; };
 		E6D627C21CD477890096FB6B /* GameOverScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameOverScene.swift; sourceTree = "<group>"; };
-		E6D627C41CD4AEB80096FB6B /* MainMenuScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMenuScene.swift; sourceTree = "<group>"; };
+		E6D627C61CD4B4710096FB6B /* MainMenuScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMenuScene.swift; sourceTree = "<group>"; };
+		E6D627C81CD4B5470096FB6B /* MainMenuScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = MainMenuScene.sks; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,7 +119,8 @@
 				E63A20811CD45122003B5A2F /* LaunchScreen.storyboard */,
 				E63A20841CD45122003B5A2F /* Info.plist */,
 				E6D627C21CD477890096FB6B /* GameOverScene.swift */,
-				E6D627C41CD4AEB80096FB6B /* MainMenuScene.swift */,
+				E6D627C61CD4B4710096FB6B /* MainMenuScene.swift */,
+				E6D627C81CD4B5470096FB6B /* MainMenuScene.sks */,
 			);
 			path = ClusterWatch;
 			sourceTree = "<group>";
@@ -249,6 +252,7 @@
 				E63A20771CD45122003B5A2F /* GameScene.sks in Resources */,
 				E63A20831CD45122003B5A2F /* LaunchScreen.storyboard in Resources */,
 				E63A20801CD45122003B5A2F /* Assets.xcassets in Resources */,
+				E6D627C91CD4B5470096FB6B /* MainMenuScene.sks in Resources */,
 				E63A207E1CD45122003B5A2F /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -274,7 +278,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E6D627C51CD4AEB80096FB6B /* MainMenuScene.swift in Sources */,
+				E6D627C71CD4B4710096FB6B /* MainMenuScene.swift in Sources */,
 				E63A20791CD45122003B5A2F /* GameScene.swift in Sources */,
 				E63A207B1CD45122003B5A2F /* GameViewController.swift in Sources */,
 				E6D627C31CD477890096FB6B /* GameOverScene.swift in Sources */,
