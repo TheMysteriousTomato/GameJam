@@ -71,6 +71,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             if gameReady == false {
                 gameReady = true
             }
+            else {
             
             let location = (touch).locationInNode(self)
 //            print(touch.tapCount)
@@ -99,6 +100,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 }
                 
                 
+            }
             }
         }
     }
