@@ -4,6 +4,7 @@ import SpriteKit
 struct PhysicsCategory {
     static let Player: UInt32 = 0x1 << 1
     static let Ground: UInt32 = 0x1 << 2
+    static let Spike:  UInt32 = 0x1 << 3
 }
 
 class GameScene: SKScene {
@@ -31,6 +32,21 @@ class GameScene: SKScene {
         runner.physicsBody?.affectedByGravity = true
         runner.physicsBody?.dynamic = true
         
+        let spike = SKSpriteNode(imageNamed: "spike")
+        spike.size = CGSize(width: 150, height: 150)
+        spike.position = CGPoint(x: self.frame.size.width, y: floor.frame.height + 50);
+
+        let action = SKAction.moveTo(CGPoint(x: 0, y: floor.frame.height+50), duration: 2)
+        spike.physicsBody = SKPhysicsBody(rectangleOfSize: runner.size)
+        spike.physicsBody?.categoryBitMask = PhysicsCategory.Spike
+        spike.physicsBody?.collisionBitMask = PhysicsCategory.Ground | PhysicsCategory.Player
+        spike.physicsBody?.contactTestBitMask = PhysicsCategory.Ground | PhysicsCategory.Player
+        spike.physicsBody?.affectedByGravity = true
+        spike.physicsBody?.affectedByGravity = true
+        
+        spike.runAction(action)
+        
+        self.addChild(spike)
         self.addChild(runner)
         self.addChild(floor)
         
@@ -47,7 +63,7 @@ class GameScene: SKScene {
         
         for touch in touches {
             let _ = touch.locationInNode(self)
-            runner.physicsBody?.velocity = CGVectorMake(0, runner.position.y + 420)
+            runner.physicsBody?.velocity = CGVectorMake(0, runner.position.y + 600)
         }
     }
    
