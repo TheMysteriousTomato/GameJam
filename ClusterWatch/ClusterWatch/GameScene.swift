@@ -71,6 +71,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             if gameReady == false {
                 gameReady = true
             }
+            else {
             
             let location = (touch).locationInNode(self)
 //            print(touch.tapCount)
@@ -87,13 +88,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     runner.physicsBody?.dynamic = true
                 }
             } else if touch.tapCount <= 2 {
-                
+                print(numJumps)
+                if numJumps == 1 {
+                    let rotation = SKAction.rotateByAngle( CGFloat(2 * -M_PI), duration: 0.75)
+                    runner.runAction(rotation)
+                }
                 if numJumps < 2
                 {
                     runner.physicsBody?.velocity = CGVectorMake(0, runner.position.y + 400)
                     numJumps = numJumps + 1
                 }
                 
+                
+            }
             }
         }
     }
@@ -147,7 +154,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         if (firstBody.categoryBitMask == PhysicsCategory.Player && secondBody.categoryBitMask == PhysicsCategory.Ground) || (firstBody.categoryBitMask == PhysicsCategory.Ground && secondBody.categoryBitMask == PhysicsCategory.Player)
         {
-            print("floored")
+//            print("floored")
             numJumps = 0
         }
     }
