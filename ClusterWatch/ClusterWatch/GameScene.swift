@@ -35,6 +35,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     let backgroundVelocity : CGFloat = 5
     let scorelabel = SKLabelNode(fontNamed: "PerfectDarkBRK")
     var netActive = Bool()
+    var duckActive = Bool()
 
     func gameSetup(){
         self.backgroundColor = SKColor.whiteColor()
@@ -139,6 +140,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     runner.physicsBody?.contactTestBitMask = PhysicsCategory.Ground | PhysicsCategory.Spike | PhysicsCategory.Wall
                     runner.physicsBody?.affectedByGravity = true
                     runner.physicsBody?.dynamic = true
+                    duckActive = true
                 }
                 else if( name == "missilebutton"){
                     missile.removeFromParent()
@@ -167,16 +169,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 }
             } else if touch.tapCount <= 2 {
 //                print(numJumps)
-                if numJumps == 1 {
-                    let rotation = SKAction.rotateByAngle( CGFloat(2 * -M_PI), duration: 0.75)
-                    runner.runAction(rotation)
+                if duckActive{
+                    numJumps == 4
+                } else {
+                    if numJumps == 1 {
+                        let rotation = SKAction.rotateByAngle( CGFloat(2 * -M_PI), duration: 0.75)
+                        runner.runAction(rotation)
+                    }
+                    if numJumps < 2
+                    {
+                        runner.physicsBody?.velocity = CGVectorMake(0, runner.position.y + 400)
+                        numJumps = numJumps + 1
+                    }
                 }
-                if numJumps < 2
-                {
-                    runner.physicsBody?.velocity = CGVectorMake(0, runner.position.y + 400)
-                    numJumps = numJumps + 1
-                }
-                
                 
             }
             }
@@ -198,6 +203,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     runner.physicsBody?.contactTestBitMask = PhysicsCategory.Ground | PhysicsCategory.Spike | PhysicsCategory.Wall
                     runner.physicsBody?.affectedByGravity = true
                     runner.physicsBody?.dynamic = true
+                    numJumps = 0
+                    duckActive = false
                 }
                 
             }
