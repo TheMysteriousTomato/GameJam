@@ -35,6 +35,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     let backgroundVelocity : CGFloat = 5
     let scorelabel = SKLabelNode(fontNamed: "PerfectDarkBRK")
     var netActive = Bool()
+    var currentHighScore = 0
+    let highscorelabel = SKLabelNode(fontNamed: "PerfectDarkBRK")
+
 
     func gameSetup(){
         self.backgroundColor = SKColor.whiteColor()
@@ -77,8 +80,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         scorelabel.text = message
         scorelabel.fontSize = 40
         scorelabel.fontColor = SKColor.whiteColor()
-        scorelabel.position = CGPoint(x: self.frame.width/10, y: self.frame.height * 0.9)
+        scorelabel.position = CGPoint(x: self.frame.width / 10, y: self.frame.height * 0.9)
         self.addChild(scorelabel)
+        
+        getCurrentHighScore()
+        
+        highscorelabel.text = "High Score: " + String(self.currentHighScore)
+        highscorelabel.fontSize = 40
+        highscorelabel.fontColor = SKColor.whiteColor()
+        highscorelabel.position = CGPoint(x: self.frame.width - 190, y: self.frame.height * 0.9)
+        self.addChild(highscorelabel)
         
 
         self.addChild(dodgebutton)
@@ -226,36 +237,36 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             runner.runAction(scaleHeightAction, completion: { () -> Void in })
             self.runAction(SKAction.fadeInWithDuration(1.0), completion: {
                 
-                
-                
-                //1
-                let appDelegate =
-                    UIApplication.sharedApplication().delegate as! AppDelegate
-                
-                let managedContext = appDelegate.managedObjectContext
-                
-            
-                
-                let entityDescription =
-                    NSEntityDescription.entityForName("Scores",
-                        inManagedObjectContext: managedContext)
-                
-                let highscore = Scores(entity: entityDescription!,
-                    insertIntoManagedObjectContext: managedContext)
-                
-                highscore.score = self.score
-
-                do{
-                    try managedContext.save()
-                } catch {
-                    print("?")
-                }
-       
-                
-                
-                
                 self.removeAllChildren()
                 self.addBG()
+                
+                if(self.score > self.currentHighScore){
+                    print("Setting new highscore!")
+                    //1
+                    let appDelegate =
+                        UIApplication.sharedApplication().delegate as! AppDelegate
+                    
+                    let managedContext = appDelegate.managedObjectContext
+                    
+                    let entityDescription =
+                        NSEntityDescription.entityForName("Scores",
+                            inManagedObjectContext: managedContext)
+                    
+                    let highscore = Scores(entity: entityDescription!,
+                        insertIntoManagedObjectContext: managedContext)
+                    
+                    highscore.score = self.score
+                    
+                    do{
+                        try managedContext.save()
+                    } catch {
+                        print("?")
+                    }
+                } else {
+                    print("No new highscore set")
+                }
+                
+                
                 let transition:SKTransition = SKTransition.fadeWithDuration(1)
                 let gameOverScene = GameOverScene(size: self.size, score: self.score)
                 self.view?.presentScene(gameOverScene, transition: transition)
@@ -436,17 +447,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 
                 
                 if score <= 9 {
-                    print("Level 1 - "  + String(rnd))
+//                    print("Level 1 - "  + String(rnd))
                     generateSmallSpike()
                 } else if score <= 19 {
-                    print("Level 2 - " + String(rnd))
+//                    print("Level 2 - " + String(rnd))
                     if rnd <= 3 {
                         generateSmallSpike()
                     } else {
                         generateLargeSpike()
                     }
                 } else if score <= 29 {
-                    print("Level 3 - " + String(rnd))
+//                    print("Level 3 - " + String(rnd))
                     if rnd <= 2 {
                         generateSmallSpike()
                     } else if rnd <= 4 {
@@ -455,7 +466,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                         generateBullet()
                     }
                 } else if score <= 39 {
-                    print("Level 4+ - " + String(rnd))
+//                    print("Level 4+ - " + String(rnd))
                     if rnd == 0 {
                         generateSmallSpike()
                     } else if rnd <= 2{
@@ -466,7 +477,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                         generateWall()
                     }
                 } else if score <= 49{
-                    print("Level 5+ - " + String(rnd))
+//                    print("Level 5+ - " + String(rnd))
                     if rnd == 0 {
                         generateSmallSpike()
                     } else if rnd == 1{
@@ -480,7 +491,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                         generateWall()
                     }
                 }else {
-                    print("Level 6+ - " + String(rnd))
+//                    print("Level 6+ - " + String(rnd))
                     if rnd == 0 {
                         generateSmallSpike()
                     } else if rnd == 1{
@@ -508,6 +519,35 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         
         
+    }
+    
+    
+    
+    func getCurrentHighScore(){
+        //1
+        let appDelegate =
+            UIApplication.sharedApplication().delegate as! AppDelegate
+        
+        let managedContext = appDelegate.managedObjectContext
+        
+        
+        // Create Fetch Request
+        let fetchRequest = NSFetchRequest(entityName: "Scores")
+        
+        // Add Sort Descriptor
+        let sortDescriptor = NSSortDescriptor(key: "score", ascending: true)
+        fetchRequest.sortDescriptors = [sortDescriptor]
+        
+        // Execute Fetch Request
+        do {
+            let result = try managedContext.executeFetchRequest(fetchRequest)
+            let index = result.count
+            currentHighScore = Int(result[index - 1].valueForKey("score") as! NSNumber)
+            print("Highscore: " + String(currentHighScore))
+        } catch {
+            let fetchError = error as NSError
+            print(fetchError)
+        }
     }
     
     func addBG()

@@ -76,13 +76,15 @@ class GameOverScene: SKScene {
         // Execute Fetch Request
         do {
             let result = try managedContext.executeFetchRequest(fetchRequest)
-            
-            for managedObject in result {
-                if let hi = managedObject.valueForKey("score"){
-                    print("\(hi)")
-                    highscore = Int(hi as! NSNumber)
-                }
-            }
+            var index = result.count
+            highscore = Int(result[index - 1].valueForKey("score") as! NSNumber)
+            print("Highscore: " + String(highscore))
+//            for managedObject in result {
+//                if let hi = managedObject.valueForKey("score"){
+//                    //print("\(hi)")
+//                    highscore = Int(hi as! NSNumber)
+//                }
+//            }
             
         } catch {
             let fetchError = error as NSError

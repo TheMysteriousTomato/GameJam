@@ -15,7 +15,6 @@ class GameViewController: UIViewController {
         super.viewDidLoad()
 
         let scene = MainMenuScene(fileNamed: "MainMenuScene")
-        print(scene)
             // Configure the view.
             let skView = self.view as! SKView
             skView.showsFPS = true
