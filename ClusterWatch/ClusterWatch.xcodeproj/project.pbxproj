@@ -1,0 +1,515 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		E63A20751CD45122003B5A2F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E63A20741CD45122003B5A2F /* AppDelegate.swift */; };
+		E63A20771CD45122003B5A2F /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = E63A20761CD45122003B5A2F /* GameScene.sks */; };
+		E63A20791CD45122003B5A2F /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = E63A20781CD45122003B5A2F /* GameScene.swift */; };
+		E63A207B1CD45122003B5A2F /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E63A207A1CD45122003B5A2F /* GameViewController.swift */; };
+		E63A207E1CD45122003B5A2F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E63A207C1CD45122003B5A2F /* Main.storyboard */; };
+		E63A20801CD45122003B5A2F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E63A207F1CD45122003B5A2F /* Assets.xcassets */; };
+		E63A20831CD45122003B5A2F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E63A20811CD45122003B5A2F /* LaunchScreen.storyboard */; };
+		E63A208E1CD45122003B5A2F /* ClusterWatchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E63A208D1CD45122003B5A2F /* ClusterWatchTests.swift */; };
+		E63A20991CD45122003B5A2F /* ClusterWatchUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E63A20981CD45122003B5A2F /* ClusterWatchUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		E63A208A1CD45122003B5A2F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E63A20691CD45122003B5A2F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E63A20701CD45122003B5A2F;
+			remoteInfo = ClusterWatch;
+		};
+		E63A20951CD45122003B5A2F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E63A20691CD45122003B5A2F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E63A20701CD45122003B5A2F;
+			remoteInfo = ClusterWatch;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		E63A20711CD45122003B5A2F /* ClusterWatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ClusterWatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E63A20741CD45122003B5A2F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		E63A20761CD45122003B5A2F /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
+		E63A20781CD45122003B5A2F /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
+		E63A207A1CD45122003B5A2F /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
+		E63A207D1CD45122003B5A2F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		E63A207F1CD45122003B5A2F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		E63A20821CD45122003B5A2F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		E63A20841CD45122003B5A2F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E63A20891CD45122003B5A2F /* ClusterWatchTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ClusterWatchTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E63A208D1CD45122003B5A2F /* ClusterWatchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClusterWatchTests.swift; sourceTree = "<group>"; };
+		E63A208F1CD45122003B5A2F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E63A20941CD45122003B5A2F /* ClusterWatchUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ClusterWatchUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E63A20981CD45122003B5A2F /* ClusterWatchUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClusterWatchUITests.swift; sourceTree = "<group>"; };
+		E63A209A1CD45122003B5A2F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		E63A206E1CD45122003B5A2F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E63A20861CD45122003B5A2F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E63A20911CD45122003B5A2F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		E63A20681CD45122003B5A2F = {
+			isa = PBXGroup;
+			children = (
+				E63A20731CD45122003B5A2F /* ClusterWatch */,
+				E63A208C1CD45122003B5A2F /* ClusterWatchTests */,
+				E63A20971CD45122003B5A2F /* ClusterWatchUITests */,
+				E63A20721CD45122003B5A2F /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		E63A20721CD45122003B5A2F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E63A20711CD45122003B5A2F /* ClusterWatch.app */,
+				E63A20891CD45122003B5A2F /* ClusterWatchTests.xctest */,
+				E63A20941CD45122003B5A2F /* ClusterWatchUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E63A20731CD45122003B5A2F /* ClusterWatch */ = {
+			isa = PBXGroup;
+			children = (
+				E63A20741CD45122003B5A2F /* AppDelegate.swift */,
+				E63A20761CD45122003B5A2F /* GameScene.sks */,
+				E63A20781CD45122003B5A2F /* GameScene.swift */,
+				E63A207A1CD45122003B5A2F /* GameViewController.swift */,
+				E63A207C1CD45122003B5A2F /* Main.storyboard */,
+				E63A207F1CD45122003B5A2F /* Assets.xcassets */,
+				E63A20811CD45122003B5A2F /* LaunchScreen.storyboard */,
+				E63A20841CD45122003B5A2F /* Info.plist */,
+			);
+			path = ClusterWatch;
+			sourceTree = "<group>";
+		};
+		E63A208C1CD45122003B5A2F /* ClusterWatchTests */ = {
+			isa = PBXGroup;
+			children = (
+				E63A208D1CD45122003B5A2F /* ClusterWatchTests.swift */,
+				E63A208F1CD45122003B5A2F /* Info.plist */,
+			);
+			path = ClusterWatchTests;
+			sourceTree = "<group>";
+		};
+		E63A20971CD45122003B5A2F /* ClusterWatchUITests */ = {
+			isa = PBXGroup;
+			children = (
+				E63A20981CD45122003B5A2F /* ClusterWatchUITests.swift */,
+				E63A209A1CD45122003B5A2F /* Info.plist */,
+			);
+			path = ClusterWatchUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		E63A20701CD45122003B5A2F /* ClusterWatch */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E63A209D1CD45122003B5A2F /* Build configuration list for PBXNativeTarget "ClusterWatch" */;
+			buildPhases = (
+				E63A206D1CD45122003B5A2F /* Sources */,
+				E63A206E1CD45122003B5A2F /* Frameworks */,
+				E63A206F1CD45122003B5A2F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ClusterWatch;
+			productName = ClusterWatch;
+			productReference = E63A20711CD45122003B5A2F /* ClusterWatch.app */;
+			productType = "com.apple.product-type.application";
+		};
+		E63A20881CD45122003B5A2F /* ClusterWatchTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E63A20A01CD45122003B5A2F /* Build configuration list for PBXNativeTarget "ClusterWatchTests" */;
+			buildPhases = (
+				E63A20851CD45122003B5A2F /* Sources */,
+				E63A20861CD45122003B5A2F /* Frameworks */,
+				E63A20871CD45122003B5A2F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E63A208B1CD45122003B5A2F /* PBXTargetDependency */,
+			);
+			name = ClusterWatchTests;
+			productName = ClusterWatchTests;
+			productReference = E63A20891CD45122003B5A2F /* ClusterWatchTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		E63A20931CD45122003B5A2F /* ClusterWatchUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E63A20A31CD45122003B5A2F /* Build configuration list for PBXNativeTarget "ClusterWatchUITests" */;
+			buildPhases = (
+				E63A20901CD45122003B5A2F /* Sources */,
+				E63A20911CD45122003B5A2F /* Frameworks */,
+				E63A20921CD45122003B5A2F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E63A20961CD45122003B5A2F /* PBXTargetDependency */,
+			);
+			name = ClusterWatchUITests;
+			productName = ClusterWatchUITests;
+			productReference = E63A20941CD45122003B5A2F /* ClusterWatchUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		E63A20691CD45122003B5A2F /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0730;
+				LastUpgradeCheck = 0730;
+				ORGANIZATIONNAME = themysterioustomato;
+				TargetAttributes = {
+					E63A20701CD45122003B5A2F = {
+						CreatedOnToolsVersion = 7.3;
+					};
+					E63A20881CD45122003B5A2F = {
+						CreatedOnToolsVersion = 7.3;
+						TestTargetID = E63A20701CD45122003B5A2F;
+					};
+					E63A20931CD45122003B5A2F = {
+						CreatedOnToolsVersion = 7.3;
+						TestTargetID = E63A20701CD45122003B5A2F;
+					};
+				};
+			};
+			buildConfigurationList = E63A206C1CD45122003B5A2F /* Build configuration list for PBXProject "ClusterWatch" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = E63A20681CD45122003B5A2F;
+			productRefGroup = E63A20721CD45122003B5A2F /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				E63A20701CD45122003B5A2F /* ClusterWatch */,
+				E63A20881CD45122003B5A2F /* ClusterWatchTests */,
+				E63A20931CD45122003B5A2F /* ClusterWatchUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		E63A206F1CD45122003B5A2F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E63A20771CD45122003B5A2F /* GameScene.sks in Resources */,
+				E63A20831CD45122003B5A2F /* LaunchScreen.storyboard in Resources */,
+				E63A20801CD45122003B5A2F /* Assets.xcassets in Resources */,
+				E63A207E1CD45122003B5A2F /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E63A20871CD45122003B5A2F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E63A20921CD45122003B5A2F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		E63A206D1CD45122003B5A2F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E63A20791CD45122003B5A2F /* GameScene.swift in Sources */,
+				E63A207B1CD45122003B5A2F /* GameViewController.swift in Sources */,
+				E63A20751CD45122003B5A2F /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E63A20851CD45122003B5A2F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E63A208E1CD45122003B5A2F /* ClusterWatchTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E63A20901CD45122003B5A2F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E63A20991CD45122003B5A2F /* ClusterWatchUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		E63A208B1CD45122003B5A2F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E63A20701CD45122003B5A2F /* ClusterWatch */;
+			targetProxy = E63A208A1CD45122003B5A2F /* PBXContainerItemProxy */;
+		};
+		E63A20961CD45122003B5A2F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E63A20701CD45122003B5A2F /* ClusterWatch */;
+			targetProxy = E63A20951CD45122003B5A2F /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		E63A207C1CD45122003B5A2F /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E63A207D1CD45122003B5A2F /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		E63A20811CD45122003B5A2F /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E63A20821CD45122003B5A2F /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		E63A209B1CD45122003B5A2F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		E63A209C1CD45122003B5A2F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		E63A209E1CD45122003B5A2F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = ClusterWatch/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.themysterioustomato.ClusterWatch;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		E63A209F1CD45122003B5A2F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = ClusterWatch/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.themysterioustomato.ClusterWatch;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		E63A20A11CD45122003B5A2F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				INFOPLIST_FILE = ClusterWatchTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.themysterioustomato.ClusterWatchTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ClusterWatch.app/ClusterWatch";
+			};
+			name = Debug;
+		};
+		E63A20A21CD45122003B5A2F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = ClusterWatchTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.themysterioustomato.ClusterWatchTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ClusterWatch.app/ClusterWatch";
+			};
+			name = Release;
+		};
+		E63A20A41CD45122003B5A2F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				INFOPLIST_FILE = ClusterWatchUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.themysterioustomato.ClusterWatchUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = ClusterWatch;
+			};
+			name = Debug;
+		};
+		E63A20A51CD45122003B5A2F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = ClusterWatchUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.themysterioustomato.ClusterWatchUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = ClusterWatch;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		E63A206C1CD45122003B5A2F /* Build configuration list for PBXProject "ClusterWatch" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E63A209B1CD45122003B5A2F /* Debug */,
+				E63A209C1CD45122003B5A2F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E63A209D1CD45122003B5A2F /* Build configuration list for PBXNativeTarget "ClusterWatch" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E63A209E1CD45122003B5A2F /* Debug */,
+				E63A209F1CD45122003B5A2F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		E63A20A01CD45122003B5A2F /* Build configuration list for PBXNativeTarget "ClusterWatchTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E63A20A11CD45122003B5A2F /* Debug */,
+				E63A20A21CD45122003B5A2F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		E63A20A31CD45122003B5A2F /* Build configuration list for PBXNativeTarget "ClusterWatchUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E63A20A41CD45122003B5A2F /* Debug */,
+				E63A20A51CD45122003B5A2F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = E63A20691CD45122003B5A2F /* Project object */;
+}
