@@ -72,7 +72,7 @@ class GameOverScene: SKScene {
                     }
                     if(name == "home") {
                         let transition:SKTransition = SKTransition.fadeWithDuration(2)
-                        let gameScene = GameScene(size: size)
+                        let gameScene = MainMenuScene(size: size)
                         self.view?.presentScene(gameScene, transition: transition)
                     }
                 }
