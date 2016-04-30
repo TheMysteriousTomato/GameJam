@@ -17,7 +17,7 @@ class GameOverScene: SKScene {
             self.addChild(label)
             
             
-            let message = "Score = \(score)"
+            let message = "Score: \(score)"
             let score = SKLabelNode(fontNamed: "PerfectDarkBRK")
             score.text = message
             score.fontSize = 40
