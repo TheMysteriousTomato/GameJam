@@ -37,8 +37,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         runner.size = CGSize(width: 100, height: 100)
         runner.position = CGPoint(x: self.frame.size.width / 10 , y: floor.frame.height + 140);
-        
-        runner.physicsBody = SKPhysicsBody(rectangleOfSize: runner.size)
+        runner.physicsBody = SKPhysicsBody(texture: SKTexture(imageNamed: "runner"), size: CGSize(width: 100, height: 100))
         runner.physicsBody?.categoryBitMask = PhysicsCategory.Player
         runner.physicsBody?.collisionBitMask = PhysicsCategory.Ground | PhysicsCategory.Spike
         runner.physicsBody?.contactTestBitMask = PhysicsCategory.Ground | PhysicsCategory.Spike
@@ -80,7 +79,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 if( name == "dodgebutton"){
                     runner.texture = SKTexture(imageNamed: "dodge")
                     runner.size = CGSize(width: 50, height: 50)
-                    runner.physicsBody = SKPhysicsBody(rectangleOfSize: CGSize(width: 50, height: 50))
+                    runner.physicsBody = SKPhysicsBody(texture: SKTexture(imageNamed: "dodge"), size: CGSize(width: 50, height: 50))
                     runner.physicsBody?.categoryBitMask = PhysicsCategory.Player
                     runner.physicsBody?.collisionBitMask = PhysicsCategory.Ground | PhysicsCategory.Spike
                     runner.physicsBody?.contactTestBitMask = PhysicsCategory.Ground | PhysicsCategory.Spike
@@ -113,8 +112,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             if let name = self.nodeAtPoint(location).name {
                 if( name == "dodgebutton"){
                     runner.texture = SKTexture(imageNamed: "runner")
-                    runner.size = CGSize(width: 90, height: 90)
-                    runner.physicsBody = SKPhysicsBody(rectangleOfSize: runner.size)
+                    runner.size = CGSize(width: 100, height: 100)
+                    runner.physicsBody = SKPhysicsBody(texture: SKTexture(imageNamed: "runner"), size: CGSize(width: 100, height: 100))
                     runner.physicsBody?.categoryBitMask = PhysicsCategory.Player
                     runner.physicsBody?.collisionBitMask = PhysicsCategory.Ground | PhysicsCategory.Spike
                     runner.physicsBody?.contactTestBitMask = PhysicsCategory.Ground | PhysicsCategory.Spike
