@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		66F0906E1CD554BB00578085 /* audio in Resources */ = {isa = PBXBuildFile; fileRef = 66F0906D1CD554BB00578085 /* audio */; };
 		E6350FD51CD5175700838BD6 /* PlayerScore.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E6350FD31CD5175700838BD6 /* PlayerScore.xcdatamodeld */; };
 		E6350FD81CD518AC00838BD6 /* Scores+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6350FD61CD518AC00838BD6 /* Scores+CoreDataProperties.swift */; };
 		E6350FD91CD518AC00838BD6 /* Scores.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6350FD71CD518AC00838BD6 /* Scores.swift */; };
@@ -44,6 +45,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		66F0906D1CD554BB00578085 /* audio */ = {isa = PBXFileReference; lastKnownFileType = folder; path = audio; sourceTree = "<group>"; };
 		E6350FD41CD5175700838BD6 /* PlayerScore.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PlayerScore.xcdatamodel; sourceTree = "<group>"; };
 		E6350FD61CD518AC00838BD6 /* Scores+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Scores+CoreDataProperties.swift"; path = "ClusterWatch/Scores+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		E6350FD71CD518AC00838BD6 /* Scores.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Scores.swift; path = ClusterWatch/Scores.swift; sourceTree = "<group>"; };
@@ -120,6 +122,7 @@
 		E63A20731CD45122003B5A2F /* ClusterWatch */ = {
 			isa = PBXGroup;
 			children = (
+				66F0906D1CD554BB00578085 /* audio */,
 				E6D627C01CD455490096FB6B /* images */,
 				E63A20741CD45122003B5A2F /* AppDelegate.swift */,
 				E63A20761CD45122003B5A2F /* GameScene.sks */,
@@ -262,6 +265,7 @@
 			files = (
 				E6D627C11CD455490096FB6B /* images in Resources */,
 				E63A20771CD45122003B5A2F /* GameScene.sks in Resources */,
+				66F0906E1CD554BB00578085 /* audio in Resources */,
 				E63A20831CD45122003B5A2F /* LaunchScreen.storyboard in Resources */,
 				E63A20801CD45122003B5A2F /* Assets.xcassets in Resources */,
 				E6D627C91CD4B5470096FB6B /* MainMenuScene.sks in Resources */,
