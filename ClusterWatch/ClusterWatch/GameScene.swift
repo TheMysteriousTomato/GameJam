@@ -5,12 +5,15 @@ struct PhysicsCategory {
     static let Player: UInt32 = 0x1 << 1
     static let Ground: UInt32 = 0x1 << 2
     static let Spike:  UInt32 = 0x1 << 3
+    static let Missile: UInt32 = 0x1 << 4
 }
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
     var runner = SKSpriteNode(imageNamed: "runner")
     let floor = SKSpriteNode(imageNamed: "floor")
     let dodgebutton = SKSpriteNode(imageNamed: "dodgebutton")
+    let missilebutton = SKSpriteNode(imageNamed: "missilebutton")
+    let missile = SKSpriteNode(imageNamed: "missile")
     var gameReady = false
     var score = 0
     var numJumps = 0
@@ -28,6 +31,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         dodgebutton.position = CGPoint(x: self.frame.width - 200, y: floor.frame.height / 2);
         dodgebutton.zPosition = 5
         dodgebutton.name = "dodgebutton"
+        
+        missilebutton.size     = CGSize(width: 100, height: 100)
+        missilebutton.position = CGPoint(x: self.frame.width - 320, y: floor.frame.height / 2);
+        missilebutton.zPosition = 5
+        missilebutton.name = "missilebutton"
         
         floor.xScale = 2
         floor.position = CGPoint(x: 0, y: floor.frame.height / 2);
@@ -57,6 +65,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
 
         self.addChild(dodgebutton)
+        self.addChild(missilebutton)
+
         self.addChild(runner)
         self.addChild(floor)
         
@@ -97,6 +107,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     runner.physicsBody?.affectedByGravity = true
                     runner.physicsBody?.dynamic = true
                 }
+                else if( name == "missilebutton"){
+                    missile.removeFromParent()
+                    missile.size = CGSize(width: 100, height: 32)
+                    missile.position = CGPoint(x: runner.position.x + runner.frame.width/2, y: runner.position.y - runner.frame.height/16)
+                    missile.physicsBody = SKPhysicsBody(texture: SKTexture(imageNamed: "missile"), size: CGSize(width: 100, height: 32))
+                    missile.physicsBody?.categoryBitMask = PhysicsCategory.Missile
+                    missile.physicsBody?.collisionBitMask = PhysicsCategory.Ground
+                    missile.physicsBody?.contactTestBitMask = PhysicsCategory.Ground
+                    missile.physicsBody?.affectedByGravity = false
+                    missile.physicsBody?.dynamic = true
+                    missile.physicsBody?.velocity = CGVectorMake(800, missile.position.y)
+                    self.addChild(missile)
+                }
             } else if touch.tapCount <= 2 {
 //                print(numJumps)
                 if numJumps == 1 {
@@ -131,6 +154,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     runner.physicsBody?.affectedByGravity = true
                     runner.physicsBody?.dynamic = true
                 }
+                
             }
 //            else if touch.tapCount <= 2 {
 //                
@@ -177,6 +201,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 score = score + 1
                 scorelabel.text = "Score: " + String(score)
             }
+            
+            
         }
     }
     
