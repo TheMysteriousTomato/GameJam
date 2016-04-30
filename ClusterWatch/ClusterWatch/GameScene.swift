@@ -12,6 +12,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     let floor = SKSpriteNode(imageNamed: "floor")
     let dodgebutton = SKSpriteNode(imageNamed: "dodgebutton")
     var gameReady = false
+    var score = 0
     
     
     var now : NSDate?
@@ -75,7 +76,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
             if let name = self.nodeAtPoint(location).name {
                 if( name == "dodgebutton"){
-                    print("dodge")
                     runner.size = CGSize(width: 50, height: 50)
                     runner.physicsBody = SKPhysicsBody(rectangleOfSize: CGSize(width: 50, height: 50))
                     runner.physicsBody?.categoryBitMask = PhysicsCategory.Player
@@ -100,7 +100,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
             if let name = self.nodeAtPoint(location).name {
                 if( name == "dodgebutton"){
-                    print("dodge")
                     runner.size = CGSize(width: 90, height: 90)
                     runner.physicsBody = SKPhysicsBody(rectangleOfSize: runner.size)
                     runner.physicsBody?.categoryBitMask = PhysicsCategory.Player
@@ -126,15 +125,27 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             let finalHeightScale:CGFloat = 0.0
             let scaleHeightAction = SKAction.scaleYTo(finalHeightScale, duration: duration)
             
+            gameReady = false
             runner.runAction(scaleHeightAction, completion: { () -> Void in })
             self.runAction(SKAction.fadeInWithDuration(1.0), completion: {
                 self.removeAllChildren()
                 let transition:SKTransition = SKTransition.fadeWithDuration(1)
-                let gameOverScene = GameOverScene(size: self.size, score: 1)
+                let gameOverScene = GameOverScene(size: self.size, score: self.score)
                 self.view?.presentScene(gameOverScene, transition: transition)
             })
         }
     }
+    
+    func checkIfObjReachesEnd(){
+        for child in self.children {
+            if(child.position.x <= -1){
+                self.removeChildrenInArray([child])
+                print("+1")
+                score = score + 1
+            }
+        }
+    }
+    
     
     override func update(currentTime: CFTimeInterval) {
         /* Called before each frame is rendered */
@@ -191,6 +202,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
                     self.addChild(obj)
                 }
+                checkIfObjReachesEnd()
             }
         }
         
