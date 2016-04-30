@@ -10,9 +10,6 @@ struct PhysicsCategory {
     static let Wall: UInt32 = 0x1 << 5
     static let Net: UInt32 = 0x1 << 6
     static let Fireblast: UInt32 = 0x1 << 6
-
-
-
 }
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
@@ -132,6 +129,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.physicsWorld.contactDelegate = self
 //        self.physicsWorld.gravity = CGVectorMake(0, -15)
         
+        runAction(SKAction.waitForDuration(0.1), completion: {
+            let backgroundMusic = SKAudioNode(fileNamed: "audio/cluster watch panda game loop.wav")
+            backgroundMusic.autoplayLooped = true
+            backgroundMusic.runAction(SKAction.changeVolumeTo(Float(0.7), duration: 0))
+            self.addChild(backgroundMusic)
+        })
+        
+        
         bg1.anchorPoint = CGPointZero
         bg1.position = CGPointZero
         bg1.size = self.frame.size
@@ -171,6 +176,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
             if let name = self.nodeAtPoint(location).name {
                 if( name == "dodgebutton"){
+                    let flip = arc4random_uniform(2)
+                    if flip == 0
+                    {
+                        runAction(SKAction.playSoundFileNamed("audio/Panda quack.wav", waitForCompletion: false))
+                    }
+                    else
+                    {
+                        runAction(SKAction.playSoundFileNamed("audio/Panda quack 2.wav", waitForCompletion: false))
+                    }
+                    
+                    
                     runner.texture = SKTexture(imageNamed: "dodge")
                     runner.size = CGSize(width: 100, height: 100)
                     runner.position.x = self.frame.width / 10
@@ -183,6 +199,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     duckActive = true
                 }
                 else if( name == "missilebutton"){
+                    runAction(SKAction.playSoundFileNamed("audio/magic attack.wav", waitForCompletion: false))
+                    
                     missile.removeFromParent()
                     missile.size = CGSize(width: 100, height: 32)
                     missile.position = CGPoint(x: runner.position.x + runner.frame.width/2, y: runner.position.y - runner.frame.height/16)
@@ -195,6 +213,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     missile.physicsBody?.velocity = CGVectorMake(800, missile.position.y)
                     self.addChild(missile)
                 } else if(name == "fireballbutton"){
+                    runAction(SKAction.playSoundFileNamed("audio/fireball attack.wav", waitForCompletion: false))
+                    
                     fireblast.removeFromParent()
                     fireblast.size = CGSize(width: 200, height: 80)
                     fireblast.position = CGPoint(x: runner.position.x , y: runner.position.y + runner.frame.height/1.4)
@@ -218,6 +238,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     }
                     if numJumps < 2
                     {
+                        runAction(SKAction.playSoundFileNamed("audio/Panda jump.wav", waitForCompletion: false))
                         runner.physicsBody?.velocity = CGVectorMake(0, runner.position.y + 400)
                         numJumps = numJumps + 1
                     }
@@ -264,7 +285,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let secondBody = contact.bodyB
         if (firstBody.categoryBitMask == PhysicsCategory.Player && secondBody.categoryBitMask == PhysicsCategory.Spike) || (firstBody.categoryBitMask == PhysicsCategory.Spike && secondBody.categoryBitMask == PhysicsCategory.Player) || (firstBody.categoryBitMask == PhysicsCategory.Player && secondBody.categoryBitMask == PhysicsCategory.Wall) || (firstBody.categoryBitMask == PhysicsCategory.Wall && secondBody.categoryBitMask == PhysicsCategory.Player){
 //            print("Hit player")
-
+            let flip = arc4random_uniform(2)
+            if flip == 0
+            {
+                runAction(SKAction.playSoundFileNamed("audio/Panda growl.wav", waitForCompletion: false))
+            }
+            else
+            {
+                runAction(SKAction.playSoundFileNamed("audio/Panda growl 3.wav", waitForCompletion: false))
+            }
+            
             let duration = 0.25
             let finalHeightScale:CGFloat = 0.0
             let scaleHeightAction = SKAction.scaleYTo(finalHeightScale, duration: duration)
