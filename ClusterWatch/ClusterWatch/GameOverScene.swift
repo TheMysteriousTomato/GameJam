@@ -31,6 +31,12 @@ class GameOverScene: SKScene {
             playagain.name = "play"
             playagain.position = CGPoint(x: size.width/2, y: size.height/2 - 150)
             self.addChild(playagain)
+        
+            let homeScreen = SKLabelNode(fontNamed: "PerfectDarkBRK")
+            homeScreen.text = "home"
+            homeScreen.name = "home"
+            homeScreen.position = CGPoint(x: size.width/2, y: size.height/2 - 250)
+            self.addChild(homeScreen)
 
 //        })
         
@@ -60,6 +66,11 @@ class GameOverScene: SKScene {
             if CGRectContainsPoint(self.frame, location) {
                 if let name = self.nodeAtPoint(location).name {
                     if(name == "play") {
+                        let transition:SKTransition = SKTransition.fadeWithDuration(2)
+                        let gameScene = GameScene(size: size)
+                        self.view?.presentScene(gameScene, transition: transition)
+                    }
+                    if(name == "home") {
                         let transition:SKTransition = SKTransition.fadeWithDuration(2)
                         let gameScene = GameScene(size: size)
                         self.view?.presentScene(gameScene, transition: transition)
