@@ -16,6 +16,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var numJumps = 0
     var now : NSDate?
     var nextTime : NSDate?
+    let backgroundVelocity : CGFloat = 5
+
 
     func gameSetup(){
         self.backgroundColor = SKColor.whiteColor()
@@ -46,12 +48,32 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         runner.physicsBody?.dynamic = true
         
 
-        
         self.addChild(dodgebutton)
         self.addChild(runner)
         self.addChild(floor)
         
+        makeBackground()
+    }
+    
+    func makeBackground() {
         
+        let backgroundTexture = SKTexture(imageNamed: "background")
+        
+        //move background right to left; replace
+        let shiftBackground   = SKAction.moveByX(-backgroundTexture.size().width, y: 0, duration: 9)
+        let replaceBackground = SKAction.moveByX( backgroundTexture.size().width, y: 0, duration: 0)
+        let movingAndReplacingBackground = SKAction.repeatActionForever(SKAction.sequence([shiftBackground,replaceBackground]))
+        
+        for var i:CGFloat = 0; i<3; i++ {
+            //defining background; giving it height and moving width
+            let background=SKSpriteNode(texture:backgroundTexture)
+            background.zPosition = -2
+            background.position = CGPoint(x: backgroundTexture.size().width/2 + (backgroundTexture.size().width * i), y: CGRectGetMidY(self.frame))
+            background.size.height = self.frame.height
+            background.runAction(movingAndReplacingBackground)
+            
+            self.addChild(background)
+        }
     }
     
     override func didMoveToView(view: SKView) {
@@ -171,6 +193,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     
     override func update(currentTime: CFTimeInterval) {
+        
         /* Called before each frame is rendered */
         if gameReady {
             if runner.position.x >= self.frame.width { runner.position.x = 0 }
