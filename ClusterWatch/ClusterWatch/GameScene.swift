@@ -33,7 +33,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         floor.physicsBody?.affectedByGravity = false
         floor.physicsBody?.dynamic = false
         
-        runner.size = CGSize(width: 175, height: 175)
+        runner.size = CGSize(width: 100, height: 100)
         runner.position = CGPoint(x: self.frame.size.width / 10, y: floor.frame.height + 150);
         
         runner.physicsBody = SKPhysicsBody(rectangleOfSize: runner.size)
@@ -69,8 +69,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             if let name = self.nodeAtPoint(location).name {
                 if( name == "dodgebutton"){
                     print("dodge")
-                    runner.size = CGSize(width: 90, height: 90)
-                    runner.physicsBody = SKPhysicsBody(rectangleOfSize: CGSize(width: 90, height: 90))
+                    runner.size = CGSize(width: 50, height: 50)
+                    runner.physicsBody = SKPhysicsBody(rectangleOfSize: CGSize(width: 50, height: 50))
                     runner.physicsBody?.categoryBitMask = PhysicsCategory.Player
                     runner.physicsBody?.collisionBitMask = PhysicsCategory.Ground | PhysicsCategory.Spike
                     runner.physicsBody?.contactTestBitMask = PhysicsCategory.Ground | PhysicsCategory.Spike
@@ -78,7 +78,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     runner.physicsBody?.dynamic = true
                 }
             } else if touch.tapCount <= 2 {
-                runner.physicsBody?.velocity = CGVectorMake(0, runner.position.y + 600)
+                runner.physicsBody?.velocity = CGVectorMake(0, runner.position.y + 400)
             }
             
             
@@ -94,7 +94,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             if let name = self.nodeAtPoint(location).name {
                 if( name == "dodgebutton"){
                     print("dodge")
-                    runner.size = CGSize(width: 175, height: 175)
+                    runner.size = CGSize(width: 90, height: 90)
                     runner.physicsBody = SKPhysicsBody(rectangleOfSize: runner.size)
                     runner.physicsBody?.categoryBitMask = PhysicsCategory.Player
                     runner.physicsBody?.collisionBitMask = PhysicsCategory.Ground | PhysicsCategory.Spike
@@ -103,7 +103,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     runner.physicsBody?.dynamic = true
                 }
             } else if touch.tapCount <= 2 {
-                runner.physicsBody?.velocity = CGVectorMake(0, runner.position.y + 600)
+                runner.physicsBody?.velocity = CGVectorMake(0, runner.position.y + 200)
             }
             
         }
@@ -132,7 +132,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if (now?.timeIntervalSince1970 > nextTime?.timeIntervalSince1970){
             nextTime = now?.dateByAddingTimeInterval(NSTimeInterval(2.0))
             let spike = SKSpriteNode(imageNamed: "spike")
-            spike.size = CGSize(width: 150, height: 150)
+            spike.size = CGSize(width: 70, height: 70)
             spike.position = CGPoint(x: self.frame.size.width, y: floor.frame.height + 50);
             spike.physicsBody = SKPhysicsBody(rectangleOfSize: spike.size)
             spike.physicsBody?.categoryBitMask = PhysicsCategory.Spike
