@@ -14,6 +14,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var nextTime : NSDate?
 
     func gameSetup(){
+        self.backgroundColor = SKColor.whiteColor()
+        
         floor.xScale = 2
         floor.position = CGPoint(x: 0, y: floor.frame.height / 2);
         
@@ -43,6 +45,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     override func didMoveToView(view: SKView) {
         /* Setup your scene here */
         self.physicsWorld.contactDelegate = self
+//        self.physicsWorld.gravity = CGVectorMake(0, -15)
         gameSetup()
 
     }
@@ -51,33 +54,32 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
        /* Called when a touch begins */
         
         for touch in touches {
+            print(touch.tapCount)
             let _ = touch.locationInNode(self)
-            runner.physicsBody?.velocity = CGVectorMake(0, runner.position.y + 700)
+            if touch.tapCount <= 2 {
+                runner.physicsBody?.velocity = CGVectorMake(0, runner.position.y + 600)
+            }
         }
     }
    
     func didBeginContact(contact: SKPhysicsContact) {
         let firstBody = contact.bodyA
         let secondBody = contact.bodyB
-//        print("Category: " + String(PhysicsCategory.Player))
-//        print("Category: " + String(PhysicsCategory.Spike))
-        if firstBody.categoryBitMask == PhysicsCategory.Spike && secondBody.categoryBitMask == PhysicsCategory.Player {
+        if firstBody.categoryBitMask == PhysicsCategory.Player && secondBody.categoryBitMask == PhysicsCategory.Spike {
             print("Hit player")
-        } else {
-            print("???")
+            self.runAction(SKAction.fadeInWithDuration(0.5), completion: {
+                self.removeAllChildren()
+                let transition:SKTransition = SKTransition.fadeWithDuration(1)
+                let gameOverScene = GameOverScene(size: self.size, score: 1)
+                self.view?.presentScene(gameOverScene, transition: transition)
+            })
         }
     }
     
     override func update(currentTime: CFTimeInterval) {
         /* Called before each frame is rendered */
-        if runner.position.x >= self.frame.width
-        {
-            runner.position.x = 0
-        }
-        if runner.position.y >= self.frame.height - 140
-        {
-            runner.position.y = self.frame.height - 140
-        }
+        if runner.position.x >= self.frame.width { runner.position.x = 0 }
+        if runner.position.y >= self.frame.height - 140 { runner.position.y = self.frame.height - 140 }
         
         now = NSDate()
         if (now?.timeIntervalSince1970 > nextTime?.timeIntervalSince1970){
