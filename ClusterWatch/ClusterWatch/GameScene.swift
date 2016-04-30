@@ -144,15 +144,58 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             if (rnd < 8)
             {
                 spike.size = CGSize(width: 70, height: 70)
-                spike.physicsBody = SKPhysicsBody(rectangleOfSize: CGSize(width: 70, height: 70))
+                
+                spike.position = CGPoint(x: self.frame.size.width, y: floor.frame.height + 30);
+                
+                let offsetX: CGFloat = spike.frame.size.width * spike.anchorPoint.x
+                let offsetY: CGFloat = spike.frame.size.height * spike.anchorPoint.y
+                
+                let path: CGMutablePathRef = CGPathCreateMutable()
+                
+                
+                CGPathMoveToPoint(path, nil, 28 - offsetX, 70 - offsetY);
+                CGPathAddLineToPoint(path, nil, 6 - offsetX, 13 - offsetY);
+                CGPathAddLineToPoint(path, nil, 0 - offsetX, 10 - offsetY);
+                CGPathAddLineToPoint(path, nil, 0 - offsetX, 0 - offsetY);
+                CGPathAddLineToPoint(path, nil, 63 - offsetX, 0 - offsetY);
+                CGPathAddLineToPoint(path, nil, 63 - offsetX, 1 - offsetY);
+                CGPathAddLineToPoint(path, nil, 58 - offsetX, 15 - offsetY);
+                CGPathAddLineToPoint(path, nil, 52 - offsetX, 16 - offsetY);
+                CGPathAddLineToPoint(path, nil, 29 - offsetX, 70 - offsetY);
+                
+                CGPathCloseSubpath(path);
+                
+                spike.physicsBody = SKPhysicsBody(polygonFromPath: path)
+                
             }
             else
             {
                 spike.size = CGSize(width: 150, height: 175)
-                spike.physicsBody = SKPhysicsBody(rectangleOfSize: CGSize(width: 125, height: 175))
+                
+                spike.position = CGPoint(x: self.frame.size.width, y: floor.frame.height + 80);
+                
+                let offsetX: CGFloat = spike.frame.size.width * spike.anchorPoint.x
+                let offsetY: CGFloat = spike.frame.size.height * spike.anchorPoint.y
+                
+                let path: CGMutablePathRef = CGPathCreateMutable()
+                
+                
+                CGPathMoveToPoint(path, nil, 68 - offsetX, 175 - offsetY);
+                CGPathAddLineToPoint(path, nil, 20 - offsetX, 26 - offsetY);
+                CGPathAddLineToPoint(path, nil, 0 - offsetX, 25 - offsetY);
+                CGPathAddLineToPoint(path, nil, 0 - offsetX, 0 - offsetY);
+                CGPathAddLineToPoint(path, nil, 150 - offsetX, 0 - offsetY);
+                CGPathAddLineToPoint(path, nil, 150 - offsetX, 0 - offsetY);
+                CGPathAddLineToPoint(path, nil, 140 - offsetX, 25 - offsetY);
+                CGPathAddLineToPoint(path, nil, 108 - offsetX, 25 - offsetY);
+                CGPathAddLineToPoint(path, nil, 68 - offsetX, 175 - offsetY);
+                
+                CGPathCloseSubpath(path);
+                
+                spike.physicsBody = SKPhysicsBody(polygonFromPath: path)
+            
             }
             
-            spike.position = CGPoint(x: self.frame.size.width, y: floor.frame.height + 50);
             spike.physicsBody?.categoryBitMask = PhysicsCategory.Spike
             spike.physicsBody?.collisionBitMask = PhysicsCategory.Ground
             spike.physicsBody?.contactTestBitMask = PhysicsCategory.Ground
