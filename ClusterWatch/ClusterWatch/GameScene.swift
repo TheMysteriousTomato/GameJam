@@ -1,6 +1,7 @@
 import SpriteKit
 
 
+
 struct PhysicsCategory {
     static let Player: UInt32 = 0x1 << 1
     static let Ground: UInt32 = 0x1 << 2
