@@ -1,4 +1,5 @@
 import SpriteKit
+import CoreData
 
 
 struct PhysicsCategory {
@@ -224,6 +225,35 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             gameReady = false
             runner.runAction(scaleHeightAction, completion: { () -> Void in })
             self.runAction(SKAction.fadeInWithDuration(1.0), completion: {
+                
+                
+                
+                //1
+                let appDelegate =
+                    UIApplication.sharedApplication().delegate as! AppDelegate
+                
+                let managedContext = appDelegate.managedObjectContext
+                
+            
+                
+                let entityDescription =
+                    NSEntityDescription.entityForName("Scores",
+                        inManagedObjectContext: managedContext)
+                
+                let highscore = Scores(entity: entityDescription!,
+                    insertIntoManagedObjectContext: managedContext)
+                
+                highscore.score = self.score
+
+                do{
+                    try managedContext.save()
+                } catch {
+                    print("?")
+                }
+       
+                
+                
+                
                 self.removeAllChildren()
                 self.addBG()
                 let transition:SKTransition = SKTransition.fadeWithDuration(1)
@@ -233,7 +263,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         if (firstBody.categoryBitMask == PhysicsCategory.Player && secondBody.categoryBitMask == PhysicsCategory.Ground) || (firstBody.categoryBitMask == PhysicsCategory.Ground && secondBody.categoryBitMask == PhysicsCategory.Player)
         {
-            print("floored")
+//            print("floored")
             if netActive == false{
                 numJumps = 0
             }else{
