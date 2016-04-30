@@ -46,9 +46,8 @@ class GameScene: SKScene {
        /* Called when a touch begins */
         
         for touch in touches {
-            let location = touch.locationInNode(self)
-            runner.physicsBody?.velocity = CGVectorMake(runner.position.x, runner.position.y + 35)
-
+            let _ = touch.locationInNode(self)
+            runner.physicsBody?.velocity = CGVectorMake(0, runner.position.y + 420)
         }
     }
    
@@ -58,9 +57,9 @@ class GameScene: SKScene {
         {
             runner.position.x = 0
         }
-        if runner.position.y >= self.frame.height - 175
+        if runner.position.y >= self.frame.height - 140
         {
-            runner.position.y = self.frame.height - 175
+            runner.position.y = self.frame.height - 140
         }
     }
 }
