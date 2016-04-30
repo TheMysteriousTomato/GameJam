@@ -11,7 +11,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     let runner = SKSpriteNode(imageNamed: "runner")
     let floor = SKSpriteNode(imageNamed: "floor")
     let dodgebutton = SKSpriteNode(imageNamed: "dodgebutton")
-    let obj = SKSpriteNode(imageNamed: "obj")
+    
     
     var now : NSDate?
     var nextTime : NSDate?
@@ -135,46 +135,48 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if runner.position.x >= self.frame.width { runner.position.x = 0 }
         if runner.position.y >= self.frame.height - 140 { runner.position.y = self.frame.height - 140 }
         
+        let obj = SKSpriteNode(imageNamed: "obj")
+        
         now = NSDate()
         if (now?.timeIntervalSince1970 > nextTime?.timeIntervalSince1970){
             let rnd = arc4random_uniform(10)
             
             nextTime = now?.dateByAddingTimeInterval(NSTimeInterval(2.0))
-//            let spike = SKSpriteNode(imageNamed: "spike")
-//            
-//            if (rnd < 4 && rnd > 2)
-//            {
-//                spike.size = CGSize(width: 70, height: 70)
-//                spike.physicsBody = SKPhysicsBody(rectangleOfSize: CGSize(width: 70, height: 70))
-//            }
-//            else if (rnd < 1)
-//            {
-//                spike.size = CGSize(width: 150, height: 175)
-//                spike.physicsBody = SKPhysicsBody(rectangleOfSize: CGSize(width: 125, height: 175))
-//            } else {
-//        
-//            }
-//            
-//            spike.position = CGPoint(x: self.frame.size.width, y: floor.frame.height + 50);
-//            spike.physicsBody?.categoryBitMask = PhysicsCategory.Spike
-//            spike.physicsBody?.collisionBitMask = PhysicsCategory.Ground
-//            spike.physicsBody?.contactTestBitMask = PhysicsCategory.Ground
-//            spike.physicsBody?.affectedByGravity = true
-//            spike.physicsBody?.dynamic = true
-//            spike.physicsBody?.velocity = CGVectorMake(-1000, spike.position.y)
-//            
-//            self.addChild(spike)
+            let spike = SKSpriteNode(imageNamed: "spike")
+            
+            if (rnd < 4 && rnd > 2)
+            {
+                spike.size = CGSize(width: 70, height: 70)
+                spike.physicsBody = SKPhysicsBody(rectangleOfSize: CGSize(width: 70, height: 70))
+            }
+            else if (rnd < 1)
+            {
+                spike.size = CGSize(width: 150, height: 175)
+                spike.physicsBody = SKPhysicsBody(rectangleOfSize: CGSize(width: 125, height: 175))
+            } else {
+        
+            }
+            
+            spike.position = CGPoint(x: self.frame.size.width, y: floor.frame.height + 50);
+            spike.physicsBody?.categoryBitMask = PhysicsCategory.Spike
+            spike.physicsBody?.collisionBitMask = PhysicsCategory.Ground
+            spike.physicsBody?.contactTestBitMask = PhysicsCategory.Ground
+            spike.physicsBody?.affectedByGravity = true
+            spike.physicsBody?.dynamic = true
+            spike.physicsBody?.velocity = CGVectorMake(-1000, spike.position.y)
+            
+            self.addChild(spike)
             
             
             obj.position = CGPoint(x: self.frame.size.width, y: 300);
             let action = SKAction.moveTo(CGPoint(x:-300, y: 300), duration: 2)
             obj.runAction(action)
-//            obj.physicsBody?.categoryBitMask = PhysicsCategory.Spike
-//            obj.physicsBody?.collisionBitMask = PhysicsCategory.Ground
-//            obj.physicsBody?.contactTestBitMask = PhysicsCategory.Ground
-//            obj.physicsBody?.affectedByGravity = false
-//            obj.physicsBody?.dynamic = false
-//            obj.physicsBody?.velocity = CGVectorMake(-1000, obj.position.y)
+            obj.physicsBody?.categoryBitMask = PhysicsCategory.Spike
+            obj.physicsBody?.collisionBitMask = PhysicsCategory.Ground
+            obj.physicsBody?.contactTestBitMask = PhysicsCategory.Ground
+            obj.physicsBody?.affectedByGravity = false
+            obj.physicsBody?.dynamic = false
+            obj.physicsBody?.velocity = CGVectorMake(-1000, obj.position.y)
             self.addChild(obj)
         }
         
