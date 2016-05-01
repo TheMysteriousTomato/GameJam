@@ -22,7 +22,7 @@ class GameOverScene: SKScene {
             label.text = "Game Over"
             label.fontSize = 100
             label.fontColor = SKColor.whiteColor()
-            label.position = CGPoint(x: size.width/2, y: size.height/2 + 200)
+            label.position = CGPoint(x: size.width/2, y: size.height/2 + 300)
             self.addChild(label)
             
             
@@ -31,7 +31,7 @@ class GameOverScene: SKScene {
             score.text = message
             score.fontSize = 40
             score.fontColor = SKColor.whiteColor()
-            score.position = CGPoint(x: size.width/2, y: size.height/2 + 100)
+            score.position = CGPoint(x: size.width/2, y: size.height/2 + 200)
             self.addChild(score)
         
             getCurrentHighScore()
@@ -42,14 +42,14 @@ class GameOverScene: SKScene {
             clustCount.text = "Cluster Count: " + String(clusterCount)
             clustCount.fontSize = 40
             clustCount.fontColor = SKColor.whiteColor()
-            clustCount.position = CGPoint(x: size.width/2, y: size.height/2 + 30)
+            clustCount.position = CGPoint(x: size.width/2, y: size.height/2 + 130)
             self.addChild(clustCount)
         
             let hiscore = SKLabelNode(fontNamed: "PerfectDarkBRK")
             hiscore.text = "High Score: " + String(highscore)
             hiscore.fontSize = 40
             hiscore.fontColor = SKColor.whiteColor()
-            hiscore.position = CGPoint(x: size.width/2, y: size.height/2 - 50)
+            hiscore.position = CGPoint(x: size.width/2, y: size.height/2 + 50)
             self.addChild(hiscore)
         
         if clusterCount >= 20 {
@@ -58,20 +58,20 @@ class GameOverScene: SKScene {
             retry.name = "retry"
             retry.fontSize = 70
             retry.fontColor = SKColor.greenColor()
-            retry.position = CGPoint(x: size.width/2, y: size.height/2 - 150)
+            retry.position = CGPoint(x: size.width/2, y: size.height/2 - 50)
             self.addChild(retry)
         }
         
             let playagain = SKSpriteNode(imageNamed: "playbutton")
             playagain.size = CGSize(width: 400, height: 100)
             playagain.name = "play"
-            playagain.position = CGPoint(x: size.width/2, y: size.height/2 - 250)
+            playagain.position = CGPoint(x: size.width/2, y: size.height/2 - 150)
             self.addChild(playagain)
         
             let homeScreen = SKSpriteNode(imageNamed: "homebutton")
             homeScreen.size = CGSize(width: 400, height: 100)
             homeScreen.name = "home"
-            homeScreen.position = CGPoint(x: size.width/2, y: size.height/2 - 350)
+            homeScreen.position = CGPoint(x: size.width/2, y: size.height/2 - 250)
             self.addChild(homeScreen)
 
 //        })
