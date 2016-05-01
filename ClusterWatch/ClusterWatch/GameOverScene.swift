@@ -84,7 +84,7 @@ class GameOverScene: SKScene {
             let result = try managedContext.executeFetchRequest(fetchRequest)
             var index = result.count
             highscore = Int(result[index - 1].valueForKey("score") as! NSNumber)
-            print("Highscore: " + String(highscore))
+//            print("Highscore: " + String(highscore))
 //            for managedObject in result {
 //                if let hi = managedObject.valueForKey("score"){
 //                    //print("\(hi)")

@@ -44,7 +44,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         super.init(size: size)
         charChoice = char
         dodgeChoice = charChoice + "d"
-        print("IN GAMESCENE: " + charChoice)
+//        print("IN GAMESCENE: " + charChoice)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -283,10 +283,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
    
     func didBeginContact(contact: SKPhysicsContact) {
-        let firstBody = contact.bodyA
-        let secondBody = contact.bodyB
-        if (firstBody.categoryBitMask == PhysicsCategory.Player && secondBody.categoryBitMask == PhysicsCategory.Spike) || (firstBody.categoryBitMask == PhysicsCategory.Spike && secondBody.categoryBitMask == PhysicsCategory.Player) || (firstBody.categoryBitMask == PhysicsCategory.Player && secondBody.categoryBitMask == PhysicsCategory.Wall) || (firstBody.categoryBitMask == PhysicsCategory.Wall && secondBody.categoryBitMask == PhysicsCategory.Player){
-//            print("Hit player")
+        if gameReady {
+            let firstBody = contact.bodyA
+            let secondBody = contact.bodyB
+            if (firstBody.categoryBitMask == PhysicsCategory.Player && secondBody.categoryBitMask == PhysicsCategory.Spike) ||
+           (firstBody.categoryBitMask == PhysicsCategory.Spike && secondBody.categoryBitMask == PhysicsCategory.Player) ||
+           (firstBody.categoryBitMask == PhysicsCategory.Player && secondBody.categoryBitMask == PhysicsCategory.Wall) ||
+           (firstBody.categoryBitMask == PhysicsCategory.Wall && secondBody.categoryBitMask == PhysicsCategory.Player){
             let flip = arc4random_uniform(2)
             if flip == 0
             {
@@ -301,6 +304,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             let finalHeightScale:CGFloat = 0.0
             let scaleHeightAction = SKAction.scaleYTo(finalHeightScale, duration: duration)
             
+            print("PLAYER HIT")
             gameReady = false
             runner.runAction(scaleHeightAction, completion: { () -> Void in })
             self.runAction(SKAction.fadeInWithDuration(1.0), completion: {
@@ -308,31 +312,93 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 self.removeAllChildren()
                 self.addBG()
                 
+                
+                let appDelegate =
+                    UIApplication.sharedApplication().delegate as! AppDelegate
+                let managedContext = appDelegate.managedObjectContext
+                
                 if(self.score > self.currentHighScore){
-                    print("Setting new highscore!")
-                    //1
-                    let appDelegate =
-                        UIApplication.sharedApplication().delegate as! AppDelegate
-                    
-                    let managedContext = appDelegate.managedObjectContext
-                    
-                    let entityDescription =
-                        NSEntityDescription.entityForName("Scores",
-                            inManagedObjectContext: managedContext)
-                    
-                    let highscore = Scores(entity: entityDescription!,
-                        insertIntoManagedObjectContext: managedContext)
-                    
-                    highscore.score = self.score
-                    
-                    do{
-                        try managedContext.save()
+                    let fetchRequest = NSFetchRequest(entityName: "Scores")
+                    let sortDescriptor = NSSortDescriptor(key: "score", ascending: true)
+                    fetchRequest.sortDescriptors = [sortDescriptor]
+                    do {
+                        let result = try managedContext.executeFetchRequest(fetchRequest)
+                        if result.count != 0 {
+                            let managedObject = result[0]
+                            managedObject.setValue(self.score, forKey: "score")
+                            do{
+                                print("SAVING NEW SCORE: " + String(self.score))
+                                try managedContext.save()
+                            } catch {
+                                print("?")
+                            }
+                            
+                        } else { //Create an entity
+                            print("Creating Score entity")
+                            let entityDescription =
+                                NSEntityDescription.entityForName("Scores",
+                                    inManagedObjectContext: managedContext)
+                            
+                            let newScore = Scores(entity: entityDescription!,
+                                insertIntoManagedObjectContext: managedContext)
+                            
+                            newScore.score = self.score
+                            
+                            do{
+                                try managedContext.save()
+                            } catch {
+                                print("?")
+                            }
+                        }
                     } catch {
-                        print("?")
+                        let fetchError = error as NSError
+                        print(fetchError)
                     }
                 } else {
                     print("No new highscore set")
                 }
+                
+                
+                let fetchRequest = NSFetchRequest(entityName: "Clusters")
+                let sortDescriptor = NSSortDescriptor(key: "cluster", ascending: true)
+                fetchRequest.sortDescriptors = [sortDescriptor]
+                do {
+                    let result = try managedContext.executeFetchRequest(fetchRequest)
+                    if result.count != 0 {
+                        let cluster = result[0].valueForKey("cluster") as! NSNumber
+                        let val = Int(cluster) + (self.score / 10)
+                        
+                        let managedObject = result[0]
+                        managedObject.setValue(val, forKey: "cluster")
+                        do{
+                            print("SAVING CLUSTER: " + String(val))
+                            try managedContext.save()
+                        } catch {
+                            print("?")
+                        }
+                        
+                    } else { //Create an entity
+                        print("Creating Cluster entity")
+                        let entityDescription =
+                            NSEntityDescription.entityForName("Clusters",
+                                inManagedObjectContext: managedContext)
+                        
+                        let numClusters = Clusters(entity: entityDescription!,
+                            insertIntoManagedObjectContext: managedContext)
+                        
+                        numClusters.cluster = self.score / 10
+                        
+                        do{
+                            try managedContext.save()
+                        } catch {
+                            print("?")
+                        }
+                    }
+                } catch {
+                    let fetchError = error as NSError
+                    print(fetchError)
+                }
+ 
                 
                 
                 let transition:SKTransition = SKTransition.fadeWithDuration(1)
@@ -340,9 +406,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 self.view?.presentScene(gameOverScene, transition: transition)
             })
         }
-        if (firstBody.categoryBitMask == PhysicsCategory.Player && secondBody.categoryBitMask == PhysicsCategory.Ground) || (firstBody.categoryBitMask == PhysicsCategory.Ground && secondBody.categoryBitMask == PhysicsCategory.Player)
-        {
-//            print("floored")
+            if (firstBody.categoryBitMask == PhysicsCategory.Player && secondBody.categoryBitMask == PhysicsCategory.Ground) || (firstBody.categoryBitMask == PhysicsCategory.Ground && secondBody.categoryBitMask == PhysicsCategory.Player)
+            {
             if netActive == false{
                 numJumps = 0
             }else{
@@ -351,23 +416,23 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         
 
-        if (firstBody.categoryBitMask == PhysicsCategory.Wall && secondBody.categoryBitMask == PhysicsCategory.Missile) || (firstBody.categoryBitMask == PhysicsCategory.Missile && secondBody.categoryBitMask == PhysicsCategory.Wall)
-        {
+            if (firstBody.categoryBitMask == PhysicsCategory.Wall && secondBody.categoryBitMask == PhysicsCategory.Missile) || (firstBody.categoryBitMask == PhysicsCategory.Missile && secondBody.categoryBitMask == PhysicsCategory.Wall)
+            {
             
             firstBody.node?.removeFromParent()
             secondBody.node?.removeFromParent()
         }
         
-        if (firstBody.categoryBitMask == PhysicsCategory.Net && secondBody.categoryBitMask == PhysicsCategory.Fireblast) || (firstBody.categoryBitMask == PhysicsCategory.Fireblast && secondBody.categoryBitMask == PhysicsCategory.Net)
-        {
+            if (firstBody.categoryBitMask == PhysicsCategory.Net && secondBody.categoryBitMask == PhysicsCategory.Fireblast) || (firstBody.categoryBitMask == PhysicsCategory.Fireblast && secondBody.categoryBitMask == PhysicsCategory.Net)
+            {
             
             firstBody.node?.removeFromParent()
             secondBody.node?.removeFromParent()
             netActive = false
             //numJumps = 0
 
+            }
         }
-        
     }
     
     func checkIfObjReachesEnd(){
@@ -613,7 +678,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             if result.count != 0 {
                 let index = result.count
                 currentHighScore = Int(result[index - 1].valueForKey("score") as! NSNumber)
-                print("Highscore: " + String(currentHighScore))
+//                print("Highscore: " + String(currentHighScore))
             }
         } catch {
             let fetchError = error as NSError
