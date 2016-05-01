@@ -52,17 +52,26 @@ class GameOverScene: SKScene {
             hiscore.position = CGPoint(x: size.width/2, y: size.height/2 - 50)
             self.addChild(hiscore)
         
+        if clusterCount <= 20 {
+            let retry = SKLabelNode(fontNamed: "PerfectDarkBRK")
+            retry.text = "Retry for 20 Clusters"
+            retry.name = "retry"
+            retry.fontSize = 70
+            retry.fontColor = SKColor.greenColor()
+            retry.position = CGPoint(x: size.width/2, y: size.height/2 - 150)
+            self.addChild(retry)
+        }
         
             let playagain = SKSpriteNode(imageNamed: "playbutton")
             playagain.size = CGSize(width: 400, height: 100)
             playagain.name = "play"
-            playagain.position = CGPoint(x: size.width/2, y: size.height/2 - 150)
+            playagain.position = CGPoint(x: size.width/2, y: size.height/2 - 250)
             self.addChild(playagain)
         
             let homeScreen = SKSpriteNode(imageNamed: "homebutton")
             homeScreen.size = CGSize(width: 400, height: 100)
             homeScreen.name = "home"
-            homeScreen.position = CGPoint(x: size.width/2, y: size.height/2 - 250)
+            homeScreen.position = CGPoint(x: size.width/2, y: size.height/2 - 350)
             self.addChild(homeScreen)
 
 //        })
@@ -162,6 +171,12 @@ class GameOverScene: SKScene {
                         self.view?.presentScene(gameScene, transition: transition)
                     }
                     if(name == "home") {
+                        runAction(SKAction.playSoundFileNamed("audio/menu click.wav", waitForCompletion: false))
+                        let transition:SKTransition = SKTransition.fadeWithDuration(2)
+                        let gameScene = MainMenuScene(size: size)
+                        self.view?.presentScene(gameScene, transition: transition)
+                    }
+                    if(name == "retry") {
                         runAction(SKAction.playSoundFileNamed("audio/menu click.wav", waitForCompletion: false))
                         let transition:SKTransition = SKTransition.fadeWithDuration(2)
                         let gameScene = MainMenuScene(size: size)
