@@ -10,6 +10,8 @@ struct PhysicsCategory {
     static let Wall: UInt32 = 0x1 << 5
     static let Net: UInt32 = 0x1 << 6
     static let Fireblast: UInt32 = 0x1 << 6
+    static let Cluster: UInt32 = 0x1 << 7
+
 }
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
@@ -38,6 +40,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var duckActive = Bool()
     var charChoice = ""
     var dodgeChoice = ""
+    var clusterCount = 0
 
     
     init(size: CGSize, char: String) {
@@ -84,8 +87,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         runner.position = CGPoint(x: self.frame.size.width / 10 , y: floor.frame.height);
         runner.physicsBody = SKPhysicsBody(texture: SKTexture(imageNamed: charChoice), size: CGSize(width: 100, height: 100))
         runner.physicsBody?.categoryBitMask = PhysicsCategory.Player
-        runner.physicsBody?.collisionBitMask = PhysicsCategory.Ground | PhysicsCategory.Spike | PhysicsCategory.Wall
-        runner.physicsBody?.contactTestBitMask = PhysicsCategory.Ground | PhysicsCategory.Spike | PhysicsCategory.Wall
+        runner.physicsBody?.collisionBitMask = PhysicsCategory.Ground | PhysicsCategory.Spike | PhysicsCategory.Wall //| PhysicsCategory.Cluster
+        runner.physicsBody?.contactTestBitMask = PhysicsCategory.Ground | PhysicsCategory.Spike | PhysicsCategory.Wall //| PhysicsCategory.Cluster
         runner.physicsBody?.affectedByGravity = true
         runner.physicsBody?.dynamic = true
         
@@ -194,8 +197,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     runner.position.x = self.frame.width / 10
                     runner.physicsBody = SKPhysicsBody(texture: SKTexture(imageNamed: dodgeChoice), size: CGSize(width: 90, height: 75))
                     runner.physicsBody?.categoryBitMask = PhysicsCategory.Player
-                    runner.physicsBody?.collisionBitMask = PhysicsCategory.Ground | PhysicsCategory.Spike | PhysicsCategory.Wall
-                    runner.physicsBody?.contactTestBitMask = PhysicsCategory.Ground | PhysicsCategory.Spike | PhysicsCategory.Wall
+                    runner.physicsBody?.collisionBitMask = PhysicsCategory.Ground | PhysicsCategory.Spike | PhysicsCategory.Wall //| PhysicsCategory.Cluster
+                    runner.physicsBody?.contactTestBitMask = PhysicsCategory.Ground | PhysicsCategory.Spike | PhysicsCategory.Wall// | PhysicsCategory.Cluster
                     runner.physicsBody?.affectedByGravity = true
                     runner.physicsBody?.dynamic = true
                     duckActive = true
@@ -262,8 +265,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     runner.size = CGSize(width: 100, height: 100)
                     runner.physicsBody = SKPhysicsBody(texture: SKTexture(imageNamed: charChoice), size: CGSize(width: 100, height: 100))
                     runner.physicsBody?.categoryBitMask = PhysicsCategory.Player
-                    runner.physicsBody?.collisionBitMask = PhysicsCategory.Ground | PhysicsCategory.Spike | PhysicsCategory.Wall
-                    runner.physicsBody?.contactTestBitMask = PhysicsCategory.Ground | PhysicsCategory.Spike | PhysicsCategory.Wall
+                    runner.physicsBody?.collisionBitMask = PhysicsCategory.Ground | PhysicsCategory.Spike | PhysicsCategory.Wall //| PhysicsCategory.Cluster
+                    runner.physicsBody?.contactTestBitMask = PhysicsCategory.Ground | PhysicsCategory.Spike | PhysicsCategory.Wall //| PhysicsCategory.Cluster
                     runner.physicsBody?.affectedByGravity = true
                     runner.physicsBody?.dynamic = true
                     numJumps = 0
@@ -368,6 +371,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
         }
         
+        if (firstBody.categoryBitMask == PhysicsCategory.Player && secondBody.categoryBitMask == PhysicsCategory.Cluster){
+            
+            secondBody.node?.removeFromParent()
+            clusterCount += 1
+            
+        } else if (firstBody.categoryBitMask == PhysicsCategory.Cluster && secondBody.categoryBitMask == PhysicsCategory.Player)
+        {
+            firstBody.node?.removeFromParent()
+            clusterCount += 1
+
+        }
+        
+        
     }
     
     func checkIfObjReachesEnd(){
@@ -443,6 +459,26 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.addChild(obj)
     }
     
+    func generateCluster(){
+        let cluster = SKSpriteNode(imageNamed: "glowclusters")
+        let rnd = arc4random_uniform(200) + 200 // 0-5
+
+        cluster.size = CGSize(width: 100, height: 100)
+        cluster.position = CGPoint(x: self.frame.size.width, y: CGFloat(rnd));
+        cluster.physicsBody = SKPhysicsBody(texture: SKTexture(imageNamed: "obj"), size: CGSize(width: 150, height: 200))
+        cluster.physicsBody?.categoryBitMask = PhysicsCategory.Cluster
+        cluster.physicsBody?.collisionBitMask = PhysicsCategory.Player
+        cluster.physicsBody?.contactTestBitMask = PhysicsCategory.Player
+        cluster.physicsBody?.affectedByGravity = false
+        cluster.physicsBody?.dynamic = false
+        cluster.physicsBody?.velocity = CGVectorMake(-50, CGFloat(rnd))
+        let action = SKAction.moveTo(CGPoint(x:-50, y: Int(rnd)), duration: 5)
+        cluster.runAction(action)
+        
+        self.addChild(cluster)
+    }
+    
+    
     func generateWall(){
         let wall = SKSpriteNode(imageNamed: "wall")
         
@@ -510,7 +546,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
             now = NSDate()
             if (now?.timeIntervalSince1970 > nextTime?.timeIntervalSince1970){
-                let rnd = arc4random_uniform(6) // 0-4
+                let rnd = arc4random_uniform(6) // 0-5
                 nextTime = now?.dateByAddingTimeInterval(NSTimeInterval(2.0))
                 
                 
@@ -518,10 +554,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 if score <= 9 {
 //                    print("Level 1 - "  + String(rnd))
                     generateSmallSpike()
+                    if rnd == 4 {
+                        generateCluster()
+                    }
                 } else if score <= 19 {
 //                    print("Level 2 - " + String(rnd))
                     if rnd <= 3 {
                         generateSmallSpike()
+                    } else if rnd == 4{
+                        generateCluster()
                     } else {
                         generateLargeSpike()
                     }
@@ -532,6 +573,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     } else if rnd <= 4 {
                         generateLargeSpike()
                     } else {
+                        generateCluster()
                         generateBullet()
                     }
                 } else if score <= 39 {
@@ -540,7 +582,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                         generateSmallSpike()
                     } else if rnd <= 2{
                         generateLargeSpike()
-                    } else if rnd <= 4{
+                    } else if rnd == 3{
+                        generateBullet()
+                        generateCluster()
+                    } else if rnd == 4{
                         generateBullet()
                     } else{
                         generateWall()
@@ -549,6 +594,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 //                    print("Level 5+ - " + String(rnd))
                     if rnd == 0 {
                         generateSmallSpike()
+                        generateCluster()
                     } else if rnd == 1{
                         generateLargeSpike()
                     } else if rnd == 2{
@@ -565,6 +611,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                         generateSmallSpike()
                     } else if rnd == 1{
                         generateLargeSpike()
+                        generateCluster()
                     } else if rnd == 2{
                         generateLargeSpike()
                         generateNet()
@@ -575,6 +622,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                         generateBullet()
                     } else {
                         generateWall()
+                        generateCluster()
                     }
                 }
                 
