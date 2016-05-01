@@ -200,9 +200,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     
                     
                     runner.texture = SKTexture(imageNamed: dodgeChoice)
-                    runner.size = CGSize(width: 100, height: 100)
+                    runner.size = CGSize(width: 80, height: 80)
                     runner.position.x = self.frame.width / 10
-                    runner.physicsBody = SKPhysicsBody(texture: SKTexture(imageNamed: dodgeChoice), size: CGSize(width: 90, height: 75))
+                    runner.physicsBody = SKPhysicsBody(texture: SKTexture(imageNamed: dodgeChoice), size: CGSize(width: 80, height: 80))
                     runner.physicsBody?.categoryBitMask = PhysicsCategory.Player
                     runner.physicsBody?.collisionBitMask = PhysicsCategory.Ground | PhysicsCategory.Spike | PhysicsCategory.Wall //| PhysicsCategory.Cluster
                     runner.physicsBody?.contactTestBitMask = PhysicsCategory.Ground | PhysicsCategory.Spike | PhysicsCategory.Wall// | PhysicsCategory.Cluster
@@ -555,7 +555,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
         cluster.size = CGSize(width: 100, height: 100)
         cluster.position = CGPoint(x: self.frame.size.width, y: CGFloat(rnd));
-        cluster.physicsBody = SKPhysicsBody(texture: SKTexture(imageNamed: "obj"), size: CGSize(width: 150, height: 200))
+        cluster.physicsBody = SKPhysicsBody(texture: SKTexture(imageNamed: "glowclusters"), size: CGSize(width: 100, height: 100))
         cluster.physicsBody?.categoryBitMask = PhysicsCategory.Cluster
         cluster.physicsBody?.collisionBitMask = PhysicsCategory.Player
         cluster.physicsBody?.contactTestBitMask = PhysicsCategory.Player

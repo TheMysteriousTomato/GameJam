@@ -1,7 +1,9 @@
+import Foundation
 import SpriteKit
+import CoreData
 
 class PlayerSelectScene: SKScene {
-    
+    var itemValue = Bool()
     
     override func didMoveToView(view: SKView) {
         
@@ -20,9 +22,10 @@ class PlayerSelectScene: SKScene {
         addChild(label)
         
         let c1 = SKLabelNode(fontNamed: "PerfectDarkBRK")
+        
         c1.text = "runner"
-        c1.fontSize = 40
         c1.name = "char"
+        c1.fontSize = 40
         c1.position = CGPoint(x:CGRectGetMinX(self.frame) + 125, y:(CGRectGetMaxY(self.frame) / 2 - 150))
         addChild(c1)
         
@@ -55,10 +58,16 @@ class PlayerSelectScene: SKScene {
         c3image.size = CGSize(width: 150, height: 150)
         c3image.position = CGPoint(x:CGRectGetMaxX(self.frame) - 125, y:(CGRectGetMaxY(self.frame) / 2))
         addChild(c3image)
+        
+        let c4 = SKLabelNode(fontNamed: "PerfectDarkBRK")
+        c4.text = "default"
+        c4.fontSize = 40
+        c4.name = "char"
+        c4.position = CGPoint(x:CGRectGetMaxX(self.frame) / 2, y:(CGRectGetMaxY(self.frame) / 2 - 300))
+        addChild(c4)
    
         
     }
-
     
     override func update(currentTime: CFTimeInterval) {
     }

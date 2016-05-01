@@ -3,17 +3,11 @@
     <entity name="Clusters" representedClassName=".Clusters" syncable="YES">
         <attribute name="cluster" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
     </entity>
-    <entity name="Items" representedClassName=".Items" syncable="YES">
-        <attribute name="item1" optional="YES" attributeType="Boolean" syncable="YES"/>
-        <attribute name="item2" optional="YES" attributeType="Boolean" syncable="YES"/>
-        <attribute name="item3" optional="YES" attributeType="Boolean" syncable="YES"/>
-    </entity>
     <entity name="Scores" representedClassName=".Scores" syncable="YES">
         <attribute name="score" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
     </entity>
     <elements>
         <element name="Clusters" positionX="-54" positionY="0" width="128" height="60"/>
         <element name="Scores" positionX="-63" positionY="-18" width="128" height="60"/>
-        <element name="Items" positionX="-54" positionY="0" width="128" height="90"/>
     </elements>
 </model>
