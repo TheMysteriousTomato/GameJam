@@ -52,7 +52,7 @@ class GameOverScene: SKScene {
             hiscore.position = CGPoint(x: size.width/2, y: size.height/2 - 50)
             self.addChild(hiscore)
         
-        if clusterCount <= 20 {
+        if clusterCount >= 20 {
             let retry = SKLabelNode(fontNamed: "PerfectDarkBRK")
             retry.text = "Retry for 20 Clusters"
             retry.name = "retry"
