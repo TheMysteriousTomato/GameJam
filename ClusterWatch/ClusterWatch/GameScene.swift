@@ -37,11 +37,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     let tapToPlaylabel = SKLabelNode(fontNamed: "PerfectDarkBRK")
     var duckActive = Bool()
     var charChoice = ""
+    var dodgeChoice = ""
 
     
     init(size: CGSize, char: String) {
         super.init(size: size)
         charChoice = char
+        dodgeChoice = charChoice + "d"
         print("IN GAMESCENE: " + charChoice)
     }
     
@@ -187,10 +189,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     }
                     
                     
-                    runner.texture = SKTexture(imageNamed: "dodge")
+                    runner.texture = SKTexture(imageNamed: dodgeChoice)
                     runner.size = CGSize(width: 100, height: 100)
                     runner.position.x = self.frame.width / 10
-                    runner.physicsBody = SKPhysicsBody(texture: SKTexture(imageNamed: "dodge"), size: CGSize(width: 90, height: 75))
+                    runner.physicsBody = SKPhysicsBody(texture: SKTexture(imageNamed: dodgeChoice), size: CGSize(width: 90, height: 75))
                     runner.physicsBody?.categoryBitMask = PhysicsCategory.Player
                     runner.physicsBody?.collisionBitMask = PhysicsCategory.Ground | PhysicsCategory.Spike | PhysicsCategory.Wall
                     runner.physicsBody?.contactTestBitMask = PhysicsCategory.Ground | PhysicsCategory.Spike | PhysicsCategory.Wall

@@ -5,13 +5,11 @@ class PlayerSelectScene: SKScene {
     
     override func didMoveToView(view: SKView) {
         
-        
-//        let bg = SKSpriteNode(imageNamed: "Menu")
-//        bg.position = CGPointMake(self.size.width/2, self.size.height/2);
-//        bg.xScale = 2
-//        bg.yScale = 2
-//        bg.zPosition = -2
-//        self.addChild(bg)
+        let bg = SKSpriteNode(imageNamed: "blackback")
+        bg.position = CGPointMake(self.frame.width/2, self.frame.height/2);
+        bg.size = CGSize(width: self.frame.width, height: self.frame.height)
+        bg.zPosition = -2
+        self.addChild(bg)
         
         let message = "Select your character:"
         let label = SKLabelNode(fontNamed: "PerfectDarkBRK")
@@ -74,7 +72,7 @@ class PlayerSelectScene: SKScene {
                     if (name == "char"){
                         let label = self.nodeAtPoint(location) as! SKLabelNode
                         let char = label.text
-                        runAction(SKAction.playSoundFileNamed("Sounds/hit.wav", waitForCompletion: false))
+                        runAction(SKAction.playSoundFileNamed("audio/menu click accept.wav", waitForCompletion: false))
                         let transition:SKTransition = SKTransition.fadeWithDuration(2)
                         
                         let gameScene = GameScene(size: size, char: char!)

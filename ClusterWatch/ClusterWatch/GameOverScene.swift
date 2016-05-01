@@ -10,6 +10,12 @@ class GameOverScene: SKScene {
         super.init(size: size)
         charChoice = lastChar
         
+        let bg = SKSpriteNode(imageNamed: "blackback")
+        bg.position = CGPointMake(self.frame.width/2, self.frame.height/2);
+        bg.size = CGSize(width: self.frame.width, height: self.frame.height)
+        bg.zPosition = -2
+        self.addChild(bg)
+        
 //        self.runAction(SKAction.fadeInWithDuration(2.5), completion: {
             let label = SKLabelNode(fontNamed: "PerfectDarkBRK")
             label.text = "Game Over"
@@ -37,14 +43,14 @@ class GameOverScene: SKScene {
             self.addChild(hiscore)
         
         
-            let playagain = SKLabelNode(fontNamed: "PerfectDarkBRK")
-            playagain.text = "play again"
+            let playagain = SKSpriteNode(imageNamed: "playbutton")
+            playagain.size = CGSize(width: 400, height: 100)
             playagain.name = "play"
             playagain.position = CGPoint(x: size.width/2, y: size.height/2 - 150)
             self.addChild(playagain)
         
-            let homeScreen = SKLabelNode(fontNamed: "PerfectDarkBRK")
-            homeScreen.text = "home"
+            let homeScreen = SKSpriteNode(imageNamed: "homebutton")
+            homeScreen.size = CGSize(width: 400, height: 100)
             homeScreen.name = "home"
             homeScreen.position = CGPoint(x: size.width/2, y: size.height/2 - 250)
             self.addChild(homeScreen)
@@ -107,11 +113,13 @@ class GameOverScene: SKScene {
             if CGRectContainsPoint(self.frame, location) {
                 if let name = self.nodeAtPoint(location).name {
                     if(name == "play") {
+                        runAction(SKAction.playSoundFileNamed("audio/menu click.wav", waitForCompletion: false))
                         let transition:SKTransition = SKTransition.fadeWithDuration(2)
                         let gameScene = GameScene(size: size, char: charChoice)
                         self.view?.presentScene(gameScene, transition: transition)
                     }
                     if(name == "home") {
+                        runAction(SKAction.playSoundFileNamed("audio/menu click.wav", waitForCompletion: false))
                         let transition:SKTransition = SKTransition.fadeWithDuration(2)
                         let gameScene = MainMenuScene(size: size)
                         self.view?.presentScene(gameScene, transition: transition)

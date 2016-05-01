@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		66F0906E1CD554BB00578085 /* audio in Resources */ = {isa = PBXBuildFile; fileRef = 66F0906D1CD554BB00578085 /* audio */; };
+		839425131CD5709700416006 /* Clusters+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839425111CD5709700416006 /* Clusters+CoreDataProperties.swift */; };
+		839425141CD5709700416006 /* Clusters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839425121CD5709700416006 /* Clusters.swift */; };
 		E6350FD51CD5175700838BD6 /* PlayerScore.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E6350FD31CD5175700838BD6 /* PlayerScore.xcdatamodeld */; };
 		E6350FD81CD518AC00838BD6 /* Scores+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6350FD61CD518AC00838BD6 /* Scores+CoreDataProperties.swift */; };
 		E6350FD91CD518AC00838BD6 /* Scores.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6350FD71CD518AC00838BD6 /* Scores.swift */; };
@@ -46,6 +48,8 @@
 
 /* Begin PBXFileReference section */
 		66F0906D1CD554BB00578085 /* audio */ = {isa = PBXFileReference; lastKnownFileType = folder; path = audio; sourceTree = "<group>"; };
+		839425111CD5709700416006 /* Clusters+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Clusters+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		839425121CD5709700416006 /* Clusters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Clusters.swift; sourceTree = "<group>"; };
 		E6350FD41CD5175700838BD6 /* PlayerScore.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PlayerScore.xcdatamodel; sourceTree = "<group>"; };
 		E6350FD61CD518AC00838BD6 /* Scores+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Scores+CoreDataProperties.swift"; path = "ClusterWatch/Scores+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		E6350FD71CD518AC00838BD6 /* Scores.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Scores.swift; path = ClusterWatch/Scores.swift; sourceTree = "<group>"; };
@@ -99,6 +103,8 @@
 		E63A20681CD45122003B5A2F = {
 			isa = PBXGroup;
 			children = (
+				839425111CD5709700416006 /* Clusters+CoreDataProperties.swift */,
+				839425121CD5709700416006 /* Clusters.swift */,
 				E6350FD61CD518AC00838BD6 /* Scores+CoreDataProperties.swift */,
 				E6350FD71CD518AC00838BD6 /* Scores.swift */,
 				E6350FD31CD5175700838BD6 /* PlayerScore.xcdatamodeld */,
@@ -226,7 +232,7 @@
 				TargetAttributes = {
 					E63A20701CD45122003B5A2F = {
 						CreatedOnToolsVersion = 7.3;
-						DevelopmentTeam = US2F72CWJU;
+						DevelopmentTeam = R76V32GG2G;
 					};
 					E63A20881CD45122003B5A2F = {
 						CreatedOnToolsVersion = 7.3;
@@ -296,12 +302,14 @@
 			files = (
 				E6350FDB1CD54BC200838BD6 /* PlayerSelectScene.swift in Sources */,
 				E6D627C71CD4B4710096FB6B /* MainMenuScene.swift in Sources */,
+				839425141CD5709700416006 /* Clusters.swift in Sources */,
 				E63A20791CD45122003B5A2F /* GameScene.swift in Sources */,
 				E63A207B1CD45122003B5A2F /* GameViewController.swift in Sources */,
 				E6D627C31CD477890096FB6B /* GameOverScene.swift in Sources */,
 				E63A20751CD45122003B5A2F /* AppDelegate.swift in Sources */,
 				E6350FD81CD518AC00838BD6 /* Scores+CoreDataProperties.swift in Sources */,
 				E6350FD91CD518AC00838BD6 /* Scores.swift in Sources */,
+				839425131CD5709700416006 /* Clusters+CoreDataProperties.swift in Sources */,
 				E6350FD51CD5175700838BD6 /* PlayerScore.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
