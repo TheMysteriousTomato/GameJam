@@ -4,6 +4,7 @@ import CoreData
 
 class GameOverScene: SKScene {
     var highscore = 0
+    var clusterCount = 0
     var charChoice = ""
     
     init(size: CGSize, score: Int, lastChar: String) {
@@ -34,6 +35,15 @@ class GameOverScene: SKScene {
             self.addChild(score)
         
             getCurrentHighScore()
+            getCurrentClusters()
+
+        
+            let clustCount = SKLabelNode(fontNamed: "PerfectDarkBRK")
+            clustCount.text = "Cluster Count: " + String(clusterCount)
+            clustCount.fontSize = 40
+            clustCount.fontColor = SKColor.whiteColor()
+            clustCount.position = CGPoint(x: size.width/2, y: size.height/2 + 30)
+            self.addChild(clustCount)
         
             let hiscore = SKLabelNode(fontNamed: "PerfectDarkBRK")
             hiscore.text = "High Score: " + String(highscore)
@@ -84,13 +94,46 @@ class GameOverScene: SKScene {
             let result = try managedContext.executeFetchRequest(fetchRequest)
             var index = result.count
             highscore = Int(result[index - 1].valueForKey("score") as! NSNumber)
-            print("Highscore: " + String(highscore))
+//            print("Highscore: " + String(highscore))
 //            for managedObject in result {
 //                if let hi = managedObject.valueForKey("score"){
 //                    //print("\(hi)")
 //                    highscore = Int(hi as! NSNumber)
 //                }
 //            }
+            
+        } catch {
+            let fetchError = error as NSError
+            print(fetchError)
+        }
+    }
+    
+    func getCurrentClusters(){
+        //1
+        let appDelegate =
+            UIApplication.sharedApplication().delegate as! AppDelegate
+        
+        let managedContext = appDelegate.managedObjectContext
+        
+        
+        // Create Fetch Request
+        let fetchRequest = NSFetchRequest(entityName: "Clusters")
+        
+        // Add Sort Descriptor
+        let sortDescriptor = NSSortDescriptor(key: "cluster", ascending: true)
+        fetchRequest.sortDescriptors = [sortDescriptor]
+        
+        // Execute Fetch Request
+        do {
+            let result = try managedContext.executeFetchRequest(fetchRequest)
+            clusterCount = Int(result[0].valueForKey("cluster") as! NSNumber)
+            //            print("Highscore: " + String(highscore))
+            //            for managedObject in result {
+            //                if let hi = managedObject.valueForKey("score"){
+            //                    //print("\(hi)")
+            //                    highscore = Int(hi as! NSNumber)
+            //                }
+            //            }
             
         } catch {
             let fetchError = error as NSError
