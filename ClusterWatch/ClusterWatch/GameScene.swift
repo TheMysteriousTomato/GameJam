@@ -45,10 +45,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var clusterHit = Bool()
 
     
-    init(size: CGSize, char: String, score: Int) {
+    init(size: CGSize, char: String, score: Int, clusters: Int) {
         super.init(size: size)
         self.score = score
         charChoice = char
+        clusterCount = clusters
         dodgeChoice = charChoice + "d"
 //        print("IN GAMESCENE: " + charChoice)
     }

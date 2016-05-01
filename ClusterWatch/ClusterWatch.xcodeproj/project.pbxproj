@@ -235,7 +235,7 @@
 				TargetAttributes = {
 					E63A20701CD45122003B5A2F = {
 						CreatedOnToolsVersion = 7.3;
-						DevelopmentTeam = US2F72CWJU;
+						DevelopmentTeam = R76V32GG2G;
 					};
 					E63A20881CD45122003B5A2F = {
 						CreatedOnToolsVersion = 7.3;

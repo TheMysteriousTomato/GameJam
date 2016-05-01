@@ -169,7 +169,7 @@ class GameOverScene: SKScene {
                     if(name == "play") {
                         runAction(SKAction.playSoundFileNamed("audio/menu click.wav", waitForCompletion: false))
                         let transition:SKTransition = SKTransition.fadeWithDuration(2)
-                        let gameScene = GameScene(size: size, char: charChoice, score: 0)
+                        let gameScene = GameScene(size: size, char: charChoice, score: 0, clusters: 0)
                         self.view?.presentScene(gameScene, transition: transition)
                     }
                     if(name == "home") {
@@ -181,7 +181,7 @@ class GameOverScene: SKScene {
                     if(name == "retry") {
                         runAction(SKAction.playSoundFileNamed("audio/menu click.wav", waitForCompletion: false))
                         let transition:SKTransition = SKTransition.fadeWithDuration(2)
-                        let gameScene = GameScene(size: size, char: charChoice, score: score)
+                        let gameScene = GameScene(size: size, char: charChoice, score: score, clusters: -20)
                         self.view?.presentScene(gameScene, transition: transition)
                     }
                 }
