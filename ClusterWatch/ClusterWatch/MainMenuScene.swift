@@ -5,7 +5,7 @@ class MainMenuScene: SKScene {
     
     
     override func didMoveToView(view: SKView) {
-                
+
         let bg = SKSpriteNode(imageNamed: "menuback")
         bg.position = CGPointMake(self.frame.width/2, self.frame.height/2);
         bg.size = CGSize(width: self.frame.width, height: self.frame.height)
