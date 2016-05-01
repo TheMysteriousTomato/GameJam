@@ -8,46 +8,48 @@ class MainMenuScene: SKScene {
         let appDelegate =
             UIApplication.sharedApplication().delegate as! AppDelegate
         let managedContext = appDelegate.managedObjectContext
+        
+
+
         let fetchRequest = NSFetchRequest(entityName: "Items")
-        let sortDescriptor1 = NSSortDescriptor(key: "item1", ascending: true)
-        let sortDescriptor2 = NSSortDescriptor(key: "item2", ascending: true)
-        let sortDescriptor3 = NSSortDescriptor(key: "item3", ascending: true)
-        fetchRequest.sortDescriptors = [sortDescriptor1, sortDescriptor2, sortDescriptor3]
+        var items = [NSManagedObject]()
         do {
-            let result = try managedContext.executeFetchRequest(fetchRequest)
-            if result.count != 0 {
-                let managedObject = result[0]
-                managedObject.setValue(false, forKey: "item1")
-                managedObject.setValue(false, forKey: "item2")
-                managedObject.setValue(false, forKey: "item3")
-                do{
-                    print("SAVING Default Store states...")
-                    try managedContext.save()
-                } catch {
-                    print("?")
-                }
+            let results = try managedContext.executeFetchRequest(fetchRequest)
+            
+            if results.count == 0 {
+                print("Creating Store Entity")
+                let entity =  NSEntityDescription.entityForName("Items",
+                                                                inManagedObjectContext:managedContext)
+                let item = NSManagedObject(entity: entity!,
+                                           insertIntoManagedObjectContext: managedContext)
                 
-            } else { //Create an entity
-                print("Creating Score entity")
-//                let entityDescription =
-//                    NSEntityDescription.entityForName("Items",
-//                                                      inManagedObjectContext: managedContext)
-//                
-//                let newItem1 = Scores(entity: entityDescription!,
-//                                      insertIntoManagedObjectContext: managedContext)
-//                
-//                newScore.score = self.score
-//                
-//                do{
-//                    try managedContext.save()
-//                } catch {
-//                    print("?")
-//                }
+                item.setValue(false, forKey: "item1")
+                item.setValue(false, forKey: "item2")
+                item.setValue(false, forKey: "item3")
+                
+                do {
+                    try managedContext.save()
+                    print("Grabbing store items status")
+                    items = results as! [NSManagedObject]
+                    print(items[0].valueForKey("item1"))
+                    print(items[0].valueForKey("item2"))
+                    print(items[0].valueForKey("item3"))
+                } catch let error as NSError  {
+                    print("Could not save \(error), \(error.userInfo)")
+                }
             }
-        } catch {
-            let fetchError = error as NSError
-            print(fetchError)
+            if results.count != 0 {
+                print("Grabbing store items status")
+                items = results as! [NSManagedObject]
+                print(items[0].valueForKey("item1"))
+                print(items[0].valueForKey("item2"))
+                print(items[0].valueForKey("item3"))
+            }
+            
+        } catch let error as NSError {
+            print("Could not fetch \(error), \(error.userInfo)")
         }
+        
         
         let bg = SKSpriteNode(imageNamed: "menuback")
         bg.position = CGPointMake(self.frame.width/2, self.frame.height/2);
