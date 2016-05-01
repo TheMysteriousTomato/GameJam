@@ -1,10 +1,53 @@
 import SpriteKit
+import CoreData
 
 class MainMenuScene: SKScene {
     
     
     override func didMoveToView(view: SKView) {
-        
+        let appDelegate =
+            UIApplication.sharedApplication().delegate as! AppDelegate
+        let managedContext = appDelegate.managedObjectContext
+        let fetchRequest = NSFetchRequest(entityName: "Items")
+        let sortDescriptor1 = NSSortDescriptor(key: "item1", ascending: true)
+        let sortDescriptor2 = NSSortDescriptor(key: "item2", ascending: true)
+        let sortDescriptor3 = NSSortDescriptor(key: "item3", ascending: true)
+        fetchRequest.sortDescriptors = [sortDescriptor1, sortDescriptor2, sortDescriptor3]
+        do {
+            let result = try managedContext.executeFetchRequest(fetchRequest)
+            if result.count != 0 {
+                let managedObject = result[0]
+                managedObject.setValue(false, forKey: "item1")
+                managedObject.setValue(false, forKey: "item2")
+                managedObject.setValue(false, forKey: "item3")
+                do{
+                    print("SAVING Default Store states...")
+                    try managedContext.save()
+                } catch {
+                    print("?")
+                }
+                
+            } else { //Create an entity
+                print("Creating Score entity")
+//                let entityDescription =
+//                    NSEntityDescription.entityForName("Items",
+//                                                      inManagedObjectContext: managedContext)
+//                
+//                let newItem1 = Scores(entity: entityDescription!,
+//                                      insertIntoManagedObjectContext: managedContext)
+//                
+//                newScore.score = self.score
+//                
+//                do{
+//                    try managedContext.save()
+//                } catch {
+//                    print("?")
+//                }
+            }
+        } catch {
+            let fetchError = error as NSError
+            print(fetchError)
+        }
         
         let bg = SKSpriteNode(imageNamed: "menuback")
         bg.position = CGPointMake(self.frame.width/2, self.frame.height/2);
@@ -22,8 +65,8 @@ class MainMenuScene: SKScene {
         play.name = "play"
         play.position = CGPoint(x: size.width/2, y: size.height/2 - 200)
         addChild(play)
-//        
-        let store = SKSpriteNode(imageNamed: "playbutton")
+       
+        let store = SKSpriteNode(imageNamed: "storebutton")
         store.size = CGSize(width: 400, height: 100)
         store.name = "store"
         store.position = CGPoint(x: size.width/2, y: size.height/2 - 315)
