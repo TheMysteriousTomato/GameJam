@@ -20,6 +20,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     let dodgebutton = SKSpriteNode(imageNamed: "dodgebutton")
     let missilebutton = SKSpriteNode(imageNamed: "missilebutton")
     let fireballbutton = SKSpriteNode(imageNamed: "fireballbutton")
+    let jumpbutton = SKSpriteNode(imageNamed: "jumpbutton")
     let missile = SKSpriteNode(imageNamed: "missile")
     let fireblast = SKSpriteNode(imageNamed: "fireblast")
     var bg1 = SKSpriteNode(imageNamed: "bg")
@@ -59,17 +60,22 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.backgroundColor = SKColor.whiteColor()
         
         dodgebutton.size     = CGSize(width: 100, height: 100)
-        dodgebutton.position = CGPoint(x: self.frame.width - 400, y: floor.frame.height / 2);
+        dodgebutton.position = CGPoint(x: 115, y: floor.frame.height / 2);
         dodgebutton.zPosition = 5
         dodgebutton.name = "dodgebutton"
         
+        jumpbutton.size     = CGSize(width: 100, height: 100)
+        jumpbutton.position = CGPoint(x: self.frame.width - 115, y: floor.frame.height / 2);
+        jumpbutton.zPosition = 5
+        jumpbutton.name = "jumpbutton"
+        
         missilebutton.size     = CGSize(width: 100, height: 100)
-        missilebutton.position = CGPoint(x: self.frame.width - 520, y: floor.frame.height / 2);
+        missilebutton.position = CGPoint(x: self.frame.width - 300, y: floor.frame.height / 2);
         missilebutton.zPosition = 5
         missilebutton.name = "missilebutton"
         
         fireballbutton.size     = CGSize(width: 100, height: 100)
-        fireballbutton.position = CGPoint(x: self.frame.width - 640, y: floor.frame.height / 2);
+        fireballbutton.position = CGPoint(x: 300, y: floor.frame.height / 2);
         fireballbutton.zPosition = 5
         fireballbutton.name = "fireballbutton"
         
@@ -116,7 +122,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         highscorelabel.position = CGPoint(x: self.frame.width - 190, y: self.frame.height * 0.9)
         self.addChild(highscorelabel)
         
-
+        self.addChild(jumpbutton)
         self.addChild(dodgebutton)
         self.addChild(missilebutton)
         self.addChild(fireballbutton)
@@ -233,7 +239,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     fireblast.physicsBody?.velocity = CGVectorMake(0, 300)
                     self.addChild(fireblast)
                 }
-            } else if touch.tapCount <= 2 {
+             else if(name == "jumpbutton"){
+                print("super pizza")
+                if touch.tapCount <= 2 {
 //                print(numJumps)
                 if duckActive{
                     numJumps == 4
@@ -250,8 +258,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     }
                 }
                 
+                }
+                }
             }
-            }
+        }
         }
     }
     
