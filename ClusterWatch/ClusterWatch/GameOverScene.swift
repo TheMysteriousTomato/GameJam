@@ -6,10 +6,12 @@ class GameOverScene: SKScene {
     var highscore = 0
     var clusterCount = 0
     var charChoice = ""
-    
+    var score = 0
     init(size: CGSize, score: Int, lastChar: String) {
         super.init(size: size)
         charChoice = lastChar
+        
+        self.score = score
         
         let bg = SKSpriteNode(imageNamed: "blackback")
         bg.position = CGPointMake(self.frame.width/2, self.frame.height/2);
@@ -167,7 +169,7 @@ class GameOverScene: SKScene {
                     if(name == "play") {
                         runAction(SKAction.playSoundFileNamed("audio/menu click.wav", waitForCompletion: false))
                         let transition:SKTransition = SKTransition.fadeWithDuration(2)
-                        let gameScene = GameScene(size: size, char: charChoice)
+                        let gameScene = GameScene(size: size, char: charChoice, score: 0)
                         self.view?.presentScene(gameScene, transition: transition)
                     }
                     if(name == "home") {
@@ -179,7 +181,7 @@ class GameOverScene: SKScene {
                     if(name == "retry") {
                         runAction(SKAction.playSoundFileNamed("audio/menu click.wav", waitForCompletion: false))
                         let transition:SKTransition = SKTransition.fadeWithDuration(2)
-                        let gameScene = MainMenuScene(size: size)
+                        let gameScene = GameScene(size: size, char: charChoice, score: score)
                         self.view?.presentScene(gameScene, transition: transition)
                     }
                 }
