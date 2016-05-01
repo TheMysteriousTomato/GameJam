@@ -270,7 +270,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     runner.physicsBody?.contactTestBitMask = PhysicsCategory.Ground | PhysicsCategory.Spike | PhysicsCategory.Wall //| PhysicsCategory.Cluster
                     runner.physicsBody?.affectedByGravity = true
                     runner.physicsBody?.dynamic = true
-                    numJumps = 0
+                    //numJumps = 0
                     duckActive = false
                 }
                 
@@ -443,6 +443,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
                 secondBody.node?.removeFromParent()
                 if clusterHit == false{
+                    runAction(SKAction.playSoundFileNamed("audio/Panda growl 2 (pick up).wav", waitForCompletion: false))
                         clusterCount += 1
                 }
                 clusterHit = true
@@ -453,6 +454,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         {
             firstBody.node?.removeFromParent()
             if clusterHit == false{
+                runAction(SKAction.playSoundFileNamed("audio/Panda growl 2 (pick up).wav", waitForCompletion: false))
                 clusterCount += 1
             }
             clusterHit = true
