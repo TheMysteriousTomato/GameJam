@@ -12,21 +12,22 @@ class MainMenuScene: SKScene {
         bg.zPosition = -2
         self.addChild(bg)
         
-        //let message = "C L U S T E R   W A T C H"
-        //let label = SKLabelNode(fontNamed: "PerfectDarkBRK")
         let label = SKSpriteNode(imageNamed: "title")
         label.size = CGSize(width: 900, height: 180)
-        //label.text = message
-        //label.fontSize = 80
-        //label.fontColor = SKColor.whiteColor()
         label.position = CGPoint(x: size.width/2, y: size.height - 100 )
         addChild(label)
         
         let play = SKSpriteNode(imageNamed: "playbutton")
         play.size = CGSize(width: 400, height: 100)
         play.name = "play"
-        play.position = CGPoint(x: size.width/2, y: size.height/2 - 250)
+        play.position = CGPoint(x: size.width/2, y: size.height/2 - 200)
         addChild(play)
+//        
+        let store = SKSpriteNode(imageNamed: "playbutton")
+        store.size = CGSize(width: 400, height: 100)
+        store.name = "store"
+        store.position = CGPoint(x: size.width/2, y: size.height/2 - 315)
+        addChild(store)
         
         initializingMusic()
     }
@@ -49,12 +50,12 @@ class MainMenuScene: SKScene {
             let location = (touch as! UITouch).locationInNode(self)
             if CGRectContainsPoint(self.frame, location) {
                 if let name = self.nodeAtPoint(location).name {
-//                    if( name == "help"){
-//                        runAction(SKAction.playSoundFileNamed("Sounds/hit.wav", waitForCompletion: false))
-//                        let transition:SKTransition = SKTransition.fadeWithDuration(2)
-//                        let gameScene = HelpScene(size: size)
-//                        self.view?.presentScene(gameScene, transition: transition)
-//                    } else
+                    if( name == "store"){
+                        runAction(SKAction.playSoundFileNamed("audio/menu click.wav", waitForCompletion: false))
+                        let transition:SKTransition = SKTransition.fadeWithDuration(2)
+                        let gameScene = StoreScene(size: size)
+                        self.view?.presentScene(gameScene, transition: transition)
+                    }
                     if (name == "play"){
                         runAction(SKAction.playSoundFileNamed("audio/menu click.wav", waitForCompletion: false))
                         let transition:SKTransition = SKTransition.fadeWithDuration(2)
