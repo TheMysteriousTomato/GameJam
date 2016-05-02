@@ -9,6 +9,30 @@
 /* Begin PBXBuildFile section */
 		66F0906E1CD554BB00578085 /* audio in Resources */ = {isa = PBXBuildFile; fileRef = 66F0906D1CD554BB00578085 /* audio */; };
 		66F090701CD5A96300578085 /* StoreScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66F0906F1CD5A96300578085 /* StoreScene.swift */; };
+		830C05A41CD6CFAF00201310 /* Panda_Run .01.png in Resources */ = {isa = PBXBuildFile; fileRef = 830C058C1CD6CFAF00201310 /* Panda_Run .01.png */; };
+		830C05A51CD6CFAF00201310 /* Panda_Run .02.png in Resources */ = {isa = PBXBuildFile; fileRef = 830C058D1CD6CFAF00201310 /* Panda_Run .02.png */; };
+		830C05A61CD6CFAF00201310 /* Panda_Run .03.png in Resources */ = {isa = PBXBuildFile; fileRef = 830C058E1CD6CFAF00201310 /* Panda_Run .03.png */; };
+		830C05A71CD6CFAF00201310 /* Panda_Run .04.png in Resources */ = {isa = PBXBuildFile; fileRef = 830C058F1CD6CFAF00201310 /* Panda_Run .04.png */; };
+		830C05A81CD6CFAF00201310 /* Panda_Run .05.png in Resources */ = {isa = PBXBuildFile; fileRef = 830C05901CD6CFAF00201310 /* Panda_Run .05.png */; };
+		830C05A91CD6CFAF00201310 /* Panda_Run .06.png in Resources */ = {isa = PBXBuildFile; fileRef = 830C05911CD6CFAF00201310 /* Panda_Run .06.png */; };
+		830C05AA1CD6CFAF00201310 /* Panda_Run .07.png in Resources */ = {isa = PBXBuildFile; fileRef = 830C05921CD6CFAF00201310 /* Panda_Run .07.png */; };
+		830C05AB1CD6CFAF00201310 /* Panda_Run .08.png in Resources */ = {isa = PBXBuildFile; fileRef = 830C05931CD6CFAF00201310 /* Panda_Run .08.png */; };
+		830C05AC1CD6CFAF00201310 /* Panda_Run .09.png in Resources */ = {isa = PBXBuildFile; fileRef = 830C05941CD6CFAF00201310 /* Panda_Run .09.png */; };
+		830C05AD1CD6CFAF00201310 /* Panda_Run .10.png in Resources */ = {isa = PBXBuildFile; fileRef = 830C05951CD6CFAF00201310 /* Panda_Run .10.png */; };
+		830C05AE1CD6CFAF00201310 /* Panda_Run .11.png in Resources */ = {isa = PBXBuildFile; fileRef = 830C05961CD6CFAF00201310 /* Panda_Run .11.png */; };
+		830C05AF1CD6CFAF00201310 /* Panda_Run .12.png in Resources */ = {isa = PBXBuildFile; fileRef = 830C05971CD6CFAF00201310 /* Panda_Run .12.png */; };
+		830C05B01CD6CFAF00201310 /* Panda_Run .13.png in Resources */ = {isa = PBXBuildFile; fileRef = 830C05981CD6CFAF00201310 /* Panda_Run .13.png */; };
+		830C05B11CD6CFAF00201310 /* Panda_Run .14.png in Resources */ = {isa = PBXBuildFile; fileRef = 830C05991CD6CFAF00201310 /* Panda_Run .14.png */; };
+		830C05B21CD6CFAF00201310 /* Panda_Run .15.png in Resources */ = {isa = PBXBuildFile; fileRef = 830C059A1CD6CFAF00201310 /* Panda_Run .15.png */; };
+		830C05B31CD6CFAF00201310 /* Panda_Run .16.png in Resources */ = {isa = PBXBuildFile; fileRef = 830C059B1CD6CFAF00201310 /* Panda_Run .16.png */; };
+		830C05B41CD6CFAF00201310 /* Panda_Run .17.png in Resources */ = {isa = PBXBuildFile; fileRef = 830C059C1CD6CFAF00201310 /* Panda_Run .17.png */; };
+		830C05B51CD6CFAF00201310 /* Panda_Run .18.png in Resources */ = {isa = PBXBuildFile; fileRef = 830C059D1CD6CFAF00201310 /* Panda_Run .18.png */; };
+		830C05B61CD6CFAF00201310 /* Panda_Run .19.png in Resources */ = {isa = PBXBuildFile; fileRef = 830C059E1CD6CFAF00201310 /* Panda_Run .19.png */; };
+		830C05B71CD6CFAF00201310 /* Panda_Run .20.png in Resources */ = {isa = PBXBuildFile; fileRef = 830C059F1CD6CFAF00201310 /* Panda_Run .20.png */; };
+		830C05B81CD6CFAF00201310 /* Panda_Run .21.png in Resources */ = {isa = PBXBuildFile; fileRef = 830C05A01CD6CFAF00201310 /* Panda_Run .21.png */; };
+		830C05B91CD6CFAF00201310 /* Panda_Run .22.png in Resources */ = {isa = PBXBuildFile; fileRef = 830C05A11CD6CFAF00201310 /* Panda_Run .22.png */; };
+		830C05BA1CD6CFAF00201310 /* Panda_Run .23.png in Resources */ = {isa = PBXBuildFile; fileRef = 830C05A21CD6CFAF00201310 /* Panda_Run .23.png */; };
+		830C05BB1CD6CFAF00201310 /* Panda_Run .24.png in Resources */ = {isa = PBXBuildFile; fileRef = 830C05A31CD6CFAF00201310 /* Panda_Run .24.png */; };
 		839425131CD5709700416006 /* Clusters+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839425111CD5709700416006 /* Clusters+CoreDataProperties.swift */; };
 		839425141CD5709700416006 /* Clusters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839425121CD5709700416006 /* Clusters.swift */; };
 		E6350FD51CD5175700838BD6 /* PlayerScore.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E6350FD31CD5175700838BD6 /* PlayerScore.xcdatamodeld */; };
@@ -50,6 +74,30 @@
 /* Begin PBXFileReference section */
 		66F0906D1CD554BB00578085 /* audio */ = {isa = PBXFileReference; lastKnownFileType = folder; path = audio; sourceTree = "<group>"; };
 		66F0906F1CD5A96300578085 /* StoreScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreScene.swift; sourceTree = "<group>"; };
+		830C058C1CD6CFAF00201310 /* Panda_Run .01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Panda_Run .01.png"; sourceTree = "<group>"; };
+		830C058D1CD6CFAF00201310 /* Panda_Run .02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Panda_Run .02.png"; sourceTree = "<group>"; };
+		830C058E1CD6CFAF00201310 /* Panda_Run .03.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Panda_Run .03.png"; sourceTree = "<group>"; };
+		830C058F1CD6CFAF00201310 /* Panda_Run .04.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Panda_Run .04.png"; sourceTree = "<group>"; };
+		830C05901CD6CFAF00201310 /* Panda_Run .05.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Panda_Run .05.png"; sourceTree = "<group>"; };
+		830C05911CD6CFAF00201310 /* Panda_Run .06.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Panda_Run .06.png"; sourceTree = "<group>"; };
+		830C05921CD6CFAF00201310 /* Panda_Run .07.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Panda_Run .07.png"; sourceTree = "<group>"; };
+		830C05931CD6CFAF00201310 /* Panda_Run .08.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Panda_Run .08.png"; sourceTree = "<group>"; };
+		830C05941CD6CFAF00201310 /* Panda_Run .09.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Panda_Run .09.png"; sourceTree = "<group>"; };
+		830C05951CD6CFAF00201310 /* Panda_Run .10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Panda_Run .10.png"; sourceTree = "<group>"; };
+		830C05961CD6CFAF00201310 /* Panda_Run .11.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Panda_Run .11.png"; sourceTree = "<group>"; };
+		830C05971CD6CFAF00201310 /* Panda_Run .12.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Panda_Run .12.png"; sourceTree = "<group>"; };
+		830C05981CD6CFAF00201310 /* Panda_Run .13.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Panda_Run .13.png"; sourceTree = "<group>"; };
+		830C05991CD6CFAF00201310 /* Panda_Run .14.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Panda_Run .14.png"; sourceTree = "<group>"; };
+		830C059A1CD6CFAF00201310 /* Panda_Run .15.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Panda_Run .15.png"; sourceTree = "<group>"; };
+		830C059B1CD6CFAF00201310 /* Panda_Run .16.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Panda_Run .16.png"; sourceTree = "<group>"; };
+		830C059C1CD6CFAF00201310 /* Panda_Run .17.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Panda_Run .17.png"; sourceTree = "<group>"; };
+		830C059D1CD6CFAF00201310 /* Panda_Run .18.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Panda_Run .18.png"; sourceTree = "<group>"; };
+		830C059E1CD6CFAF00201310 /* Panda_Run .19.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Panda_Run .19.png"; sourceTree = "<group>"; };
+		830C059F1CD6CFAF00201310 /* Panda_Run .20.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Panda_Run .20.png"; sourceTree = "<group>"; };
+		830C05A01CD6CFAF00201310 /* Panda_Run .21.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Panda_Run .21.png"; sourceTree = "<group>"; };
+		830C05A11CD6CFAF00201310 /* Panda_Run .22.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Panda_Run .22.png"; sourceTree = "<group>"; };
+		830C05A21CD6CFAF00201310 /* Panda_Run .23.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Panda_Run .23.png"; sourceTree = "<group>"; };
+		830C05A31CD6CFAF00201310 /* Panda_Run .24.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Panda_Run .24.png"; sourceTree = "<group>"; };
 		839425111CD5709700416006 /* Clusters+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Clusters+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		839425121CD5709700416006 /* Clusters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Clusters.swift; sourceTree = "<group>"; };
 		E6350FD41CD5175700838BD6 /* PlayerScore.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PlayerScore.xcdatamodel; sourceTree = "<group>"; };
@@ -102,6 +150,37 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		830C058B1CD6CFAF00201310 /* running */ = {
+			isa = PBXGroup;
+			children = (
+				830C058C1CD6CFAF00201310 /* Panda_Run .01.png */,
+				830C058D1CD6CFAF00201310 /* Panda_Run .02.png */,
+				830C058E1CD6CFAF00201310 /* Panda_Run .03.png */,
+				830C058F1CD6CFAF00201310 /* Panda_Run .04.png */,
+				830C05901CD6CFAF00201310 /* Panda_Run .05.png */,
+				830C05911CD6CFAF00201310 /* Panda_Run .06.png */,
+				830C05921CD6CFAF00201310 /* Panda_Run .07.png */,
+				830C05931CD6CFAF00201310 /* Panda_Run .08.png */,
+				830C05941CD6CFAF00201310 /* Panda_Run .09.png */,
+				830C05951CD6CFAF00201310 /* Panda_Run .10.png */,
+				830C05961CD6CFAF00201310 /* Panda_Run .11.png */,
+				830C05971CD6CFAF00201310 /* Panda_Run .12.png */,
+				830C05981CD6CFAF00201310 /* Panda_Run .13.png */,
+				830C05991CD6CFAF00201310 /* Panda_Run .14.png */,
+				830C059A1CD6CFAF00201310 /* Panda_Run .15.png */,
+				830C059B1CD6CFAF00201310 /* Panda_Run .16.png */,
+				830C059C1CD6CFAF00201310 /* Panda_Run .17.png */,
+				830C059D1CD6CFAF00201310 /* Panda_Run .18.png */,
+				830C059E1CD6CFAF00201310 /* Panda_Run .19.png */,
+				830C059F1CD6CFAF00201310 /* Panda_Run .20.png */,
+				830C05A01CD6CFAF00201310 /* Panda_Run .21.png */,
+				830C05A11CD6CFAF00201310 /* Panda_Run .22.png */,
+				830C05A21CD6CFAF00201310 /* Panda_Run .23.png */,
+				830C05A31CD6CFAF00201310 /* Panda_Run .24.png */,
+			);
+			path = running;
+			sourceTree = "<group>";
+		};
 		E63A20681CD45122003B5A2F = {
 			isa = PBXGroup;
 			children = (
@@ -130,6 +209,7 @@
 		E63A20731CD45122003B5A2F /* ClusterWatch */ = {
 			isa = PBXGroup;
 			children = (
+				830C058B1CD6CFAF00201310 /* running */,
 				66F0906D1CD554BB00578085 /* audio */,
 				E6D627C01CD455490096FB6B /* images */,
 				E63A20741CD45122003B5A2F /* AppDelegate.swift */,
@@ -273,12 +353,36 @@
 			buildActionMask = 2147483647;
 			files = (
 				E6D627C11CD455490096FB6B /* images in Resources */,
+				830C05AA1CD6CFAF00201310 /* Panda_Run .07.png in Resources */,
+				830C05B41CD6CFAF00201310 /* Panda_Run .17.png in Resources */,
 				E63A20771CD45122003B5A2F /* GameScene.sks in Resources */,
+				830C05AC1CD6CFAF00201310 /* Panda_Run .09.png in Resources */,
+				830C05BA1CD6CFAF00201310 /* Panda_Run .23.png in Resources */,
+				830C05A91CD6CFAF00201310 /* Panda_Run .06.png in Resources */,
+				830C05B11CD6CFAF00201310 /* Panda_Run .14.png in Resources */,
+				830C05AF1CD6CFAF00201310 /* Panda_Run .12.png in Resources */,
+				830C05A51CD6CFAF00201310 /* Panda_Run .02.png in Resources */,
+				830C05B81CD6CFAF00201310 /* Panda_Run .21.png in Resources */,
+				830C05AB1CD6CFAF00201310 /* Panda_Run .08.png in Resources */,
+				830C05BB1CD6CFAF00201310 /* Panda_Run .24.png in Resources */,
+				830C05B91CD6CFAF00201310 /* Panda_Run .22.png in Resources */,
+				830C05B51CD6CFAF00201310 /* Panda_Run .18.png in Resources */,
 				66F0906E1CD554BB00578085 /* audio in Resources */,
+				830C05A41CD6CFAF00201310 /* Panda_Run .01.png in Resources */,
+				830C05B01CD6CFAF00201310 /* Panda_Run .13.png in Resources */,
+				830C05B21CD6CFAF00201310 /* Panda_Run .15.png in Resources */,
+				830C05A61CD6CFAF00201310 /* Panda_Run .03.png in Resources */,
+				830C05AD1CD6CFAF00201310 /* Panda_Run .10.png in Resources */,
 				E63A20831CD45122003B5A2F /* LaunchScreen.storyboard in Resources */,
 				E63A20801CD45122003B5A2F /* Assets.xcassets in Resources */,
 				E6D627C91CD4B5470096FB6B /* MainMenuScene.sks in Resources */,
+				830C05AE1CD6CFAF00201310 /* Panda_Run .11.png in Resources */,
+				830C05A71CD6CFAF00201310 /* Panda_Run .04.png in Resources */,
+				830C05B61CD6CFAF00201310 /* Panda_Run .19.png in Resources */,
 				E63A207E1CD45122003B5A2F /* Main.storyboard in Resources */,
+				830C05A81CD6CFAF00201310 /* Panda_Run .05.png in Resources */,
+				830C05B31CD6CFAF00201310 /* Panda_Run .16.png in Resources */,
+				830C05B71CD6CFAF00201310 /* Panda_Run .20.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

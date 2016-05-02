@@ -56,7 +56,7 @@ class GameOverScene: SKScene {
         
         if clusterCount >= 20 {
             let retry = SKLabelNode(fontNamed: "PerfectDarkBRK")
-            retry.text = "Retry for 20 Clusters"
+            retry.text = "Continue for 20 Clusters"
             retry.name = "retry"
             retry.fontSize = 70
             retry.fontColor = SKColor.greenColor()
@@ -181,7 +181,7 @@ class GameOverScene: SKScene {
                     if(name == "retry") {
                         runAction(SKAction.playSoundFileNamed("audio/menu click.wav", waitForCompletion: false))
                         let transition:SKTransition = SKTransition.fadeWithDuration(2)
-                        let gameScene = GameScene(size: size, char: charChoice, score: score, clusters: -20)
+                        let gameScene = GameScene(size: size, char: charChoice, score: score, clusters: -(20 + score/10))
                         self.view?.presentScene(gameScene, transition: transition)
                     }
                 }

@@ -45,6 +45,31 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var clusterHit = Bool()
 
     
+    let f0 = SKTexture.init(imageNamed: "Panda_Run .01")
+    let f1 = SKTexture.init(imageNamed: "Panda_Run .02")
+    let f2 = SKTexture.init(imageNamed: "Panda_Run .03")
+    let f3 = SKTexture.init(imageNamed: "Panda_Run .04")
+    let f4 = SKTexture.init(imageNamed: "Panda_Run .05")
+    let f5 = SKTexture.init(imageNamed: "Panda_Run .06")
+    let f6 = SKTexture.init(imageNamed: "Panda_Run .07")
+    let f7 = SKTexture.init(imageNamed: "Panda_Run .08")
+    let f8 = SKTexture.init(imageNamed: "Panda_Run .09")
+    let f9 = SKTexture.init(imageNamed: "Panda_Run .10")
+    let f10 = SKTexture.init(imageNamed: "Panda_Run .11")
+    let f11 = SKTexture.init(imageNamed: "Panda_Run .12")
+    let f12 = SKTexture.init(imageNamed: "Panda_Run .13")
+    let f13 = SKTexture.init(imageNamed: "Panda_Run .14")
+    let f14 = SKTexture.init(imageNamed: "Panda_Run .15")
+    let f15 = SKTexture.init(imageNamed: "Panda_Run .16")
+    let f16 = SKTexture.init(imageNamed: "Panda_Run .17")
+    let f17 = SKTexture.init(imageNamed: "Panda_Run .18")
+    let f18 = SKTexture.init(imageNamed: "Panda_Run .19")
+    let f19 = SKTexture.init(imageNamed: "Panda_Run .20")
+    let f20 = SKTexture.init(imageNamed: "Panda_Run .21")
+    let f21 = SKTexture.init(imageNamed: "Panda_Run .22")
+    let f22 = SKTexture.init(imageNamed: "Panda_Run .23")
+    let f23 = SKTexture.init(imageNamed: "Panda_Run .24")
+    
     init(size: CGSize, char: String, score: Int, clusters: Int) {
         super.init(size: size)
         self.score = score
@@ -91,15 +116,25 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         floor.physicsBody?.affectedByGravity = false
         floor.physicsBody?.dynamic = false
         
-        runner = SKSpriteNode(imageNamed: charChoice)
-        runner.size = CGSize(width: 100, height: 100)
+        
+        
+      
+        let frames: [SKTexture] = [f0, f1, f2, f3, f4 ,f5 ,f6 , f7, f8, f9, f9, f10, f11, f12, f13, f14 , f15, f16, f16, f17, f18, f19, f20, f21, f22, f23]
+        
+        
+        runner = SKSpriteNode(imageNamed: "Panda_Run .01")
         runner.position = CGPoint(x: self.frame.size.width / 10 , y: floor.frame.height);
-        runner.physicsBody = SKPhysicsBody(texture: SKTexture(imageNamed: charChoice), size: CGSize(width: 100, height: 100))
+        runner.size = CGSize(width: 200, height: 200)
+        runner.physicsBody = SKPhysicsBody(rectangleOfSize: CGSize(width: 50,height: 80))
         runner.physicsBody?.categoryBitMask = PhysicsCategory.Player
         runner.physicsBody?.collisionBitMask = PhysicsCategory.Ground | PhysicsCategory.Spike | PhysicsCategory.Wall //| PhysicsCategory.Cluster
         runner.physicsBody?.contactTestBitMask = PhysicsCategory.Ground | PhysicsCategory.Spike | PhysicsCategory.Wall //| PhysicsCategory.Cluster
         runner.physicsBody?.affectedByGravity = true
         runner.physicsBody?.dynamic = true
+        let animation = SKAction.animateWithTextures(frames, timePerFrame: 0.04)
+        runner.runAction(SKAction.repeatActionForever(animation))
+
+        
         
         let m = "Tap To Play"
         tapToPlaylabel.text = m
@@ -158,7 +193,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         addChild(bg1)
         
         bg2.anchorPoint = CGPointZero
-        bg2.position = CGPointMake(frame.size.width-1, 0)
+        bg2.position = CGPointMake(frame.size.width-1, 20)
         bg2.size = self.frame.size
         bg2.zPosition = -1
         addChild(bg2)
@@ -204,7 +239,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     runner.texture = SKTexture(imageNamed: dodgeChoice)
                     runner.size = CGSize(width: 80, height: 80)
                     runner.position.x = self.frame.width / 10
-                    runner.physicsBody = SKPhysicsBody(texture: SKTexture(imageNamed: dodgeChoice), size: CGSize(width: 80, height: 80))
+                    runner.physicsBody = SKPhysicsBody(rectangleOfSize: CGSize(width: 50,height: 50))
                     runner.physicsBody?.categoryBitMask = PhysicsCategory.Player
                     runner.physicsBody?.collisionBitMask = PhysicsCategory.Ground | PhysicsCategory.Spike | PhysicsCategory.Wall //| PhysicsCategory.Cluster
                     runner.physicsBody?.contactTestBitMask = PhysicsCategory.Ground | PhysicsCategory.Spike | PhysicsCategory.Wall// | PhysicsCategory.Cluster
@@ -274,15 +309,33 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
             if let name = self.nodeAtPoint(location).name {
                 if( name == "dodgebutton"){
-                    runner.texture = SKTexture(imageNamed: charChoice)
-                    runner.size = CGSize(width: 100, height: 100)
-                    runner.physicsBody = SKPhysicsBody(texture: SKTexture(imageNamed: charChoice), size: CGSize(width: 100, height: 100))
+//                    runner.texture = SKTexture(imageNamed: charChoice)
+//                    runner.size = CGSize(width: 100, height: 100)
+//                    runner.physicsBody = SKPhysicsBody(texture: SKTexture(imageNamed: charChoice), size: CGSize(width: 100, height: 100))
+//                    runner.physicsBody?.categoryBitMask = PhysicsCategory.Player
+//                    runner.physicsBody?.collisionBitMask = PhysicsCategory.Ground | PhysicsCategory.Spike | PhysicsCategory.Wall //| PhysicsCategory.Cluster
+//                    runner.physicsBody?.contactTestBitMask = PhysicsCategory.Ground | PhysicsCategory.Spike | PhysicsCategory.Wall //| PhysicsCategory.Cluster
+//                    runner.physicsBody?.affectedByGravity = true
+//                    runner.physicsBody?.dynamic = true
+                    //numJumps = 0
+                    
+                    let frames: [SKTexture] = [f0, f1, f2, f3, f4 ,f5 ,f6 , f7, f8, f9, f9, f10, f11, f12, f13, f14 , f15, f16, f16, f17, f18, f19, f20, f21, f22, f23]
+                    
+                    
+                   // runner = SKSpriteNode(imageNamed: "Panda_Run .01")
+                    runner.position = CGPoint(x: self.frame.size.width / 10 , y: floor.frame.height);
+                    runner.size = CGSize(width: 200, height: 200)
+                    runner.physicsBody = SKPhysicsBody(rectangleOfSize: CGSize(width: 50,height: 80))
+                    //texture: SKTexture(imageNamed: charChoice), size: CGSize(width: 100, height: 100)
                     runner.physicsBody?.categoryBitMask = PhysicsCategory.Player
                     runner.physicsBody?.collisionBitMask = PhysicsCategory.Ground | PhysicsCategory.Spike | PhysicsCategory.Wall //| PhysicsCategory.Cluster
                     runner.physicsBody?.contactTestBitMask = PhysicsCategory.Ground | PhysicsCategory.Spike | PhysicsCategory.Wall //| PhysicsCategory.Cluster
                     runner.physicsBody?.affectedByGravity = true
                     runner.physicsBody?.dynamic = true
-                    //numJumps = 0
+                    let animation = SKAction.animateWithTextures(frames, timePerFrame: 0.04)
+                    runner.runAction(SKAction.repeatActionForever(animation))
+
+                    
                     duckActive = false
                 }
                 
@@ -446,7 +499,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             firstBody.node?.removeFromParent()
             secondBody.node?.removeFromParent()
             netActive = false
-            //numJumps = 0
+            numJumps = 0
 
             }
         
@@ -764,20 +817,33 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func addBG()
     {
+        if score <= 29{
         bg1 = SKSpriteNode(imageNamed: "bg")
 //        bg1.name = "background"
         bg2 = SKSpriteNode(imageNamed: "bg")
 //        bg2.name = "background"
-
+        }
+        else if score <= 49{
+            bg1 = SKSpriteNode(imageNamed: "bg2")
+            //        bg1.name = "background"
+            bg2 = SKSpriteNode(imageNamed: "bg2")
+            //        bg2.name = "background"
+        }
+        else {
+            bg1 = SKSpriteNode(imageNamed: "bg3")
+            //        bg1.name = "background"
+            bg2 = SKSpriteNode(imageNamed: "bg3")
+            //        bg2.name = "background"
+        }
 
         bg1.anchorPoint = CGPointZero
-        bg1.position = CGPointMake(bg1_lastX, bg1.position.y)
+        bg1.position = CGPointMake(bg1_lastX, bg1.position.y+70)
         bg1.size = self.frame.size
         bg1.zPosition = -1
         addChild(bg1)
         
         bg2.anchorPoint = CGPointZero
-        bg2.position = CGPointMake(bg2_lastX, bg2.position.y)
+        bg2.position = CGPointMake(bg2_lastX, bg2.position.y+70)
         bg2.size = self.frame.size
         bg2.zPosition = -1
         addChild(bg2)
